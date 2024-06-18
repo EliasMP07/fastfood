@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.navigation.saveargs)
+    kotlin("kapt")
 }
 
 android {
@@ -30,6 +33,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        viewBinding = true
+    }
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -37,6 +43,46 @@ android {
 
 dependencies {
 
+    //NavComponent
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+
+    //Room
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+
+    kapt(libs.androidx.room.compiler)
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation(libs.room.ktx)
+
+    // Fragment
+    implementation( libs.androidx.fragment.ktx)
+    // Activity
+    implementation (libs.androidx.activity.ktx)
+    // ViewModel
+    implementation( libs.androidx.lifecycle.viewmodel.ktx)
+    // LiveData
+    implementation (libs.lifecycle.livedata.ktx)
+    // Retrofit
+    implementation (libs.retrofit)
+    implementation (libs.retrofit2.converter.gson)
+    //Corrutinas
+    implementation(libs.kotlinx.coroutines.core)
+
+    //DaggerHilt
+    implementation(libs.hilt.android)
+    kapt(libs.dagger.hilt.compiler)
+
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.retrofit2.converter.gson)
+    //Glide
+    implementation(libs.glide)
+    kapt(libs.compiler)
+
+    //SplashScreen
+    implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
