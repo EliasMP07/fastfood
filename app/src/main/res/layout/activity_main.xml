@@ -5,15 +5,70 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@color/md_theme_primary"
+    tools:context=".auth.presentation.intro.MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        style="@style/HealineText"
+        android:text="@string/app_name"
+        app:layout_constraintBottom_toTopOf="@id/background"
+        />
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="300dp"
+        android:layout_height="360.dp"
+        android:contentDescription="person image"
+        android:scrollX="-80dp"
+        android:src="@drawable/background1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/background2"
+        android:layout_width="300dp"
+        android:layout_height="450.dp"
+        android:contentDescription="person image"
+        android:scrollX="70dp"
+        android:src="@drawable/background2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="10dp"
+        android:background="@drawable/gradiant_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/SecondaryButton"
+            app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge"
+            android:layout_marginBottom="20dp"
+            android:text="Login" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge"
+            style="@style/SecondaryButton"
+            android:text="Register" />
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
