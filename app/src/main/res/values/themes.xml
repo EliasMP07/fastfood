@@ -53,15 +53,23 @@
 
     <style name="Theme.DeliveryApp" parent="Base.Theme.DeliveryApp" />
 
+    <style name="BodyText" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/md_theme_onBackground</item>
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">@font/lilita_one</item>
+    </style>
+
     <style name="PrimaryButton" parent="Widget.MaterialComponents.Button">
         <item name="android:textSize">12sp</item>
         <item name="textAllCaps">true</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.ExtraLarge</item>
         <item name="android:fontFamily">@font/lilita_one</item>
         <item name="android:textColor">@color/md_theme_onPrimary</item>
         <item name="android:gravity">center</item>
-        <item name="backgroundTint">@color/md_theme_primary</item>
+        <item name="backgroundTint">@color/state_button_primary</item>
     </style>
 
     <style name="SecondaryButton" parent="Widget.MaterialComponents.Button">
@@ -69,10 +77,11 @@
         <item name="textAllCaps">true</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.ExtraLarge</item>
         <item name="android:textColor">@color/md_theme_onSecondary</item>
         <item name="android:gravity">center</item>
         <item name="android:fontFamily">@font/lilita_one</item>
-        <item name="backgroundTint">@color/md_theme_secondary</item>
+        <item name="backgroundTint">@color/state_button_secondary</item>
     </style>
 
     <style name="HealineText" parent="Widget.AppCompat.TextView">
