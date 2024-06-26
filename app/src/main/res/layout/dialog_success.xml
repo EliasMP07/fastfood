@@ -19,14 +19,14 @@
         tools:text="Título" />
 
     <ImageView
-        android:id="@+id/ivError"
+        android:id="@+id/ivSuccess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/error_image"
+        android:contentDescription="@string/sucess_image"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/ic_error"
+        android:src="@drawable/ic_success"
         />
 
     <TextView
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@id/ivError"
+        app:layout_constraintTop_toBottomOf="@id/ivSuccess"
         tools:text="Body" />
 
     <com.google.android.material.button.MaterialButton
@@ -46,22 +46,11 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
-        tools:text=":Reintentar"
+        tools:text=":Continue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnNegative"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnNegative"
-        style="@style/SecondaryButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        tools:text=":Cancelar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnPositive"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.deliveryapp.core.designsystem.dialog
+package com.example.deliveryapp.core.presentation.designsystem.dialog
 
 import java.lang.ref.WeakReference
 import kotlin.reflect.KProperty

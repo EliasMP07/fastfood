@@ -12,10 +12,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.deliveryapp.R
 import com.example.deliveryapp.auth.presentation.register.RegisterActivity
-import com.example.deliveryapp.core.designsystem.dialog.DialogFragmentLauncher
-import com.example.deliveryapp.core.designsystem.dialog.ErrorDialog
-import com.example.deliveryapp.core.designsystem.dialog.ex.show
-import com.example.deliveryapp.core.presentation.ui.span
+import com.example.deliveryapp.core.presentation.designsystem.dialog.DialogFragmentLauncher
+import com.example.deliveryapp.core.presentation.designsystem.dialog.ErrorDialog
+import com.example.deliveryapp.core.presentation.designsystem.dialog.ex.show
+import com.example.deliveryapp.core.presentation.ui.ex.clearFocusFromAllFields
 import com.example.deliveryapp.core.presentation.ui.startActivityWithFinish
 import com.example.deliveryapp.databinding.ActivityLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -92,6 +92,13 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun clearFocusFromAllFields() {
+        binding.root.clearFocusFromAllFields(
+            binding.tieEmail,
+            binding.tiePassword
+        )
+    }
+
     private fun showErrorDialog(
         error: String,
         title: String
@@ -104,6 +111,7 @@ class LoginActivity : AppCompatActivity() {
             },
             positiveAction = ErrorDialog.Action(getString(R.string.retry_login)) {
                 viewModel.onAction(LoginAction.OnLoginClick)
+                clearFocusFromAllFields()
                 it.dismiss()
             }
         ).show(dialogLauncher, this)
@@ -120,6 +128,7 @@ class LoginActivity : AppCompatActivity() {
             onAction(LoginAction.OnEmailChange(text.toString()))
         }
         binding.btnLogin.setOnClickListener {
+            clearFocusFromAllFields()
             onAction(LoginAction.OnLoginClick)
         }
 

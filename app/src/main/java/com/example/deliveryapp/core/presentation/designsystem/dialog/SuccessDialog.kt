@@ -1,4 +1,4 @@
-package com.example.deliveryapp.core.designsystem.dialog
+package com.example.deliveryapp.core.presentation.designsystem.dialog
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -8,19 +8,14 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
-import androidx.core.view.isGone
 import androidx.fragment.app.DialogFragment
-import com.example.deliveryapp.databinding.DialogErrorBinding
+import com.example.deliveryapp.databinding.DialogSuccessBinding
 
-class ErrorDialog: DialogFragment() {
-
+class SuccessDialog: DialogFragment() {
     private var title: String = ""
     private var description: String = ""
     private var isDialogCancelable: Boolean = true
     private var positiveAction: Action = Action.Empty
-    private var negativeAction: Action = Action.Empty
 
     companion object {
         fun create(
@@ -28,13 +23,11 @@ class ErrorDialog: DialogFragment() {
             description: String = "",
             isDialogCancelable: Boolean = true,
             positiveAction: Action = Action.Empty,
-            negativeAction: Action = Action.Empty,
-        ): ErrorDialog = ErrorDialog().apply {
+        ): SuccessDialog = SuccessDialog().apply {
             this.title = title
             this.description = description
             this.isDialogCancelable = isDialogCancelable
             this.positiveAction = positiveAction
-            this.negativeAction = negativeAction
         }
     }
 
@@ -42,25 +35,19 @@ class ErrorDialog: DialogFragment() {
         super.onStart()
         val window = dialog?.window ?: return
 
-        window.setLayout(MATCH_PARENT, WRAP_CONTENT)
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val rootView = window.decorView.findViewById<View>(android.R.id.content)
-        setMargins(rootView, 50, 20, 50, 20) 
+        setMargins(rootView, 50, 20, 50, 20)
 
     }
 
     @SuppressLint("InflateParams")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val binding = DialogErrorBinding.inflate(requireActivity().layoutInflater)
+        val binding = DialogSuccessBinding.inflate(requireActivity().layoutInflater)
 
         binding.tvTitle.text = title
         binding.tvDescription.text = description
-        if (negativeAction == Action.Empty) {
-            binding.btnNegative.isGone = true
-        } else {
-            binding.btnNegative.text = negativeAction.text
-            binding.btnNegative.setOnClickListener { negativeAction.onClickListener(this) }
-        }
         binding.btnPositive.text = positiveAction.text
         binding.btnPositive.setOnClickListener { positiveAction.onClickListener(this) }
         isCancelable = isDialogCancelable
@@ -74,7 +61,7 @@ class ErrorDialog: DialogFragment() {
 
     data class Action(
         val text: String,
-        val onClickListener: (ErrorDialog) -> Unit
+        val onClickListener: (SuccessDialog) -> Unit
     ) {
         companion object {
             val Empty = Action("") {}

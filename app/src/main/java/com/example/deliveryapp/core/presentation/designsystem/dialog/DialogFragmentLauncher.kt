@@ -1,10 +1,9 @@
-package com.example.deliveryapp.core.designsystem.dialog
+package com.example.deliveryapp.core.presentation.designsystem.dialog
 
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Lifecycle.State.RESUMED
-import com.example.deliveryapp.core.designsystem.dialog.*
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import javax.inject.Inject
