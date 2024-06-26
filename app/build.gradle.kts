@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.navigation.saveargs)
+    alias(libs.plugins.android.serialization)
     kotlin("kapt")
 }
 
@@ -55,6 +56,11 @@ dependencies {
 
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation(libs.room.ktx)
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+
+    //datastorage
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
 
     // Fragment
     implementation( libs.androidx.fragment.ktx)

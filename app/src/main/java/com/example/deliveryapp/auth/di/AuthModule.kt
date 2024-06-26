@@ -10,6 +10,7 @@ import com.example.deliveryapp.auth.domain.usecases.AuthUseCases
 import com.example.deliveryapp.auth.domain.usecases.LoginWithEmailAndPasswordUseCase
 import com.example.deliveryapp.auth.domain.usecases.RegisterUseCase
 import com.example.deliveryapp.auth.domain.validation.UserDataValidator
+import com.example.deliveryapp.core.domain.repository.SessionStorage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,16 +23,19 @@ import javax.inject.Singleton
 object AuthModule {
 
     @Provides
+    @Singleton
     fun providePatternValidator(): PatternValidator {
         return EmailPatternValidator()
     }
 
     @Provides
+    @Singleton
     fun provideAuthRepository(
         api: AuthApiService,
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
+        sessionStorage: SessionStorage
     ): AuthRepository{
-        return AuthRepositoryImp(api = api, context = context)
+        return AuthRepositoryImp(api = api, context = context, sessionStorage = sessionStorage)
     }
 
     @Provides

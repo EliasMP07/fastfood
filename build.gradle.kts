@@ -4,4 +4,5 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     alias(libs.plugins.dagger.hilt) apply false
     alias(libs.plugins.navigation.saveargs) apply false
+    alias(libs.plugins.android.serialization) apply false
 }
