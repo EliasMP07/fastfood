@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/restaurantHomeFragment"
+        android:title="Inicio"
+        android:icon="@drawable/ic_home"
+        />
+
+    <item
+        android:id="@+id/restaurantCategoryFragment"
+        android:title="Categorias"
+        android:icon="@drawable/ic_category"
+        />
+
+    <item
+        android:id="@+id/restaurantProductFragment"
+        android:title="Productos"
+        android:icon="@drawable/ic_fastfod"
+        />
+    <item
+        android:id="@+id/restaurantProfileFragment"
+        android:title="Perfil"
+        android:icon="@drawable/ic_person"
+        />
+
+</menu>

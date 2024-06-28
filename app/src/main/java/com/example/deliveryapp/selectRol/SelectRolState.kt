@@ -1,4 +1,4 @@
-package com.example.deliveryapp.delivery.presentation.selectRol
+package com.example.deliveryapp.selectRol
 
 import com.example.deliveryapp.core.domain.model.Rol
 import com.example.deliveryapp.core.domain.model.User

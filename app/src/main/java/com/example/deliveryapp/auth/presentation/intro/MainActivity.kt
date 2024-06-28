@@ -11,7 +11,7 @@ import com.example.deliveryapp.auth.presentation.register.RegisterActivity
 import com.example.deliveryapp.client.presentation.home.ClientHomeActivity
 import com.example.deliveryapp.core.presentation.ui.startActivityWithFinish
 import com.example.deliveryapp.databinding.ActivityMainBinding
-import com.example.deliveryapp.delivery.presentation.selectRol.SelectRolActivity
+import com.example.deliveryapp.selectRol.SelectRolActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

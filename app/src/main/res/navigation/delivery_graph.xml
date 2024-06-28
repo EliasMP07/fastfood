@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/delivery_graph"
+    app:startDestination="@id/deliveryOrdersFragment">
+
+    <fragment
+        android:id="@+id/deliveryOrdersFragment"
+        android:name="com.example.deliveryapp.delivery.presentation.home.fragments.DeliveryOrdersFragment"
+        android:label="fragment_delivery_orders"
+        tools:layout="@layout/fragment_delivery_orders" />
+    <fragment
+        android:id="@+id/deliveryProfileFragment"
+        android:name="com.example.deliveryapp.delivery.presentation.home.fragments.DeliveryProfileFragment"
+        android:label="fragment_delivery_profile"
+        tools:layout="@layout/fragment_delivery_profile" />
+</navigation>

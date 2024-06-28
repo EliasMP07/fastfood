@@ -79,7 +79,7 @@ class LoginViewModel @Inject constructor(
                             isLoading = false
                         )
                     }
-                    eventChannel.send(LoginEvent.Success)
+                    eventChannel.send(LoginEvent.Success(result.data))
                 }
             }
         }

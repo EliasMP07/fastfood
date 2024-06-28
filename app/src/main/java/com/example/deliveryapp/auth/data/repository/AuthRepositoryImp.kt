@@ -10,6 +10,7 @@ import com.example.deliveryapp.auth.data.remote.dto.AuthResponse
 import com.example.deliveryapp.auth.domain.model.RegisterRequest
 import com.example.deliveryapp.auth.domain.model.Response
 import com.example.deliveryapp.auth.domain.repository.AuthRepository
+import com.example.deliveryapp.core.domain.model.User
 import com.example.deliveryapp.core.domain.repository.SessionStorage
 import com.example.deliveryapp.core.presentation.ui.UiText
 import com.google.gson.Gson
@@ -26,13 +27,13 @@ class AuthRepositoryImp(
     private val sessionStorage: SessionStorage
 ) : AuthRepository {
 
-    override suspend fun login(email: String, password: String): Response<Unit> {
+    override suspend fun login(email: String, password: String): Response<User> {
         return try {
             val response = api.login(email = email, password = password)
             if (response.success && response.userDto != null){
                 sessionStorage.set(response.userDto.toUser())
             }
-            Response.Success(Unit)
+            Response.Success(response.userDto?.toUser()?:User())
         } catch (e: HttpException) {
             val errorResponse: AuthResponse = parseErrorResponse(e)
             Response.Failure(Exception(errorResponse.message))

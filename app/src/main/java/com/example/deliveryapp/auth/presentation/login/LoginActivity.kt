@@ -19,7 +19,7 @@ import com.example.deliveryapp.core.presentation.designsystem.dialog.ex.show
 import com.example.deliveryapp.core.presentation.ui.ex.clearFocusFromAllFields
 import com.example.deliveryapp.core.presentation.ui.startActivityWithFinish
 import com.example.deliveryapp.databinding.ActivityLoginBinding
-import com.example.deliveryapp.delivery.presentation.selectRol.SelectRolActivity
+import com.example.deliveryapp.selectRol.SelectRolActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -74,8 +74,12 @@ class LoginActivity : AppCompatActivity() {
                                 title = getString(R.string.error_login)
                             )
                         }
-                        LoginEvent.Success -> {
-                            goToRegister()
+                        is LoginEvent.Success -> {
+                            if (event.user.roles!!.size > 1){
+                                goToSelectRol()
+                            }else{
+                                goToHomeClient()
+                            }
                         }
                     }
                 }

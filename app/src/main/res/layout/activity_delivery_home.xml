@@ -3,20 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".client.presentation.home.ClientHomeActivity">
+    tools:context=".delivery.presentation.home.DeliveryHomeActivity">
 
     <FrameLayout
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbarDelivery"
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
         android:background="@drawable/top_bottom_rounded"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/fragmentContainerView"
+        app:layout_constraintBottom_toTopOf="@id/fragmentDeliveryContainerView"
         >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -34,41 +33,32 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 />
-            <ImageView
-                android:id="@+id/ivCart"
-                android:layout_width="?attr/actionBarSize"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_cart"
-                app:tint="@color/md_theme_background"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
+        android:id="@+id/fragmentDeliveryContainerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:defaultNavHost = "true"
-       app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintTop_toBottomOf="@id/toolbarDelivery"
+        app:layout_constraintBottom_toTopOf="@id/bottomDeliveryNavigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:navGraph="@navigation/cliente_graph"
+        app:navGraph="@navigation/delivery_graph"
         />
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigation"
+        android:id="@+id/bottomDeliveryNavigation"
         android:layout_margin="20dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:itemActiveIndicatorStyle="@null"
         app:itemIconTint="@color/state_bottom_navigation_selector"
         app:itemTextColor="@color/state_bottom_navigation_selector"
-        app:menu="@menu/menu_bottom_client"
+        app:menu="@menu/menu_bottom_delivery"
         android:background="@drawable/rounded_bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

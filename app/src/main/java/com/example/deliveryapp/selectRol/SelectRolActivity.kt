@@ -1,22 +1,22 @@
-package com.example.deliveryapp.delivery.presentation.selectRol
+package com.example.deliveryapp.selectRol
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.deliveryapp.R
+import com.example.deliveryapp.client.presentation.home.ClientHomeActivity
+import com.example.deliveryapp.core.presentation.ui.startActivityWithFinish
 import com.example.deliveryapp.databinding.ActivitySelectRolBinding
-import com.example.deliveryapp.delivery.presentation.selectRol.adapter.RolAdapter
+import com.example.deliveryapp.delivery.presentation.home.DeliveryHomeActivity
+import com.example.deliveryapp.restaurant.presentation.home.RestaurantHomeActivity
+import com.example.deliveryapp.selectRol.adapter.RolAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -58,8 +58,22 @@ class SelectRolActivity : AppCompatActivity() {
         binding.rvRoles.apply {
             layoutManager = GridLayoutManager(this@SelectRolActivity, 2)
             adapter = RolAdapter(onRolSelected = {
-                Toast.makeText(this@SelectRolActivity, it.name, Toast.LENGTH_LONG).show()
+                when{
+                    it.name.contains("RESTAURANTE") -> goToRestaurant()
+                    it.name.contains("REPARTIDOR") -> goToDelivery()
+                    else -> goToClient()
+                }
             })
         }
+    }
+
+    private fun goToClient(){
+        startActivityWithFinish(ClientHomeActivity.create(this))
+    }
+    private fun goToRestaurant(){
+        startActivityWithFinish(RestaurantHomeActivity.create(this))
+    }
+    private fun goToDelivery(){
+        startActivityWithFinish(DeliveryHomeActivity.create(this))
     }
 }

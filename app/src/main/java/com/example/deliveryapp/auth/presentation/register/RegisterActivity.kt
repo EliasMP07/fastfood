@@ -106,7 +106,6 @@ class RegisterActivity : AppCompatActivity() {
                                 title = getString(R.string.error)
                             )
                         }
-
                         RegisterEvent.Success -> {
                             showSuccessDialog()
                         }

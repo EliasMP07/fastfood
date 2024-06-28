@@ -1,4 +1,4 @@
-package com.example.deliveryapp.delivery.presentation.selectRol
+package com.example.deliveryapp.client.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,19 +13,18 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SelectRolViewModel @Inject constructor(
+class ClientHomeViewModel @Inject constructor(
     private val sessionStorage: SessionStorage
-): ViewModel() {
+): ViewModel(){
 
-    private val _state = MutableStateFlow(SelectRolState())
-    val state: StateFlow<SelectRolState> get() = _state.asStateFlow()
+    private val _state = MutableStateFlow(ClientHomeState())
+    val state: StateFlow<ClientHomeState> get() = _state.asStateFlow()
 
     init {
         viewModelScope.launch {
-            _state.update {currentState ->
+            _state.update {currentState->
                 currentState.copy(
-                    user = sessionStorage.get()?:User(),
-                    roles = sessionStorage.get()?.roles ?: listOf()
+                    user =  sessionStorage.get()?: User()
                 )
             }
         }
