@@ -10,5 +10,8 @@ sealed interface RegisterAction {
     data class OnLastNameChange(val lastName: String): RegisterAction
     data object OnRegisterClick: RegisterAction
     data object OnLoginClick: RegisterAction
+    data object OnTakePhotoSelected: RegisterAction
+    data class OnImageGalleryChange(val image: String): RegisterAction
+    data class OnImageCamaraChange(val image: String): RegisterAction
 
 }

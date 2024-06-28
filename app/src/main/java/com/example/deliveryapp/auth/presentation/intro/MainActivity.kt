@@ -1,18 +1,17 @@
 package com.example.deliveryapp.auth.presentation.intro
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.deliveryapp.R
 import com.example.deliveryapp.auth.presentation.login.LoginActivity
 import com.example.deliveryapp.auth.presentation.register.RegisterActivity
+import com.example.deliveryapp.client.presentation.home.ClientHomeActivity
+import com.example.deliveryapp.core.presentation.ui.startActivityWithFinish
 import com.example.deliveryapp.databinding.ActivityMainBinding
+import com.example.deliveryapp.delivery.presentation.selectRol.SelectRolActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -30,8 +29,13 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel.state.collect{state ->
-                    if (state.isLoggedIn){
-                        goToLogin()
+                    if (state.user != null){
+                        if (state.user.roles?.size!! > 1){
+                            goToSelectRol()
+                        }else{
+                            goToHomeClient()
+                        }
+
                     }
                 }
             }
@@ -65,7 +69,11 @@ class MainActivity : AppCompatActivity() {
     private fun goToLogin() {
         startActivity(LoginActivity.create(this))
     }
-    private fun goToHome(){
+    private fun goToSelectRol(){
+        startActivityWithFinish(SelectRolActivity.create(this))
+    }
 
+    private fun goToHomeClient(){
+        startActivityWithFinish(ClientHomeActivity.create(this))
     }
 }

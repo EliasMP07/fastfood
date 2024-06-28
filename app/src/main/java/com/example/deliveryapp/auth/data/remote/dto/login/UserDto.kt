@@ -9,5 +9,6 @@ data class UserDto(
     @SerializedName("email") val email: String,
     @SerializedName("image")val image: String,
     @SerializedName("phone")val phone: String,
-    @SerializedName("session_token") val sessionToken: String
+    @SerializedName("session_token") val sessionToken: String,
+    @SerializedName("roles") val roles: List<RolDto>?
 )

@@ -1,5 +1,6 @@
 package com.example.deliveryapp.auth.presentation.intro
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.deliveryapp.core.domain.repository.SessionStorage
@@ -23,7 +24,8 @@ class IntroViewModel @Inject constructor(
         viewModelScope.launch {
             _state.update {currentState ->
                 currentState.copy(
-                    isLoggedIn = sessionStorage.get() != null
+                    isLoggedIn = sessionStorage.get() != null,
+                    user = sessionStorage.get()
                 )
             }
         }

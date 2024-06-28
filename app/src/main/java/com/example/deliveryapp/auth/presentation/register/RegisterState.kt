@@ -1,6 +1,8 @@
 package com.example.deliveryapp.auth.presentation.register
 
+
 import com.example.deliveryapp.auth.domain.validation.PasswordValidationState
+
 
 data class RegisterState(
     val name: String = "",
@@ -9,6 +11,8 @@ data class RegisterState(
     val phoneNumber: String = "",
     val email: String = "",
     val password: String = "",
+    val image: String = "",
+    val imagePreview: String = "",
     val canRegister: Boolean = false,
     val passwordValidationState: PasswordValidationState = PasswordValidationState(),
     val isLoading: Boolean = false

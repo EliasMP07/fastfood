@@ -10,5 +10,6 @@ data class UserSerializable(
     val email: String,
     val image: String,
     val phone: String,
-    val sessionToken: String
+    val sessionToken: String,
+    val roles: List<RolSerializable>?
 )

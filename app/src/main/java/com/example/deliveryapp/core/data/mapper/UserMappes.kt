@@ -11,7 +11,10 @@ fun User.toUserSerializable(): UserSerializable{
         phone = phone,
         image = image,
         email = email,
-        sessionToken = sessionToken
+        sessionToken = sessionToken,
+        roles = roles?.map {
+            it.toRolSerializable()
+        }
     )
 }
 
@@ -23,6 +26,9 @@ fun UserSerializable.toUser(): User{
         phone = phone,
         image = image,
         email = email,
-        sessionToken = sessionToken
+        sessionToken = sessionToken,
+        roles = roles?.map {
+            it.toRol()
+        }
     )
 }

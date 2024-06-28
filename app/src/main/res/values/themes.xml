@@ -53,6 +53,18 @@
 
     <style name="Theme.DeliveryApp" parent="Base.Theme.DeliveryApp" />
 
+    <style name="TopRoundedCardView">
+        <item name="shapeAppearance">@style/ShapeAppearance.TopRounded</item>
+    </style>
+
+    <style name="ShapeAppearance.TopRounded" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">30dp</item>
+        <item name="cornerSizeTopRight">30dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
     <style name="BodyText" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/md_theme_onBackground</item>
@@ -100,6 +112,8 @@
         <item name="android:gravity">center</item>
         <item name="android:fontFamily">@font/lilita_one</item>
     </style>
+
+
 
 
 </resources>

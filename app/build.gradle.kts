@@ -44,6 +44,9 @@ android {
 
 dependencies {
 
+    //ImageCircular
+    implementation(libs.circleimageview)
+
     //NavComponent
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
@@ -57,10 +60,10 @@ dependencies {
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation(libs.room.ktx)
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+    implementation(libs.kotlinx.serialization.json)
 
     //datastorage
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
+    implementation(libs.androidx.datastore.preferences)
 
     // Fragment
     implementation( libs.androidx.fragment.ktx)
@@ -87,6 +90,8 @@ dependencies {
     implementation(libs.glide)
     kapt(libs.compiler)
 
+    //File
+    implementation(libs.commons.io)
     //SplashScreen
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.core.ktx)

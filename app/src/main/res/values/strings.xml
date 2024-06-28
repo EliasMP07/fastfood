@@ -23,9 +23,23 @@
     <string name="name_text_hint">Nombre</string>
     <string name="create_account_text">Crear cuenta</string>
     <string name="text_img_sales">Imagen de vendedor</string>
-    <string name="welcome">Bienvenido</string>
+    <string name="welcome">Bienvenido %s</string>
     <string name="text_description_login_screen">Por favor inicia sesión para emepezar a ordenar</string>
     <string name="login_button_text">Iniciar sesión</string>
     <string name="dont_have_account">¿No tienes cuenta? Registrate aquí</string>
     <string name="text_img_food">Image de comida para llevar</string>
+    <string name="description_image_rol">Image del rol</string>
+    <string name="description_image_profile">Imagen de perfil</string>
+    <string name="text_helper_obligatorio">* Obligatorio</string>
+    <string name="button_text_galery">Galeria</string>
+    <string name="text_button_camara">Camara</string>
+    <string name="permission_camera_need">Se necesita el permiso de cámara para tomar fotos</string>
+    <string name="select_option_for_photo_profile">Selecciona una opción</string>
+    <string name="permission_denied">Permiso denegado</string>
+    <string name="description_permission_denied">Por favor, habilite el permiso en la configuración de la aplicación.</string>
+    <string name="open_settings">Abrir configuración</string>
+    <string name="set_permission_text_button">Otorgar</string>
+    <string name="cancell_text_button">Cancelar</string>
+    <string name="title_multipermission_required">Permisos requeridos</string>
+    <string name="title_permission_required">Permiso requerido</string>
 </resources>

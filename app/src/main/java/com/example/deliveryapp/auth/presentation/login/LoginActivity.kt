@@ -12,12 +12,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.deliveryapp.R
 import com.example.deliveryapp.auth.presentation.register.RegisterActivity
+import com.example.deliveryapp.client.presentation.home.ClientHomeActivity
 import com.example.deliveryapp.core.presentation.designsystem.dialog.DialogFragmentLauncher
 import com.example.deliveryapp.core.presentation.designsystem.dialog.ErrorDialog
 import com.example.deliveryapp.core.presentation.designsystem.dialog.ex.show
 import com.example.deliveryapp.core.presentation.ui.ex.clearFocusFromAllFields
 import com.example.deliveryapp.core.presentation.ui.startActivityWithFinish
 import com.example.deliveryapp.databinding.ActivityLoginBinding
+import com.example.deliveryapp.delivery.presentation.selectRol.SelectRolActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -142,4 +144,11 @@ class LoginActivity : AppCompatActivity() {
         startActivityWithFinish(RegisterActivity.create(this))
     }
 
+    private fun goToSelectRol(){
+        startActivityWithFinish(SelectRolActivity.create(this))
+    }
+
+    private fun goToHomeClient(){
+        startActivityWithFinish(ClientHomeActivity.create(this))
+    }
 }
