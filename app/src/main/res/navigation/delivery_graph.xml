@@ -7,12 +7,27 @@
 
     <fragment
         android:id="@+id/deliveryOrdersFragment"
-        android:name="com.example.deliveryapp.delivery.presentation.home.fragments.DeliveryOrdersFragment"
+        android:name="com.example.deliveryapp.delivery.presentation.home.fragments.orders.DeliveryOrdersFragment"
         android:label="fragment_delivery_orders"
         tools:layout="@layout/fragment_delivery_orders" />
     <fragment
-        android:id="@+id/deliveryProfileFragment"
-        android:name="com.example.deliveryapp.delivery.presentation.home.fragments.DeliveryProfileFragment"
-        android:label="fragment_delivery_profile"
-        tools:layout="@layout/fragment_delivery_profile" />
+        android:id="@+id/profileDeliveryFragment"
+        android:name="com.example.deliveryapp.delivery.presentation.home.fragments.profileDelivery.ProfileDeliveryFragment"
+        android:label="fragment_profile_delivery"
+        tools:layout="@layout/fragment_profile_delivery" >
+        <action
+            android:id="@+id/action_profileDeliveryFragment_to_updateProfileActivity"
+            app:destination="@id/updateProfileActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/updateProfileActivity"
+        android:name="com.example.deliveryapp.client.presentation.updateProfile.UpdateProfileActivity"
+        android:label="activity_update_profile"
+        tools:layout="@layout/activity_update_profile">
+        <argument
+            android:name="user"
+            app:argType="string"
+            />
+    </activity>
+
 </navigation>

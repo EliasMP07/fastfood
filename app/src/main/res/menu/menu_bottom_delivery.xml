@@ -7,7 +7,7 @@
         android:title="Pedidos"
         />
     <item
-        android:id="@+id/deliveryProfileFragment"
+        android:id="@+id/profileDeliveryFragment"
         android:title="Perfil"
         android:icon="@drawable/ic_person"
         />

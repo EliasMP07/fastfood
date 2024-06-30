@@ -1,6 +1,6 @@
 package com.example.deliveryapp.auth.presentation.login
 
-import com.example.deliveryapp.core.domain.model.User
+import com.example.deliveryapp.core.user.domain.model.User
 
 /*
 Interfaz que maneja los eventos de inicio de Sesiòn

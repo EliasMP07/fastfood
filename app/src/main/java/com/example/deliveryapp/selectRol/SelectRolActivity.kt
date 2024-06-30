@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.deliveryapp.R
+import com.example.deliveryapp.auth.presentation.login.LoginActivity
 import com.example.deliveryapp.client.presentation.home.ClientHomeActivity
 import com.example.deliveryapp.core.presentation.ui.startActivityWithFinish
 import com.example.deliveryapp.databinding.ActivitySelectRolBinding
@@ -41,6 +42,13 @@ class SelectRolActivity : AppCompatActivity() {
     private fun initUi() {
         initList()
         initUiState()
+        initListernes()
+    }
+
+    private fun initListernes() {
+        binding.tvLogout.setOnClickListener {
+            goToLogin()
+        }
     }
 
     private fun initUiState() {
@@ -48,7 +56,7 @@ class SelectRolActivity : AppCompatActivity() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect{
                     (binding.rvRoles.adapter as RolAdapter).submitList(it.roles)
-                    binding.tvTitle.text = getString(R.string.welcome, it.user.name)
+                    binding.tvTitle.text = getString(R.string.welcomeUser, it.user.name)
                 }
             }
         }
@@ -64,9 +72,14 @@ class SelectRolActivity : AppCompatActivity() {
                     else -> goToClient()
                 }
             })
+
         }
     }
 
+    private fun goToLogin(){
+        viewModel.logout()
+        startActivityWithFinish(LoginActivity.create(this))
+    }
     private fun goToClient(){
         startActivityWithFinish(ClientHomeActivity.create(this))
     }

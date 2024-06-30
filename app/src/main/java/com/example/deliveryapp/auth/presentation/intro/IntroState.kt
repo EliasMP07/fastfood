@@ -1,6 +1,6 @@
 package com.example.deliveryapp.auth.presentation.intro
 
-import com.example.deliveryapp.core.domain.model.User
+import com.example.deliveryapp.core.user.domain.model.User
 
 data class IntroState(
     val isLoggedIn: Boolean = false,

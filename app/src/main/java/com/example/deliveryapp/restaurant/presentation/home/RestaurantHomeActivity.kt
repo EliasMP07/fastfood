@@ -12,7 +12,9 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.ActivityRestaurantHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RestaurantHomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRestaurantHomeBinding

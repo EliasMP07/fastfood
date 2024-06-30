@@ -10,7 +10,7 @@ import com.example.deliveryapp.auth.domain.usecases.AuthUseCases
 import com.example.deliveryapp.auth.domain.usecases.LoginWithEmailAndPasswordUseCase
 import com.example.deliveryapp.auth.domain.usecases.RegisterUseCase
 import com.example.deliveryapp.auth.domain.validation.UserDataValidator
-import com.example.deliveryapp.core.domain.repository.SessionStorage
+import com.example.deliveryapp.core.user.domain.repository.SessionStorage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

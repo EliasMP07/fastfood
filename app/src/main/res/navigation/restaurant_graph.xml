@@ -7,22 +7,37 @@
 
     <fragment
         android:id="@+id/restaurantHomeFragment"
-        android:name="com.example.deliveryapp.restaurant.presentation.home.fragments.RestaurantHomeFragment"
+        android:name="com.example.deliveryapp.restaurant.presentation.home.fragments.home.RestaurantHomeFragment"
         android:label="fragment_restaurant_home"
         tools:layout="@layout/fragment_restaurant_home" />
     <fragment
         android:id="@+id/restaurantCategoryFragment"
-        android:name="com.example.deliveryapp.restaurant.presentation.home.fragments.RestaurantCategoryFragment"
+        android:name="com.example.deliveryapp.restaurant.presentation.home.fragments.category.RestaurantCategoryFragment"
         android:label="fragment_restaurant_category"
         tools:layout="@layout/fragment_restaurant_category" />
     <fragment
         android:id="@+id/restaurantProductFragment"
-        android:name="com.example.deliveryapp.restaurant.presentation.home.fragments.RestaurantProductFragment"
+        android:name="com.example.deliveryapp.restaurant.presentation.home.fragments.product.RestaurantProductFragment"
         android:label="fragment_restaurant_product"
         tools:layout="@layout/fragment_restaurant_product" />
     <fragment
         android:id="@+id/restaurantProfileFragment"
-        android:name="com.example.deliveryapp.restaurant.presentation.home.fragments.RestaurantProfileFragment"
+        android:name="com.example.deliveryapp.restaurant.presentation.home.fragments.profile.RestaurantProfileFragment"
         android:label="fragment_restaurant_profile"
-        tools:layout="@layout/fragment_restaurant_profile" />
+        tools:layout="@layout/fragment_restaurant_profile" >
+        <action
+            android:id="@+id/action_restaurantProfileFragment_to_updateProfileActivity"
+            app:destination="@id/updateProfileActivity" >
+        </action>
+    </fragment>
+    <activity
+        android:id="@+id/updateProfileActivity"
+        android:name="com.example.deliveryapp.client.presentation.updateProfile.UpdateProfileActivity"
+        android:label="activity_update_profile"
+        tools:layout="@layout/activity_update_profile" >
+        <argument
+            android:name="user"
+            app:argType="string"
+            />
+    </activity>
 </navigation>

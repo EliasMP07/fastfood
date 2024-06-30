@@ -55,7 +55,6 @@ class RegisterActivity : AppCompatActivity() {
             if (it != null) {
                 val image = getPathFromBitmap(this@RegisterActivity, it)
                 viewModel.onAction(RegisterAction.OnImageCamaraChange(image))
-
             }
         }
 

@@ -8,45 +8,6 @@
     android:layout_height="match_parent"
     tools:context=".client.presentation.home.ClientHomeActivity">
 
-    <FrameLayout
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/top_bottom_rounded"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/fragmentContainerView"
-        >
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/ivProfilePhoto"
-                android:layout_width="?attr/actionBarSize"
-                android:layout_height="match_parent"
-                tools:src="@drawable/ic_person"
-                android:layout_margin="10dp"
-                app:civ_border_width="2dp"
-                app:civ_border_color="@color/md_theme_onPrimary"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
-            <ImageView
-                android:id="@+id/ivCart"
-                android:layout_width="?attr/actionBarSize"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_cart"
-                app:tint="@color/md_theme_background"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </FrameLayout>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
@@ -54,7 +15,7 @@
         android:layout_height="0dp"
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:defaultNavHost = "true"
-       app:layout_constraintTop_toBottomOf="@id/toolbar"
+       app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

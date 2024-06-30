@@ -1,9 +1,8 @@
 package com.example.deliveryapp.auth.presentation.intro
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.deliveryapp.core.domain.repository.SessionStorage
+import com.example.deliveryapp.core.user.domain.repository.SessionStorage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

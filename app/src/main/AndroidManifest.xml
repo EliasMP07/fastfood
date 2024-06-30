@@ -28,14 +28,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31" >
         <activity
+            android:name=".client.presentation.updateProfile.UpdateProfileActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.DeliveryApp" />
+        <activity
             android:name=".delivery.presentation.home.DeliveryHomeActivity"
             android:exported="false" />
         <activity
             android:name=".client.presentation.home.ClientHomeActivity"
             android:exported="false" />
-        <activity android:name=".restaurant.presentation.home.RestaurantHomeActivity"
-            android:exported="false"
-            />
+        <activity
+            android:name=".restaurant.presentation.home.RestaurantHomeActivity"
+            android:exported="false" />
         <activity
             android:name=".selectRol.SelectRolActivity"
             android:exported="false" />

@@ -8,8 +8,13 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
-import com.example.deliveryapp.core.data.repository.UserSessionStorage
-import com.example.deliveryapp.core.domain.repository.SessionStorage
+import com.example.deliveryapp.core.user.data.network.UserApiService
+import com.example.deliveryapp.core.user.data.repository.UserRepositoryImp
+import com.example.deliveryapp.core.user.data.repository.UserSessionStorage
+import com.example.deliveryapp.core.user.domain.repository.SessionStorage
+import com.example.deliveryapp.core.user.domain.repository.UserRepository
+import com.example.deliveryapp.core.user.domain.useCases.UpdateProfileUseCase
+import com.example.deliveryapp.core.user.domain.useCases.UserUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,6 +33,16 @@ object CoreModule {
 
     @Singleton
     @Provides
+    fun provideUserUseCase(
+        repository: UserRepository
+    ): UserUseCase{
+        return UserUseCase(
+            updateProfileUseCase = UpdateProfileUseCase(repository = repository)
+        )
+    }
+
+    @Singleton
+    @Provides
     fun provideDataStore(@ApplicationContext context: Context): DataStore<Preferences> {
         return PreferenceDataStoreFactory.create(
             corruptionHandler = ReplaceFileCorruptionHandler(
@@ -43,6 +58,16 @@ object CoreModule {
     @Provides
     fun provideSessionStorage(userPreferences: DataStore<Preferences>): SessionStorage {
         return UserSessionStorage(userPreferences)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserRepository(
+        @ApplicationContext context: Context,
+        sessionStorage: SessionStorage,
+        api: UserApiService
+    ): UserRepository {
+        return UserRepositoryImp(context = context,api = api, sessionStorage = sessionStorage)
     }
 
 }

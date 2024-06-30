@@ -8,51 +8,22 @@
     android:layout_height="match_parent"
     tools:context=".restaurant.presentation.home.RestaurantHomeActivity">
 
-    <FrameLayout
-        android:id="@+id/toolbarRestaurant"
-        android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/top_bottom_rounded"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/fragmentRestaurantContainerView"
-        >
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/ivProfilePhoto"
-                android:layout_width="?attr/actionBarSize"
-                android:layout_height="match_parent"
-                tools:src="@drawable/ic_person"
-                android:layout_margin="10dp"
-                app:civ_border_width="2dp"
-                app:civ_border_color="@color/md_theme_onPrimary"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </FrameLayout>
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentRestaurantContainerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:defaultNavHost = "true"
-        app:layout_constraintTop_toBottomOf="@id/toolbarRestaurant"
-        app:layout_constraintBottom_toTopOf="@id/bottomRestaurantNavigation"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:navGraph="@navigation/restaurant_graph"
         />
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomRestaurantNavigation"
-        android:layout_margin="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:itemActiveIndicatorStyle="@null"
@@ -60,7 +31,6 @@
         app:itemTextColor="@color/state_bottom_navigation_selector"
         app:menu="@menu/menu_bottom_restaurant"
         android:background="@drawable/rounded_bottom_navigation"
-        app:layout_constraintTop_toBottomOf="@id/fragmentRestaurantContainerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

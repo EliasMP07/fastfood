@@ -12,7 +12,9 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.ActivityDeliveryHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DeliveryHomeActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
@@ -35,7 +37,7 @@ class DeliveryHomeActivity : AppCompatActivity() {
     }
 
     private fun initNavigation() {
-        val navHost = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navHost = supportFragmentManager.findFragmentById(R.id.fragmentDeliveryContainerView) as NavHostFragment
         navController = navHost.navController
         binding.bottomDeliveryNavigation.setupWithNavController(navController)
     }
