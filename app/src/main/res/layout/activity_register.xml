@@ -19,10 +19,11 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:contentDescription="@string/text_img_sales"
-            android:src="@drawable/img_delivery"
+            android:src="@drawable/img_food_pizza_full"
+            android:scrollX="-20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/tvTitleLogin"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvTitleLogin"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -33,7 +34,7 @@
             android:paddingHorizontal="20dp"
             android:text="@string/create_account_text"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

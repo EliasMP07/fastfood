@@ -92,4 +92,7 @@
     <string name="title_dialog_update_success">Perfil actualizado</string>
     <string name="decription_dialog_update_success">El perfil ha sido actualizado correctamente</string>
     <string name="fullName">%s %s</string>
+    <string name="category_hint_text">Nombre de la categoria</string>
+    <string name="add_category_button_text">Agregar categoria</string>
+    <string name="description_text_img_category">Image de categoria</string>
 </resources>
