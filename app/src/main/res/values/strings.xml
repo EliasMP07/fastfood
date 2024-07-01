@@ -95,4 +95,7 @@
     <string name="category_hint_text">Nombre de la categoria</string>
     <string name="add_category_button_text">Agregar categoria</string>
     <string name="description_text_img_category">Image de categoria</string>
+    <string name="error_create_category_title">Error al crear categoria</string>
+    <string name="success_create_category">Categoria creada</string>
+    <string name="success_create_category_description">La categoria ha sido creada con exito.</string>
 </resources>

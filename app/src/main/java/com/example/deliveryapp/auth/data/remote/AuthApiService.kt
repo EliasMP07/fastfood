@@ -17,6 +17,6 @@ interface AuthApiService {
     suspend fun register(@Body registerRequestDto: RegisterRequestDto): DeliveryApiResponse
 
     companion object {
-        const val BASE_URL = "http://192.168.1.66:3000/api/"
+        const val BASE_URL = "http://192.168.1.66:3000/v1/"
     }
 }
