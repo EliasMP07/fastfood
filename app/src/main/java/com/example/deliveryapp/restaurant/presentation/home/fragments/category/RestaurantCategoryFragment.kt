@@ -39,8 +39,6 @@ class RestaurantCategoryFragment : Fragment() {
     @Inject
     lateinit var dialogLauncher: DialogFragmentLauncher
 
-    private lateinit var permissionHandler: PermissionHandler
-
     private  var _binding: FragmentRestaurantCategoryBinding? = null
     private val binding get() = _binding!!
 
@@ -143,17 +141,6 @@ class RestaurantCategoryFragment : Fragment() {
             binding.tieNameCategory
         )
     }
-    private fun validatePermission() {
-        permissionHandler.checkAndRequestPermission(
-            Manifest.permission.CAMERA,
-            onGranted = {
-                takePhoto()
-            },
-            description = getString(R.string.permission_camera_need),
-            automatic = false
-        )
-    }
-
 
     //Dialogo que se muestra la creacion de la cuenta fue exitosa
     private fun showSuccessDialog() {
@@ -176,7 +163,7 @@ class RestaurantCategoryFragment : Fragment() {
             },
             negativeAction = ImageSelectorDialog.Action(getString(R.string.text_button_camara)) {
                 it.dismiss()
-                validatePermission()
+                intentCameraLauncher.launch()
 
             }
         ).show(dialogLauncher, requireActivity())
@@ -200,9 +187,6 @@ class RestaurantCategoryFragment : Fragment() {
         ).show(dialogLauncher, requireActivity())
     }
 
-    private fun takePhoto() {
-        intentCameraLauncher.launch()
-    }
 
     private fun showImage(imageUrl: String) {
         Glide.with(requireContext()).load(imageUrl).into(binding.ivCategory)

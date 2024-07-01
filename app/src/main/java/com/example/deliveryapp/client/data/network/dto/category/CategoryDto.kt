@@ -1,4 +1,4 @@
-package com.example.deliveryapp.restaurant.data.remote.dto
+package com.example.deliveryapp.client.data.network.dto.category
 
 import com.google.gson.annotations.SerializedName
 

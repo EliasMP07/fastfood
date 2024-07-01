@@ -11,13 +11,13 @@ import com.example.deliveryapp.core.presentation.designsystem.dialog.DialogFragm
 import com.example.deliveryapp.core.presentation.designsystem.dialog.RequirePermissionDialog
 import com.example.deliveryapp.core.presentation.designsystem.dialog.ex.show
 import com.example.deliveryapp.core.presentation.ui.ex.openAppSettings
-
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.fragment.app.FragmentActivity
 import com.example.deliveryapp.R
 
 class PermissionHandler(
-    private val activity: AppCompatActivity,
+    private val activity: FragmentActivity,
     private val dialogLauncher: DialogFragmentLauncher
 ) {
 

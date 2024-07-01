@@ -6,22 +6,18 @@ import com.example.deliveryapp.auth.domain.model.Response
 import com.example.deliveryapp.core.data.remote.dto.DeliveryApiResponse
 import com.example.deliveryapp.core.data.remote.parseError.parseErrorResponse
 import com.example.deliveryapp.core.presentation.ui.UiText
-import com.example.deliveryapp.core.user.data.mapper.toUser
-import com.example.deliveryapp.core.user.data.mapper.toUserRequestDto
 import com.example.deliveryapp.core.user.domain.repository.SessionStorage
-import com.example.deliveryapp.restaurant.data.mapper.toCategoryDto
-import com.example.deliveryapp.restaurant.data.remote.CategoryApiService
-import com.example.deliveryapp.restaurant.domain.model.Category
+import com.example.deliveryapp.restaurant.data.remote.RestaurantApiService
 import com.example.deliveryapp.restaurant.domain.model.CategoryRequest
-import com.example.deliveryapp.restaurant.domain.repository.CategoryRepository
+import com.example.deliveryapp.restaurant.domain.repository.RestaurantRepository
 import retrofit2.HttpException
 import java.io.IOException
 
-class CategoryRepositoryImpl(
-    private val api: CategoryApiService,
+class RestaurantRepositoryImpl(
+    private val api: RestaurantApiService,
     private val sessionStorage: SessionStorage,
     private val context: Context
-): CategoryRepository{
+): RestaurantRepository{
 
     override suspend fun createCategory(categoryRequest: CategoryRequest): Response<Unit> {
         return try {

@@ -14,13 +14,17 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object CoreNetworkModule {
+
     @Provides
     @Singleton
-    fun provideUserApiService(): UserApiService {
-        return Retrofit.Builder()
-            .baseUrl(AuthApiService.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create()
+    fun provideRetrofit(): Retrofit = Retrofit.Builder()
+        .baseUrl(AuthApiService.BASE_URL )
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    @Provides
+    @Singleton
+    fun provideUserApiService(retrofit: Retrofit): UserApiService {
+        return retrofit.create(UserApiService::class.java)
     }
 }

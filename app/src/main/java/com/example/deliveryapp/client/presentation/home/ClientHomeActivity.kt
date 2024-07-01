@@ -3,6 +3,7 @@ package com.example.deliveryapp.client.presentation.home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -26,6 +27,7 @@ class ClientHomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityClientHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initUi()

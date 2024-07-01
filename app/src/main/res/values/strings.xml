@@ -98,4 +98,5 @@
     <string name="error_create_category_title">Error al crear categoria</string>
     <string name="success_create_category">Categoria creada</string>
     <string name="success_create_category_description">La categoria ha sido creada con exito.</string>
+    <string name="description_image_category">Image de categoria</string>
 </resources>

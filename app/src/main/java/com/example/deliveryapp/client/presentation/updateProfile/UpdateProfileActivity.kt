@@ -83,7 +83,7 @@ class UpdateProfileActivity : AppCompatActivity() {
         initListerners(
             onAction = { action ->
                 when (action) {
-                    UpdateProfileAction.OnBackClick -> validatePermission()
+                    UpdateProfileAction.OnBackClick -> onBackPressedDispatcher.onBackPressed()
                     UpdateProfileAction.OnImageProfileSelectedClick -> showDialogSelected()
                     else -> Unit
                 }
@@ -92,6 +92,8 @@ class UpdateProfileActivity : AppCompatActivity() {
         )
         updateUi()
     }
+
+
 
     private fun updateUi() {
         lifecycleScope.launch {
@@ -155,6 +157,7 @@ class UpdateProfileActivity : AppCompatActivity() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect {
                     binding.pgLoadingUpdate.isVisible = it.isLoading
+                    showImage(it.user.image)
                 }
             }
         }

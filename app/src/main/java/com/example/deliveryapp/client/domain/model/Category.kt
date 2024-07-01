@@ -1,4 +1,4 @@
-package com.example.deliveryapp.restaurant.domain.model
+package com.example.deliveryapp.client.domain.model
 
 data class Category(
     val id: String = "",

@@ -2,10 +2,10 @@ package com.example.deliveryapp.restaurant.di
 
 import android.content.Context
 import com.example.deliveryapp.core.user.domain.repository.SessionStorage
-import com.example.deliveryapp.restaurant.data.remote.CategoryApiService
-import com.example.deliveryapp.restaurant.data.repository.CategoryRepositoryImpl
-import com.example.deliveryapp.restaurant.domain.repository.CategoryRepository
-import com.example.deliveryapp.restaurant.domain.usecases.category.CategoryUseCases
+import com.example.deliveryapp.restaurant.data.remote.RestaurantApiService
+import com.example.deliveryapp.restaurant.data.repository.RestaurantRepositoryImpl
+import com.example.deliveryapp.restaurant.domain.repository.RestaurantRepository
+import com.example.deliveryapp.restaurant.domain.usecases.category.RestaurantUseCases
 import com.example.deliveryapp.restaurant.domain.usecases.category.CreateCategoryUseCase
 import dagger.Module
 import dagger.Provides
@@ -22,12 +22,12 @@ object RestaurantModule {
     @Provides
     fun provideCategoryRepository(
         sessionStorage: SessionStorage,
-        categoryApiService: CategoryApiService,
+        restaurantApiService: RestaurantApiService,
         @ApplicationContext context: Context
 
-    ): CategoryRepository {
-        return CategoryRepositoryImpl(
-            api = categoryApiService,
+    ): RestaurantRepository {
+        return RestaurantRepositoryImpl(
+            api = restaurantApiService,
             context = context,
             sessionStorage = sessionStorage
         )
@@ -36,9 +36,9 @@ object RestaurantModule {
     @Singleton
     @Provides
     fun provideCategoryUseCases(
-        repository: CategoryRepository
-    ): CategoryUseCases {
-        return CategoryUseCases(
+        repository: RestaurantRepository
+    ): RestaurantUseCases {
+        return RestaurantUseCases(
             createCategoryUseCase = CreateCategoryUseCase(repository)
         )
     }

@@ -1,24 +1,22 @@
-package com.example.deliveryapp.restaurant.di
+package com.example.deliveryapp.client.di
 
 import com.example.deliveryapp.auth.data.remote.AuthApiService
-import com.example.deliveryapp.restaurant.data.remote.RestaurantApiService
+import com.example.deliveryapp.client.data.network.ClientApiServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RestaurantNetworkModule {
+object ClientNetworkModule {
+
     @Provides
     @Singleton
-    fun provideCategoryApiService(
-        retrofit: Retrofit
-    ): RestaurantApiService{
-        return retrofit.create(RestaurantApiService::class.java)
+    fun provideClientApiService(retrofit: Retrofit): ClientApiServices{
+        return retrofit.create(ClientApiServices::class.java)
     }
 }

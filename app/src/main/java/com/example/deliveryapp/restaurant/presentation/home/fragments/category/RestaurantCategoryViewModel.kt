@@ -3,11 +3,11 @@ package com.example.deliveryapp.restaurant.presentation.home.fragments.category
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.deliveryapp.auth.domain.model.Response
-import com.example.deliveryapp.auth.presentation.register.RegisterEvent
 import com.example.deliveryapp.core.presentation.ui.ex.toBase64
-import com.example.deliveryapp.restaurant.domain.model.Category
+import com.example.deliveryapp.core.presentation.ui.utils.imageCamara
+import com.example.deliveryapp.core.presentation.ui.utils.reduceImageSize
 import com.example.deliveryapp.restaurant.domain.model.CategoryRequest
-import com.example.deliveryapp.restaurant.domain.usecases.category.CategoryUseCases
+import com.example.deliveryapp.restaurant.domain.usecases.category.RestaurantUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,7 +21,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RestaurantCategoryViewModel @Inject constructor(
-    private val categoryUseCases: CategoryUseCases
+    private val restaurantUseCases: RestaurantUseCases
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(RestaurantCategoryState())
@@ -40,7 +40,7 @@ class RestaurantCategoryViewModel @Inject constructor(
                 _state.update { currentState ->
                     currentState.copy(
                         imagePreview = action.image,
-                        image = File(action.image).readBytes().toBase64()
+                        image = imageCamara(action.image)
                     )
                 }
             }
@@ -49,7 +49,7 @@ class RestaurantCategoryViewModel @Inject constructor(
                 _state.update { currentState ->
                     currentState.copy(
                         imagePreview = action.image,
-                        image = action.image
+                        image = reduceImageSize(action.image),
                     )
                 }
             }
@@ -74,7 +74,7 @@ class RestaurantCategoryViewModel @Inject constructor(
                     isLoading = true
                 )
             }
-            val result = categoryUseCases.createCategoryUseCase(
+            val result = restaurantUseCases.createCategoryUseCase(
                 CategoryRequest(
                     image = _state.value.image,
                     name = _state.value.categoryName

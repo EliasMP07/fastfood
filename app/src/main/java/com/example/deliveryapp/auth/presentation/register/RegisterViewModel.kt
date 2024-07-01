@@ -8,6 +8,8 @@ import com.example.deliveryapp.auth.domain.model.Response
 import com.example.deliveryapp.auth.domain.usecases.AuthUseCases
 import com.example.deliveryapp.auth.domain.validation.UserDataValidator
 import com.example.deliveryapp.core.presentation.ui.ex.toBase64
+import com.example.deliveryapp.core.presentation.ui.utils.imageCamara
+import com.example.deliveryapp.core.presentation.ui.utils.reduceImageSize
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -169,7 +171,7 @@ class RegisterViewModel @Inject constructor(
         _state.update { currentState ->
             currentState.copy(
                 imagePreview = image,
-                image = File(image).readBytes().toBase64()
+                image = imageCamara(image)
             )
         }
     }
@@ -178,7 +180,7 @@ class RegisterViewModel @Inject constructor(
         _state.update { currentState ->
             currentState.copy(
                 imagePreview = image,
-                image = image
+                image = reduceImageSize(image)
             )
         }
     }

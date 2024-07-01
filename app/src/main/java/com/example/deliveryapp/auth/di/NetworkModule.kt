@@ -16,11 +16,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideAuthRoute(): AuthApiService{
-        return Retrofit.Builder()
-            .baseUrl(AuthApiService.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create()
+    fun provideAuthRoute(retrofit: Retrofit): AuthApiService{
+        return retrofit.create(AuthApiService::class.java)
     }
 }
