@@ -2,11 +2,9 @@ package com.example.deliveryapp.auth.presentation.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.deliveryapp.auth.domain.validation.PatternValidator
-import com.example.deliveryapp.auth.domain.model.Response
-import com.example.deliveryapp.auth.domain.repository.AuthRepository
 import com.example.deliveryapp.auth.domain.usecases.AuthUseCases
 import com.example.deliveryapp.auth.domain.validation.UserDataValidator
+import com.example.deliveryapp.core.domain.model.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -81,6 +79,7 @@ class LoginViewModel @Inject constructor(
                     }
                     eventChannel.send(LoginEvent.Success(result.data))
                 }
+                else -> Unit
             }
         }
     }

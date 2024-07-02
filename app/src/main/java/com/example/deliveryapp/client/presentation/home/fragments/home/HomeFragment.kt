@@ -9,10 +9,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.deliveryapp.R
 import com.example.deliveryapp.client.presentation.home.fragments.home.adapter.CategoryAdapter
+import com.example.deliveryapp.client.presentation.home.fragments.profile.passObjectToString
+import com.example.deliveryapp.client.presentation.utils.toCategoryUiModel
+import com.example.deliveryapp.core.presentation.ui.getMealTime
 import com.example.deliveryapp.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -42,6 +46,7 @@ class HomeFragment : Fragment() {
                 viewModel.state.collect{
                     (binding.rvCategories.adapter as CategoryAdapter).submitList(it.listCategories)
                     binding.tvWelcomeUser.text = getString(R.string.welcomeUser, it.user.name)
+                    binding.tvDescription2.text = getString(R.string.title_day_meal, getMealTime())
                     Glide.with(requireContext()).load(it.user.image).into(binding.ivProfilePhoto)
                 }
             }
@@ -52,7 +57,11 @@ class HomeFragment : Fragment() {
         binding.rvCategories.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = CategoryAdapter(onCategorySelected = {
-
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToClientProductListActivity(
+                        passObjectToString(it.toCategoryUiModel())
+                    )
+                )
             })
         }
     }

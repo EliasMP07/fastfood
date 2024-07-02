@@ -6,10 +6,11 @@ import com.example.deliveryapp.auth.data.mapper.toRegisterRequestDto
 import com.example.deliveryapp.auth.data.remote.AuthApiService
 import com.example.deliveryapp.core.data.remote.dto.DeliveryApiResponse
 import com.example.deliveryapp.auth.domain.model.RegisterRequest
-import com.example.deliveryapp.auth.domain.model.Response
 import com.example.deliveryapp.auth.domain.repository.AuthRepository
+import com.example.deliveryapp.core.data.remote.ApiCallHelper
 import com.example.deliveryapp.core.user.data.mapper.toUser
 import com.example.deliveryapp.core.data.remote.parseError.parseErrorResponse
+import com.example.deliveryapp.core.domain.model.Response
 import com.example.deliveryapp.core.user.domain.model.User
 import com.example.deliveryapp.core.user.domain.repository.SessionStorage
 import com.example.deliveryapp.core.presentation.ui.UiText
@@ -23,37 +24,22 @@ class AuthRepositoryImp(
 ) : AuthRepository {
 
     override suspend fun login(email: String, password: String): Response<User> {
-        return try {
+        return ApiCallHelper.safeApiCallNoFlow {
             val response = api.login(email = email, password = password)
             if (response.success && response.userDto != null){
                 sessionStorage.set(response.userDto.toUser())
             }
-            Response.Success(response.userDto?.toUser()?: User())
-        } catch (e: HttpException) {
-            val errorResponse: DeliveryApiResponse = parseErrorResponse(e)
-            Response.Failure(Exception(errorResponse.message))
-        } catch (e: IOException) {
-            Response.Failure(Exception(UiText.StringResource(R.string.error_network).asString(context)))
-        } catch (e: Exception) {
-            Response.Failure(e)
+            response.userDto?.toUser()?: User()
         }
     }
 
     override suspend fun register(registerRequest: RegisterRequest): Response<Unit> {
-        return try {
-
+        return ApiCallHelper.safeApiCallNoFlow {
             val response = api.register(registerRequest.toRegisterRequestDto())
             if (response.success && response.userDto != null){
                 sessionStorage.set(response.userDto.toUser())
             }
-            Response.Success(Unit)
-        } catch (e: HttpException) {
-            val errorResponse: DeliveryApiResponse = parseErrorResponse(e)
-            Response.Failure(Exception(errorResponse.message))
-        } catch (e: IOException) {
-            Response.Failure(Exception(UiText.StringResource(R.string.error_network).asString(context)))
-        } catch (e: Exception) {
-            Response.Failure(e)
+            Unit
         }
     }
 

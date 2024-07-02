@@ -2,8 +2,7 @@ package com.example.deliveryapp.restaurant.presentation.home.fragments.category
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.deliveryapp.auth.domain.model.Response
-import com.example.deliveryapp.core.presentation.ui.ex.toBase64
+import com.example.deliveryapp.core.domain.model.Response
 import com.example.deliveryapp.core.presentation.ui.utils.imageCamara
 import com.example.deliveryapp.core.presentation.ui.utils.reduceImageSize
 import com.example.deliveryapp.restaurant.domain.model.CategoryRequest
@@ -16,7 +15,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
@@ -89,7 +87,7 @@ class RestaurantCategoryViewModel @Inject constructor(
                     }
                     eventChannel.send(
                         RestaurantCategoryEvent.Error(
-                            result.exception?.message.orEmpty()
+                            result.exception.message.orEmpty()
                         )
                     )
                 }
@@ -104,6 +102,7 @@ class RestaurantCategoryViewModel @Inject constructor(
                     }
                     eventChannel.send(RestaurantCategoryEvent.OnSuccess)
                 }
+                else -> Unit
             }
         }
     }

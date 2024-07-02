@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.deliveryapp.client.presentation.home.fragments.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_clientProductListActivity"
+            app:destination="@id/clientProductListActivity" />
+    </fragment>
     <fragment
         android:id="@+id/ordersFragment"
         android:name="com.example.deliveryapp.client.presentation.home.fragments.orders.OrdersFragment"
@@ -32,6 +36,15 @@
         tools:layout="@layout/activity_update_profile">
         <argument
             android:name="user"
+            app:argType="string" />
+    </activity>
+    <activity
+        android:id="@+id/clientProductListActivity"
+        android:name="com.example.deliveryapp.client.presentation.products.ClientProductListActivity"
+        android:label="activity_client_product_list"
+        tools:layout="@layout/activity_client_product_list" >
+        <argument
+            android:name="category"
             app:argType="string" />
     </activity>
 

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cvProduct"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="10dp"
+    android:backgroundTint="#FFFFFF"
+    android:animateLayoutChanges="true"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        >
+
+        <ImageView
+            android:id="@+id/ivStartRanting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/description_image_rating_product"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_startrating"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+        <TextView
+            android:id="@+id/tvRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="3.8"
+            style="@style/BodyText"
+            app:layout_constraintTop_toTopOf="@id/ivStartRanting"
+            app:layout_constraintStart_toEndOf="@id/ivStartRanting"
+            app:layout_constraintBottom_toBottomOf="@id/ivStartRanting"
+            />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivProduct"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/description_image_rol"
+            tools:src="@drawable/img_food"
+            app:layout_constraintTop_toBottomOf="@id/ivStartRanting"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+        <TextView
+            android:id="@+id/tvNameProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            tools:text= "Chicken Burger"
+            android:textColor="@color/md_theme_onErrorContainer"
+            style="@style/TitleText"
+            app:layout_constraintTop_toBottomOf="@id/ivProduct"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="100 gr chicken + tomato + cheese lettuce"
+            android:maxLines="2"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/tvNameProduct"
+            app:layout_constraintStart_toStartOf="@id/tvNameProduct"
+            app:layout_constraintEnd_toEndOf="@id/tvNameProduct"
+            />
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDescription"
+            tools:text="$20.00"
+            style="@style/BodyText"
+            android:textColor="@color/md_theme_primary"
+
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

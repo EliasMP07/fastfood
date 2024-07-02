@@ -2,8 +2,8 @@ package com.example.deliveryapp.client.presentation.home.fragments.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.deliveryapp.client.domain.model.ResponseClient
 import com.example.deliveryapp.client.domain.useCases.ClientUseCases
+import com.example.deliveryapp.core.domain.model.Response
 import com.example.deliveryapp.core.user.domain.model.User
 import com.example.deliveryapp.core.user.domain.repository.SessionStorage
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -41,21 +41,21 @@ class HomeClientViewModel @Inject constructor(
         viewModelScope.launch {
             clientUseCases.getAllCategoriesUseCase().collect{categoriesResponse->
                 when(categoriesResponse){
-                    is ResponseClient.Failure -> {
+                    is Response.Failure -> {
                         _state.update {currentState ->
                             currentState.copy(
                                 isLoading = false,
                             )
                         }
                     }
-                    ResponseClient.Loading -> {
+                    Response.Loading -> {
                         _state.update {currentState ->
                             currentState.copy(
                                 isLoading = true
                             )
                         }
                     }
-                    is ResponseClient.Success -> {
+                    is Response.Success -> {
                         _state.update {currentState ->
                             currentState.copy(
                                 isLoading = false,

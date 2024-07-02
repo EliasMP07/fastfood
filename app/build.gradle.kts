@@ -44,6 +44,9 @@ android {
 
 dependencies {
 
+    //SlideImage
+    implementation(libs.imageslideshow)
+
     //ImageCircular
     implementation(libs.circleimageview)
 

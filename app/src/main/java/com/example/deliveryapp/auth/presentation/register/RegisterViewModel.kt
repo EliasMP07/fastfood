@@ -4,10 +4,9 @@ package com.example.deliveryapp.auth.presentation.register
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.deliveryapp.auth.domain.model.RegisterRequest
-import com.example.deliveryapp.auth.domain.model.Response
 import com.example.deliveryapp.auth.domain.usecases.AuthUseCases
 import com.example.deliveryapp.auth.domain.validation.UserDataValidator
-import com.example.deliveryapp.core.presentation.ui.ex.toBase64
+import com.example.deliveryapp.core.domain.model.Response
 import com.example.deliveryapp.core.presentation.ui.utils.imageCamara
 import com.example.deliveryapp.core.presentation.ui.utils.reduceImageSize
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +17,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import java.io.File
 import javax.inject.Inject
 
 /**
@@ -157,6 +155,7 @@ class RegisterViewModel @Inject constructor(
                     }
                     eventChannel.send(RegisterEvent.Success)
                 }
+                else -> Unit
             }
         }
     }

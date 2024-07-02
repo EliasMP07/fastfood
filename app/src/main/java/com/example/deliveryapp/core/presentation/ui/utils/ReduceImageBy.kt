@@ -32,3 +32,11 @@ fun reduceImageSize(imagePath: String): String {
 
     return Base64.encodeToString(byteArray, Base64.DEFAULT)
 }
+
+fun reduceImagesSize(imagesPath: List<String>): List<String> {
+    val imageReduces : MutableList<String> = mutableListOf()
+    imagesPath.forEach {images ->
+        imageReduces.add(reduceImageSize(images))
+    }
+    return imageReduces
+}

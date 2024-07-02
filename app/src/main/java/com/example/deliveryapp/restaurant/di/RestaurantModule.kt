@@ -7,6 +7,8 @@ import com.example.deliveryapp.restaurant.data.repository.RestaurantRepositoryIm
 import com.example.deliveryapp.restaurant.domain.repository.RestaurantRepository
 import com.example.deliveryapp.restaurant.domain.usecases.category.RestaurantUseCases
 import com.example.deliveryapp.restaurant.domain.usecases.category.CreateCategoryUseCase
+import com.example.deliveryapp.restaurant.domain.usecases.category.CreateProductUseCase
+import com.example.deliveryapp.restaurant.domain.usecases.category.GetAllCategoriesUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,7 +41,9 @@ object RestaurantModule {
         repository: RestaurantRepository
     ): RestaurantUseCases {
         return RestaurantUseCases(
-            createCategoryUseCase = CreateCategoryUseCase(repository)
+            createCategoryUseCase = CreateCategoryUseCase(repository),
+            getAllCategoriesUseCase = GetAllCategoriesUseCase(repository),
+            createProductUseCase = CreateProductUseCase(repository)
         )
     }
 }

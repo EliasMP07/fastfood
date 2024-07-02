@@ -3,7 +3,7 @@ package com.example.deliveryapp.client.presentation.updateProfile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.deliveryapp.R
-import com.example.deliveryapp.auth.domain.model.Response
+import com.example.deliveryapp.core.domain.model.Response
 import com.example.deliveryapp.core.presentation.ui.UiText
 import com.example.deliveryapp.core.user.domain.model.User
 import com.example.deliveryapp.core.presentation.ui.utils.imageCamara
@@ -121,6 +121,7 @@ class UpdateProfileViewModel @Inject constructor(
                     }
                     eventChannel.send(UpdateProfileEvent.Success(result.data))
                 }
+                else -> Unit
             }
         }
     }

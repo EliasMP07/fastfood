@@ -1,7 +1,7 @@
 package com.example.deliveryapp.auth.domain.usecases
 
-import com.example.deliveryapp.auth.domain.model.Response
 import com.example.deliveryapp.auth.domain.repository.AuthRepository
+import com.example.deliveryapp.core.domain.model.Response
 import com.example.deliveryapp.core.user.domain.model.User
 
 class LoginWithEmailAndPasswordUseCase(

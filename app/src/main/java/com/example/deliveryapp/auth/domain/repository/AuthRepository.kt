@@ -1,7 +1,7 @@
 package com.example.deliveryapp.auth.domain.repository
 
 import com.example.deliveryapp.auth.domain.model.RegisterRequest
-import com.example.deliveryapp.auth.domain.model.Response
+import com.example.deliveryapp.core.domain.model.Response
 import com.example.deliveryapp.core.user.domain.model.User
 
 interface AuthRepository {

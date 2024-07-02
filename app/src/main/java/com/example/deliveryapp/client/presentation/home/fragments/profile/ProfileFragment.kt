@@ -15,6 +15,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.deliveryapp.R
 import com.example.deliveryapp.auth.presentation.login.LoginActivity
+import com.example.deliveryapp.core.data.UserSerializable
+import com.example.deliveryapp.core.user.data.mapper.toUser
 import com.example.deliveryapp.core.user.data.mapper.toUserSerializable
 import com.example.deliveryapp.core.user.domain.model.User
 import com.example.deliveryapp.databinding.FragmentProfileBinding
@@ -57,7 +59,7 @@ class ProfileFragment : Fragment() {
     private fun goToEditProfile(){
         findNavController().navigate(
             ProfileFragmentDirections.actionProfileFragmentToUpdateProfileActivity(
-                Json.encodeToString(viewModel.state.value.user.toUserSerializable())
+                passObjectToString(viewModel.state.value.user.toUserSerializable())
             )
         )
     }
@@ -108,4 +110,12 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
+}
+
+inline fun <reified T> passObjectToString(value: T): String {
+    return Json.encodeToString(value)
+}
+
+inline fun <reified T> convertStringToObject(value: String): T {
+    return Json.decodeFromString(value)
 }

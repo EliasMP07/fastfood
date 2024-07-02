@@ -6,6 +6,7 @@ import com.example.deliveryapp.client.data.repository.ClientRepositoryImpl
 import com.example.deliveryapp.client.domain.repository.ClientRepository
 import com.example.deliveryapp.client.domain.useCases.ClientUseCases
 import com.example.deliveryapp.client.domain.useCases.GetAllCategoriesUseCase
+import com.example.deliveryapp.client.domain.useCases.GetAllProductByCategory
 import com.example.deliveryapp.core.user.domain.repository.SessionStorage
 import dagger.Module
 import dagger.Provides
@@ -21,12 +22,10 @@ object ClientModule {
     @Provides
     @Singleton
     fun provideClientRepository(
-        @ApplicationContext context: Context,
         sessionStorage: SessionStorage,
         api: ClientApiServices
     ): ClientRepository{
         return ClientRepositoryImpl(
-            context = context,
             sessionStorage = sessionStorage,
             api = api
         )
@@ -37,6 +36,9 @@ object ClientModule {
     fun provideClientUseCases(
         repository: ClientRepository
     ): ClientUseCases{
-        return ClientUseCases(getAllCategoriesUseCase = GetAllCategoriesUseCase(repository))
+        return ClientUseCases(
+            getAllCategoriesUseCase = GetAllCategoriesUseCase(repository),
+            getAllProductByCategory = GetAllProductByCategory(repository)
+        )
     }
 }

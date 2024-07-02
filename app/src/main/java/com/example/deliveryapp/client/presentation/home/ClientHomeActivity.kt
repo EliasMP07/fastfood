@@ -2,9 +2,12 @@ package com.example.deliveryapp.client.presentation.home
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -28,6 +31,7 @@ class ClientHomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        WindowCompat.getInsetsController(this.window, this.window.decorView).isAppearanceLightStatusBars = false
         binding = ActivityClientHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initUi()
