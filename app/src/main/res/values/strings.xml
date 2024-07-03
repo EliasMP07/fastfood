@@ -70,4 +70,6 @@
     <string name="create_product_text_button">Crear producto</string>
     <string name="description_image_rating_product">Imagen de valoracion de producto</string>
     <string name="price_product_text">$ %s</string>
+    <string name="success_add_product_card">El producto se agrego a tu carrito</string>
+    <string name="error_add_product_cart">Hubo un error al agregar el producto al carrito</string>
 </resources>

@@ -43,6 +43,9 @@ android {
 }
 
 dependencies {
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5")
 
     //SlideImage
     implementation(libs.imageslideshow)

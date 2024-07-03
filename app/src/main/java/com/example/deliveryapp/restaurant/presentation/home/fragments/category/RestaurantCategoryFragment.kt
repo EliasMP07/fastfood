@@ -83,7 +83,7 @@ class RestaurantCategoryFragment : Fragment() {
                 viewModel.events.collect{event ->
                     when(event){
                         is RestaurantCategoryEvent.Error -> {
-                            showErrorDialog(error = event.error, title = getString(R.string.error_create_category_title))
+                            showErrorDialog(error = event.error.asString(this@RestaurantCategoryFragment.requireContext()), title = getString(R.string.error_create_category_title))
                         }
                         RestaurantCategoryEvent.OnSuccess -> {
                             clearForm()

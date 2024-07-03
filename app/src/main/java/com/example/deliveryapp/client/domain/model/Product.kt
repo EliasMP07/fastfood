@@ -3,15 +3,16 @@ package com.example.deliveryapp.client.domain.model
 import com.google.gson.annotations.SerializedName
 
 data class Product(
-    val id: String,
-    val name: String,
-    val description: String,
-    val price: Double,
-    val image: String,
-    val image2: String,
-    val image3: String,
-    val idCategory: String,
-    val ranting: Double,
+    val id: String = "",
+    val name: String = "",
+    val description: String= "",
+    val price: Double = 0.0,
+    val image: String= "",
+    val image2: String= "",
+    val image3: String= "",
+    val idCategory: String= "",
+    val ranting: Double= 0.0,
+    val quantity: Int = 0,
     val coupons: List<Coupon> = emptyList()
 ) {
     val discountedPrice: Double

@@ -70,7 +70,7 @@ class RestaurantProductFragment : Fragment() {
                 viewModel.events.collect { event ->
                     when (event) {
                         is RestaurantProductEvent.Error -> {
-                            Toast.makeText(requireContext(), event.error, Toast.LENGTH_LONG).show()
+                            Toast.makeText(requireContext(), event.error.asString(requireContext()), Toast.LENGTH_LONG).show()
                         }
                         is RestaurantProductEvent.Success -> {
                             clearForm()

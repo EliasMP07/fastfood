@@ -67,7 +67,7 @@ class RestaurantProductViewModel @Inject constructor(
                         )
                     }
                     eventChannel.send(
-                        RestaurantProductEvent.Error(result.exception?.message.orEmpty())
+                        RestaurantProductEvent.Error(result.error)
                     )
                 }
                 is Response.Success -> {

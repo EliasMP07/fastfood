@@ -106,9 +106,9 @@ class UpdateProfileViewModel @Inject constructor(
                     }
                     eventChannel.send(
                         UpdateProfileEvent.Error(
-                            result.exception?.message ?: UiText.StringResource(
+                           UiText.StringResource(
                                 R.string.error_unknown
-                            ).toString()
+                            )
                         )
                     )
                 }

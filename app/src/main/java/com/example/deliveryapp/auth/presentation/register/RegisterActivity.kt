@@ -97,7 +97,7 @@ class RegisterActivity : AppCompatActivity() {
                     when (event) {
                         is RegisterEvent.Error -> {
                             showErrorDialog(
-                                error = event.message,
+                                error = event.error.asString(this@RegisterActivity),
                                 title = getString(R.string.error)
                             )
                         }

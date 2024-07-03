@@ -7,6 +7,7 @@ import com.example.deliveryapp.auth.domain.model.RegisterRequest
 import com.example.deliveryapp.auth.domain.usecases.AuthUseCases
 import com.example.deliveryapp.auth.domain.validation.UserDataValidator
 import com.example.deliveryapp.core.domain.model.Response
+import com.example.deliveryapp.core.presentation.ui.UiText
 import com.example.deliveryapp.core.presentation.ui.utils.imageCamara
 import com.example.deliveryapp.core.presentation.ui.utils.reduceImageSize
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -144,7 +145,7 @@ class RegisterViewModel @Inject constructor(
                             isLoading = false
                         )
                     }
-                    eventChannel.send(RegisterEvent.Error(result.exception?.message.orEmpty()))
+                    eventChannel.send(RegisterEvent.Error(UiText.DynamicString(result.error.toString())))
                 }
 
                 is Response.Success -> {

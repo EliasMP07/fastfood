@@ -1,12 +1,18 @@
 package com.example.deliveryapp.client.di
 
 import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import com.example.deliveryapp.client.data.network.ClientApiServices
+import com.example.deliveryapp.client.data.repository.CartRepositoryImpl
 import com.example.deliveryapp.client.data.repository.ClientRepositoryImpl
+import com.example.deliveryapp.client.domain.repository.CartRepository
 import com.example.deliveryapp.client.domain.repository.ClientRepository
+import com.example.deliveryapp.client.domain.useCases.AddProductCartUseCase
 import com.example.deliveryapp.client.domain.useCases.ClientUseCases
 import com.example.deliveryapp.client.domain.useCases.GetAllCategoriesUseCase
 import com.example.deliveryapp.client.domain.useCases.GetAllProductByCategory
+import com.example.deliveryapp.client.domain.useCases.GetCartShopping
 import com.example.deliveryapp.core.user.domain.repository.SessionStorage
 import dagger.Module
 import dagger.Provides
@@ -23,12 +29,22 @@ object ClientModule {
     @Singleton
     fun provideClientRepository(
         sessionStorage: SessionStorage,
-        api: ClientApiServices
+        api: ClientApiServices,
+        cartRepository: CartRepository
     ): ClientRepository{
         return ClientRepositoryImpl(
             sessionStorage = sessionStorage,
-            api = api
+            api = api,
+            cartRepository = cartRepository
         )
+    }
+
+    @Provides
+    @Singleton
+    fun provideCartRepository(
+        @ApplicationContext context: Context
+    ): CartRepository{
+        return CartRepositoryImpl(context)
     }
 
     @Provides
@@ -38,7 +54,9 @@ object ClientModule {
     ): ClientUseCases{
         return ClientUseCases(
             getAllCategoriesUseCase = GetAllCategoriesUseCase(repository),
-            getAllProductByCategory = GetAllProductByCategory(repository)
+            getAllProductByCategory = GetAllProductByCategory(repository),
+            addProductCartUseCase = AddProductCartUseCase(repository),
+            getCartShopping = GetCartShopping(repository)
         )
     }
 }

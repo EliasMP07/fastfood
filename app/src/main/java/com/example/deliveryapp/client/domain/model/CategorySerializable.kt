@@ -1,9 +1,9 @@
-package com.example.deliveryapp.client.presentation.home.fragments.home.model
+package com.example.deliveryapp.client.domain.model
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CategoryUiModel(
+data class CategorySerializable(
     val id: String = "",
     val name: String = "",
     val image: String = ""

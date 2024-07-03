@@ -15,12 +15,11 @@ import com.bumptech.glide.Glide
 import com.example.deliveryapp.R
 import com.example.deliveryapp.client.presentation.home.fragments.home.adapter.CategoryAdapter
 import com.example.deliveryapp.client.presentation.home.fragments.profile.passObjectToString
-import com.example.deliveryapp.client.presentation.utils.toCategoryUiModel
+import com.example.deliveryapp.client.domain.mapper.toCategorySerializable
 import com.example.deliveryapp.core.presentation.ui.getMealTime
 import com.example.deliveryapp.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
@@ -59,7 +58,7 @@ class HomeFragment : Fragment() {
             adapter = CategoryAdapter(onCategorySelected = {
                 findNavController().navigate(
                     HomeFragmentDirections.actionHomeFragmentToClientProductListActivity(
-                        passObjectToString(it.toCategoryUiModel())
+                        passObjectToString(it.toCategorySerializable())
                     )
                 )
             })

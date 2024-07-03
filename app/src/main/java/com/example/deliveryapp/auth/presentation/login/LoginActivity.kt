@@ -70,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
                     when(event){
                         is LoginEvent.Error -> {
                             showErrorDialog(
-                                error = event.error,
+                                error = event.error.asString(this@LoginActivity),
                                 title = getString(R.string.error_login)
                             )
                         }

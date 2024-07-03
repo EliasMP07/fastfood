@@ -102,7 +102,7 @@ class UpdateProfileActivity : AppCompatActivity() {
                     when (event) {
                         is UpdateProfileEvent.Error -> {
                             showErrorDialog(
-                                error = event.message,
+                                error = event.error.asString(this@UpdateProfileActivity),
                                 title = getString(R.string.error)
                             )
                         }
