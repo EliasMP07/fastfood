@@ -15,7 +15,7 @@ import com.example.deliveryapp.client.presentation.home.fragments.profile.passOb
 import com.example.deliveryapp.client.presentation.productDetail.DetailProductActivity
 import com.example.deliveryapp.client.presentation.products.adapters.ProductAdapter
 import com.example.deliveryapp.client.domain.mapper.toCategory
-import com.example.deliveryapp.client.domain.mapper.toProductUiModel
+import com.example.deliveryapp.client.domain.mapper.toProductSerializable
 import com.example.deliveryapp.databinding.ActivityClientProductListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -56,7 +56,7 @@ class ClientProductListActivity : AppCompatActivity() {
 
     private fun goToDetailProduct(product: Product){
         startActivity(DetailProductActivity.create(this).apply {
-            putExtra("product", passObjectToString(product.toProductUiModel()))
+            putExtra("product", passObjectToString(product.toProductSerializable()))
         })
     }
 

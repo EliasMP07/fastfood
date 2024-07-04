@@ -3,7 +3,9 @@ package com.example.deliveryapp.client.data.repository
 import com.example.deliveryapp.client.data.mapppers.toCategory
 import com.example.deliveryapp.client.data.mapppers.toProduct
 import com.example.deliveryapp.client.data.network.ClientApiServices
+import com.example.deliveryapp.client.domain.mapper.toCartShopping
 import com.example.deliveryapp.client.domain.model.CartShopping
+import com.example.deliveryapp.client.domain.model.CartShoppingSerializable
 import com.example.deliveryapp.client.domain.model.Product
 import com.example.deliveryapp.client.domain.model.Category
 import com.example.deliveryapp.client.domain.repository.CartRepository
@@ -12,6 +14,7 @@ import com.example.deliveryapp.core.data.remote.ApiCallHelper
 import com.example.deliveryapp.core.domain.model.Response
 import com.example.deliveryapp.core.user.domain.repository.SessionStorage
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class ClientRepositoryImpl(
     private val sessionStorage: SessionStorage,
@@ -41,12 +44,21 @@ class ClientRepositoryImpl(
     override suspend fun addCard(product: Product): Response<Unit> {
         return ApiCallHelper.safeApiCallNoFlow {
             cartRepository.addProductToCart(product)
-            Unit
         }
     }
 
-    override suspend fun getMyCard(): Flow<CartShopping>{
+    override suspend fun removeProductToCart(product: Product): Response<Unit> {
+        return ApiCallHelper.safeApiCallNoFlow {
+            cartRepository.removeOneProduct(product)
+        }
+    }
+
+    override suspend fun getMyCard(): List<Product>{
         return cartRepository.getCartProduct()
+    }
+
+    override suspend fun updateAllCart(cartShopping: CartShopping) {
+        cartRepository.updateAllCart(cartShopping)
     }
 
 

@@ -22,8 +22,6 @@
         />
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomRestaurantNavigation"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="10dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:itemActiveIndicatorStyle="@null"

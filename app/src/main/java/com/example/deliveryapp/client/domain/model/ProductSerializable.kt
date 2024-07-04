@@ -13,5 +13,6 @@ data class ProductSerializable(
     val image3: String= "",
     val idCategory: String= "",
     val ranting: Double= 0.0,
+    val quantity: Int = 0,
     val coupons: List<CouponSerializable> = emptyList()
 )

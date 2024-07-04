@@ -59,6 +59,7 @@ class DetailProductVieModel @Inject constructor(
                     )
                 }
             }
+            else -> Unit
         }
     }
     private fun addCart(){

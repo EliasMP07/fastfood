@@ -23,8 +23,14 @@ class IntroViewModel @Inject constructor(
         viewModelScope.launch {
             _state.update {currentState ->
                 currentState.copy(
+                    isLoading = true
+                )
+            }
+            _state.update {currentState ->
+                currentState.copy(
                     isLoggedIn = sessionStorage.get() != null,
-                    user = sessionStorage.get()
+                    user = sessionStorage.get(),
+                    isLoading = false
                 )
             }
         }

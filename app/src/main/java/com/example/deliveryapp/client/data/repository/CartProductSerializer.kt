@@ -1,21 +1,21 @@
 package com.example.deliveryapp.client.data.repository
 
 import androidx.datastore.core.Serializer
-import com.example.deliveryapp.client.domain.model.CartShopping
+import com.example.deliveryapp.client.domain.model.CartShoppingSerializable
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import java.io.InputStream
 import java.io.OutputStream
 
 
-object CartProductSerializer: Serializer<CartShopping> {
-    override val defaultValue: CartShopping
-        get() = CartShopping()
+object CartProductSerializer: Serializer<CartShoppingSerializable> {
+    override val defaultValue: CartShoppingSerializable
+        get() = CartShoppingSerializable()
 
-    override suspend fun readFrom(input: InputStream): CartShopping {
+    override suspend fun readFrom(input: InputStream): CartShoppingSerializable {
         return try{
             Json.decodeFromString(
-                deserializer = CartShopping.serializer(),
+                deserializer = CartShoppingSerializable.serializer(),
                 string = input.readBytes().decodeToString()
             )
         }catch (e: SerializationException){
@@ -24,10 +24,10 @@ object CartProductSerializer: Serializer<CartShopping> {
         }
     }
 
-    override suspend fun writeTo(t: CartShopping, output: OutputStream) {
+    override suspend fun writeTo(t: CartShoppingSerializable, output: OutputStream) {
         output.write(
             Json.encodeToString(
-                serializer = CartShopping.serializer(),
+                serializer = CartShoppingSerializable.serializer(),
                 value = t
             ).encodeToByteArray()
         )

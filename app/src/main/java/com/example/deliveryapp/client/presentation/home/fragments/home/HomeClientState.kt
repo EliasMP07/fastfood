@@ -5,6 +5,7 @@ import com.example.deliveryapp.core.user.domain.model.User
 
 data class HomeClientState(
     val isLoading: Boolean = false,
+    val isError: Boolean = false,
     val listCategories: List<Category> = listOf(),
     val user: User = User()
 )

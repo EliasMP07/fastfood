@@ -18,11 +18,12 @@ fun ProductSerializable.toProduct(): Product{
         ranting = ranting,
         coupons = coupons.map {
             it.toCoupon()
-        }
+        },
+        quantity = quantity
     )
 }
 
-fun Product.toProductUiModel(): ProductSerializable {
+fun Product.toProductSerializable(): ProductSerializable {
     return ProductSerializable(
         id = id,
         name = name,
@@ -35,7 +36,8 @@ fun Product.toProductUiModel(): ProductSerializable {
         ranting = ranting,
         coupons = coupons.map {
             it.toCouponUiModel()
-        }
+        },
+        quantity = quantity
     )
 }
 

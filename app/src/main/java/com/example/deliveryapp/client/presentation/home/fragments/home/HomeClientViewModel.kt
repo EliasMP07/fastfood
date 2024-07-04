@@ -28,6 +28,15 @@ class HomeClientViewModel @Inject constructor(
         getUser()
     }
 
+    fun onAction(
+        action: HomeAction
+    ){
+        when(action){
+            HomeAction.OnRetryAgainClick -> getAllCategories()
+            else -> Unit
+        }
+    }
+
     private fun getUser(){
         viewModelScope.launch {
             _state.update {currentState ->
@@ -44,6 +53,7 @@ class HomeClientViewModel @Inject constructor(
                     is Response.Failure -> {
                         _state.update {currentState ->
                             currentState.copy(
+                                isError = true,
                                 isLoading = false,
                             )
                         }
@@ -51,6 +61,7 @@ class HomeClientViewModel @Inject constructor(
                     Response.Loading -> {
                         _state.update {currentState ->
                             currentState.copy(
+                                isError = false,
                                 isLoading = true
                             )
                         }
@@ -58,6 +69,7 @@ class HomeClientViewModel @Inject constructor(
                     is Response.Success -> {
                         _state.update {currentState ->
                             currentState.copy(
+                                isError = false,
                                 isLoading = false,
                                 listCategories = categoriesResponse.data
                             )

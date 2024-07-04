@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -16,6 +17,7 @@ import com.example.deliveryapp.R
 import com.example.deliveryapp.client.presentation.home.fragments.home.adapter.CategoryAdapter
 import com.example.deliveryapp.client.presentation.home.fragments.profile.passObjectToString
 import com.example.deliveryapp.client.domain.mapper.toCategorySerializable
+import com.example.deliveryapp.client.presentation.cartShopping.ClientCartActivity
 import com.example.deliveryapp.core.presentation.ui.getMealTime
 import com.example.deliveryapp.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,8 +37,29 @@ class HomeFragment : Fragment() {
     }
 
     private fun initUi() {
+        initShimmers()
         initUiState()
+        initListeners(
+            onAction = {action ->
+                when(action){
+                    HomeAction.OnCartClick -> goToCart()
+                    else -> Unit
+                }
+                viewModel.onAction(action)
+            }
+        )
         initLists()
+    }
+
+    private fun initListeners(
+        onAction: (HomeAction) -> Unit
+    ) {
+        binding.ivMyCart.setOnClickListener {
+            onAction(HomeAction.OnCartClick)
+        }
+        binding.viewNoConnection.btnRetryAgain.setOnClickListener {
+            onAction(HomeAction.OnRetryAgainClick)
+        }
     }
 
     private fun initUiState() {
@@ -47,9 +70,22 @@ class HomeFragment : Fragment() {
                     binding.tvWelcomeUser.text = getString(R.string.welcomeUser, it.user.name)
                     binding.tvDescription2.text = getString(R.string.title_day_meal, getMealTime())
                     Glide.with(requireContext()).load(it.user.image).into(binding.ivProfilePhoto)
+                    if (it.listCategories.isNotEmpty()){
+                        binding.shimmerCategories.isVisible = false
+                        binding.shimmerCategories.stopShimmer()
+                    }
+                    binding.viewNoConnection.root.isVisible = it.isError
                 }
             }
         }
+    }
+
+    private fun goToCart(){
+        startActivity(ClientCartActivity.create(requireContext()))
+    }
+
+    private fun initShimmers(){
+        binding.shimmerCategories.startShimmer()
     }
 
     private fun initLists() {
@@ -62,8 +98,7 @@ class HomeFragment : Fragment() {
                     )
                 )
             })
-        }
-    }
+    }}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

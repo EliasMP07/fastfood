@@ -13,6 +13,8 @@ import com.example.deliveryapp.client.domain.useCases.ClientUseCases
 import com.example.deliveryapp.client.domain.useCases.GetAllCategoriesUseCase
 import com.example.deliveryapp.client.domain.useCases.GetAllProductByCategory
 import com.example.deliveryapp.client.domain.useCases.GetCartShopping
+import com.example.deliveryapp.client.domain.useCases.RemoveProductToCartUseCase
+import com.example.deliveryapp.client.domain.useCases.UpdateAllCartUseCase
 import com.example.deliveryapp.core.user.domain.repository.SessionStorage
 import dagger.Module
 import dagger.Provides
@@ -56,7 +58,9 @@ object ClientModule {
             getAllCategoriesUseCase = GetAllCategoriesUseCase(repository),
             getAllProductByCategory = GetAllProductByCategory(repository),
             addProductCartUseCase = AddProductCartUseCase(repository),
-            getCartShopping = GetCartShopping(repository)
+            getCartShopping = GetCartShopping(repository),
+            removeProductToCartUseCase = RemoveProductToCartUseCase(repository),
+            updateAllCartUseCase = UpdateAllCartUseCase(repository)
         )
     }
 }
