@@ -1,4 +1,4 @@
-package com.example.deliveryapp.auth.presentation.intro
+package com.example.deliveryapp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,25 +12,30 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class IntroViewModel @Inject constructor(
+class MainViewModel @Inject constructor(
     private val sessionStorage: SessionStorage
 ): ViewModel() {
 
-    private val _state = MutableStateFlow(IntroState())
-    val state: StateFlow<IntroState> get() = _state.asStateFlow()
+    private val _state = MutableStateFlow(MainState())
+    val state: StateFlow<MainState> get() = _state.asStateFlow()
 
     init {
         viewModelScope.launch {
-            _state.update {currentState ->
+            _state.update { currentState ->
                 currentState.copy(
-                    isLoading = true
+                    isCheckAuth = true
                 )
             }
-            _state.update {currentState ->
+            val user = sessionStorage.get()
+            _state.update { currentState ->
                 currentState.copy(
-                    isLoggedIn = sessionStorage.get() != null,
-                    user = sessionStorage.get(),
-                    isLoading = false
+                    isLoggedIn = user != null,
+                    user = user
+                )
+            }
+            _state.update { currentState ->
+                currentState.copy(
+                    isCheckAuth = false
                 )
             }
         }

@@ -1,6 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.DeliveryApp" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowAnimationStyle">@style/ActivityAnimation</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentTransitions">true</item>
         <item name="colorPrimary">@color/md_theme_primary</item>
         <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_primaryContainer</item>
@@ -48,6 +51,13 @@
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
 
+    </style>
+
+    <style name="ActivityAnimation" parent="android:Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
 
     <style name="RatingBar" parent="Theme.MaterialComponents.DayNight">
@@ -138,6 +148,7 @@
         <item name="android:gravity">center</item>
         <item name="android:fontFamily">@font/lilita_one</item>
     </style>
+
 
 
 </resources>

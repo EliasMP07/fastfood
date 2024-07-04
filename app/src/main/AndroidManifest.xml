@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -26,41 +26,55 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.App.Starting"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+        <activity
+            android:name=".auth.presentation.intro.IntroActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.DeliveryApp"/>
         <activity
             android:name=".client.presentation.cartShopping.ClientCartActivity"
-            android:exported="false"/>
+            android:exported="false"
+            android:theme="@style/Base.Theme.DeliveryApp" />
         <activity
             android:name=".client.presentation.productDetail.DetailProductActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Base.Theme.DeliveryApp" />
         <activity
             android:name=".client.presentation.products.ClientProductListActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Base.Theme.DeliveryApp" />
         <activity
             android:name=".client.presentation.updateProfile.UpdateProfileActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Base.Theme.DeliveryApp" />
         <activity
             android:name=".delivery.presentation.home.DeliveryHomeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Base.Theme.DeliveryApp" />
         <activity
             android:name=".client.presentation.home.ClientHomeActivity"
-            android:exported="false"/>
+            android:exported="false"
+            android:theme="@style/Base.Theme.DeliveryApp" />
         <activity
             android:name=".restaurant.presentation.home.RestaurantHomeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Base.Theme.DeliveryApp" />
         <activity
             android:name=".selectRol.SelectRolActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Base.Theme.DeliveryApp" />
         <activity
             android:name=".auth.presentation.register.RegisterActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Base.Theme.DeliveryApp" />
         <activity
             android:name=".auth.presentation.login.LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Base.Theme.DeliveryApp" />
         <activity
-            android:name=".auth.presentation.intro.MainActivity"
-            android:theme="@style/Theme.App.Starting"
-            android:exported="true">
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.App.Starting" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -72,7 +86,7 @@
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.deliveryapp.provider"
             android:exported="false"
-            android:grantUriPermissions="true">
+            android:grantUriPermissions="true" >
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/path_provider" />

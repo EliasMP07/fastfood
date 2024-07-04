@@ -7,7 +7,7 @@
     <View
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@drawable/circular_form" />
+        android:background="@drawable/circular_form_primary" />
 
     <ImageView
         android:layout_width="wrap_content"
