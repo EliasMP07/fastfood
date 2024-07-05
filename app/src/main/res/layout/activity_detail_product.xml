@@ -9,6 +9,7 @@
     android:background="@color/md_theme_background"
     android:orientation="vertical"
     tools:context=".client.presentation.productDetail.DetailProductActivity">
+
     <FrameLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -33,6 +34,7 @@
                 app:tint="@color/md_theme_background" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
+
     <com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/imsImages"
         android:layout_width="match_parent"
@@ -45,6 +47,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintBottom_toTopOf="@id/glBottomImage"
         />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvDetailProduct"
         android:layout_width="match_parent"
@@ -53,26 +56,58 @@
         app:layout_constraintTop_toBottomOf="@id/glCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        >
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="20dp"
-            >
+            android:padding="20dp">
 
             <TextView
                 android:id="@+id/tvNameProduct"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:text="Big Mac"
+                tools:text="Big MaFSDFSDFSDFFDSFFDSDDFSDFSDc"
                 android:textSize="30sp"
                 android:textColor="@color/md_theme_onErrorContainer"
                 style="@style/TitleToolBar"
+                android:gravity="start"
+                android:textAlignment="viewStart"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                />
+                app:layout_constraintWidth_max="300dp" />
+
+            <ImageButton
+                android:id="@+id/btnAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/description_add_product"
+                android:background="@drawable/rounded_rectangular"
+                android:src="@drawable/ic_add"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toStartOf="@id/tvTotalProduct"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvTotalProduct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="1"
+                style="@style/BodyText"
+                android:layout_margin="10dp"
+                app:layout_constraintTop_toTopOf="@id/btnRemove"
+                app:layout_constraintEnd_toStartOf="@id/btnRemove"
+                app:layout_constraintBottom_toBottomOf="@id/btnRemove" />
+
+            <ImageButton
+                android:id="@+id/btnRemove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/description_remove_product"
+                android:background="@drawable/rounded_rectangular"
+                android:src="@drawable/ic_remove"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvRating"
@@ -82,8 +117,8 @@
                 tools:text="3.8"
                 style="@style/BodyText"
                 app:layout_constraintTop_toBottomOf="@id/tvNameProduct"
-                app:layout_constraintStart_toStartOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent" />
+
             <TextView
                 android:id="@+id/tvReviewProduct"
                 android:layout_width="wrap_content"
@@ -97,8 +132,7 @@
                 android:clickable="true"
                 android:textColor="@color/md_theme_primary"
                 app:layout_constraintBottom_toBottomOf="@id/tvRating"
-                android:text="@string/tv_text_review"
-                />
+                android:text="@string/tv_text_review" />
 
             <TextView
                 android:id="@+id/tvTitleDescription"
@@ -107,18 +141,15 @@
                 tools:text="Description"
                 style="@style/BodyText"
                 app:layout_constraintTop_toBottomOf="@id/tvRating"
-                app:layout_constraintStart_toStartOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tvDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="sdjfsajfsajfahsfjsdfhasjkfhsajkfhadsjkfhsajkfhjsafhajsdkhfjks"
-
                 app:layout_constraintTop_toBottomOf="@id/tvTitleDescription"
-                app:layout_constraintStart_toStartOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPrice"
@@ -132,8 +163,7 @@
                 tools:text="$99.2"
                 app:layout_constraintTop_toBottomOf="@id/tvDescription"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintBottom_toBottomOf="parent" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAddCart"
@@ -147,9 +177,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvDescription"
                 app:layout_constraintStart_toEndOf="@id/btnPrice"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
-
+                app:layout_constraintBottom_toBottomOf="parent" />
 
             <ProgressBar
                 android:id="@+id/pgLoading"
@@ -160,42 +188,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-            <ImageButton
-                android:id="@+id/btnAdd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/description_add_product"
-                android:background="@drawable/rounded_rectangular"
-                android:src="@drawable/ic_add"
-                android:layout_marginEnd="10dp"
-                app:layout_constraintEnd_toStartOf="@id/tvTotalProduct"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-            <TextView
-                android:id="@+id/tvTotalProduct"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="1"
-                style="@style/BodyText"
-                android:layout_margin="10dp"
-                app:layout_constraintTop_toTopOf="@id/btnRemove"
-                app:layout_constraintEnd_toStartOf="@id/btnRemove"
-                app:layout_constraintBottom_toBottomOf="@id/btnRemove"
-                />
-            <ImageButton
-                android:id="@+id/btnRemove"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/description_remove_product"
-                android:background="@drawable/rounded_rectangular"
-                android:src="@drawable/ic_remove"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </com.google.android.material.card.MaterialCardView>
 
     <androidx.constraintlayout.widget.Guideline
@@ -203,14 +197,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5"
-        />
+        app:layout_constraintGuide_percent="0.5" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glBottomImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.53"
-        />
+        app:layout_constraintGuide_percent="0.53" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

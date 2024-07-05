@@ -14,4 +14,5 @@ interface ClientRepository {
     suspend fun removeProductToCart(product: Product): Response<Unit>
     suspend fun getMyCard(): List<Product>
     suspend fun updateAllCart(cartShopping: CartShopping)
+    suspend fun addRatingProduct(idProduct: String, rating: Double): Response<Unit>
 }

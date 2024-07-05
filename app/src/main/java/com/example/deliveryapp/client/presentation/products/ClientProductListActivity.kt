@@ -16,6 +16,7 @@ import com.example.deliveryapp.client.presentation.productDetail.DetailProductAc
 import com.example.deliveryapp.client.presentation.products.adapters.ProductAdapter
 import com.example.deliveryapp.client.domain.mapper.toCategory
 import com.example.deliveryapp.client.domain.mapper.toProductSerializable
+import com.example.deliveryapp.client.domain.model.Category
 import com.example.deliveryapp.databinding.ActivityClientProductListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -25,7 +26,7 @@ class ClientProductListActivity : AppCompatActivity() {
 
     private val viewModel: ClientProductListViewModel by viewModels()
     private val args: ClientProductListActivityArgs by navArgs()
-
+    private lateinit var category: Category
 
     private lateinit var binding: ActivityClientProductListBinding
 
@@ -33,7 +34,7 @@ class ClientProductListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityClientProductListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val category = convertStringToObject<CategorySerializable>(args.category).toCategory()
+        category = convertStringToObject<CategorySerializable>(args.category).toCategory()
         viewModel.getProducts(category)
         initUi()
     }
@@ -41,6 +42,11 @@ class ClientProductListActivity : AppCompatActivity() {
     private fun initUi() {
         initUiState()
         initList()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getProducts(category)
     }
 
     private fun initList() {

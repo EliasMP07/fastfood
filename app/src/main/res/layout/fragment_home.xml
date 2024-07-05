@@ -28,7 +28,8 @@
                     android:id="@+id/ivProfilePhoto"
                     android:layout_width="?attr/actionBarSize"
                     android:layout_height="?attr/actionBarSize"
-                    tools:src="@drawable/ic_person"
+                    android:src="@drawable/ic_person"
+                    android:background="@drawable/circular_form"
                     android:layout_margin="10dp"
                     app:civ_border_width="2dp"
                     app:civ_border_color="@color/md_theme_onPrimary"
@@ -63,6 +64,7 @@
                     android:id="@+id/ivMyCart"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    android:contentDescription="@string/description_btn_text_my_cart"
                     android:src="@drawable/ic_cart"
                     android:background="@drawable/circular_form"
                     android:layout_marginEnd="10dp"
@@ -81,6 +83,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 >
+                <TextView
+                    android:id="@+id/tvOffers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_title_offers"
+                    style="@style/TitleText"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/viewDiscount"
+                    />
                 <include
                     android:id="@+id/viewDiscount"
                     layout="@layout/item_discount"
@@ -88,13 +102,13 @@
                     android:layout_height="250dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/tvOffers" />
 
                 <TextView
                     android:id="@+id/tvDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Categorias."
+                    android:text="@string/tv_title_categories"
                     style="@style/TitleText"
                     android:layout_marginStart="10dp"
                     app:layout_constraintTop_toBottomOf="@id/viewDiscount"

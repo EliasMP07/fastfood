@@ -68,8 +68,10 @@ class HomeFragment : Fragment() {
                 viewModel.state.collect{
                     (binding.rvCategories.adapter as CategoryAdapter).submitList(it.listCategories)
                     binding.tvWelcomeUser.text = getString(R.string.welcomeUser, it.user.name)
-                    binding.tvDescription2.text = getString(R.string.title_day_meal, getMealTime())
-                    Glide.with(requireContext()).load(it.user.image).into(binding.ivProfilePhoto)
+                    binding.tvDescription2.text = getString(R.string.title_day_meal, getMealTime(requireContext()))
+                    if (it.user.image.isNotEmpty()){
+                        Glide.with(requireContext()).load(it.user.image).into(binding.ivProfilePhoto)
+                    }
                     if (it.listCategories.isNotEmpty()){
                         binding.shimmerCategories.isVisible = false
                         binding.shimmerCategories.stopShimmer()

@@ -59,7 +59,32 @@ class DetailProductVieModel @Inject constructor(
                     )
                 }
             }
+
+            is DetailProductActions.OnReviewProductChange -> {
+                _state.update {currentState ->
+                    currentState.copy(
+                        rating = actions.rating
+                    )
+                }
+            }
+
+            DetailProductActions.OnConfirmReviewProductClick -> addRating()
             else -> Unit
+        }
+    }
+
+    private fun addRating(){
+        viewModelScope.launch {
+            val result = clientUseCases.addRatingProductUseCase(idProduct = _state.value.product.id, rating = _state.value.rating)
+            when(result){
+                is Response.Failure -> {
+                    eventChannel.send(DetailProductEvent.Error(UiText.StringResource(R.string.error_add_rating_product)))
+                }
+                is Response.Success -> {
+                    eventChannel.send(DetailProductEvent.Success(UiText.StringResource(R.string.success_add_rating_product)))
+                }
+                else -> Unit
+            }
         }
     }
     private fun addCart(){

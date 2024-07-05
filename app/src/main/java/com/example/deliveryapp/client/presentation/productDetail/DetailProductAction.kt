@@ -5,4 +5,6 @@ sealed interface DetailProductActions {
     data object OnRemoveProductClick: DetailProductActions
     data object OnAddCartClick: DetailProductActions
     data object OnReviewProductClick: DetailProductActions
+    data class OnReviewProductChange(val rating: Double): DetailProductActions
+    data object OnConfirmReviewProductClick: DetailProductActions
 }

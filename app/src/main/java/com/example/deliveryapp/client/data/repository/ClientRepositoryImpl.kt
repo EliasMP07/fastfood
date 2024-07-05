@@ -3,6 +3,7 @@ package com.example.deliveryapp.client.data.repository
 import com.example.deliveryapp.client.data.mapppers.toCategory
 import com.example.deliveryapp.client.data.mapppers.toProduct
 import com.example.deliveryapp.client.data.network.ClientApiServices
+import com.example.deliveryapp.client.data.network.dto.rating.RatingRequest
 import com.example.deliveryapp.client.domain.mapper.toCartShopping
 import com.example.deliveryapp.client.domain.model.CartShopping
 import com.example.deliveryapp.client.domain.model.CartShoppingSerializable
@@ -20,10 +21,13 @@ class ClientRepositoryImpl(
     private val sessionStorage: SessionStorage,
     private val api: ClientApiServices,
     private val cartRepository: CartRepository
-): ClientRepository{
+) : ClientRepository {
     override suspend fun getProductByCategory(idCategory: String): Flow<Response<List<Product>>> {
         return ApiCallHelper.safeApiCall {
-            val apiResponse = api.getProductsByCategory(token = sessionStorage.get()?.sessionToken.orEmpty(), idCategory = idCategory)
+            val apiResponse = api.getProductsByCategory(
+                token = sessionStorage.get()?.sessionToken.orEmpty(),
+                idCategory = idCategory
+            )
             val products = apiResponse.products.map {
                 it.toProduct()
             }
@@ -53,12 +57,24 @@ class ClientRepositoryImpl(
         }
     }
 
-    override suspend fun getMyCard(): List<Product>{
+    override suspend fun getMyCard(): List<Product> {
         return cartRepository.getCartProduct()
     }
 
     override suspend fun updateAllCart(cartShopping: CartShopping) {
         cartRepository.updateAllCart(cartShopping)
+    }
+
+    override suspend fun addRatingProduct(idProduct: String, rating: Double): Response<Unit> {
+        return ApiCallHelper.safeApiCallNoFlow {
+            api.addRatingProduct(
+                token = sessionStorage.get()?.sessionToken.orEmpty(), ratingRequest = RatingRequest(
+                    productId = idProduct,
+                    userId = sessionStorage.get()?.id.orEmpty(),
+                    rating = rating
+                )
+            )
+        }
     }
 
 

@@ -9,6 +9,7 @@ import com.example.deliveryapp.client.data.repository.ClientRepositoryImpl
 import com.example.deliveryapp.client.domain.repository.CartRepository
 import com.example.deliveryapp.client.domain.repository.ClientRepository
 import com.example.deliveryapp.client.domain.useCases.AddProductCartUseCase
+import com.example.deliveryapp.client.domain.useCases.AddRatingProductUseCase
 import com.example.deliveryapp.client.domain.useCases.ClientUseCases
 import com.example.deliveryapp.client.domain.useCases.GetAllCategoriesUseCase
 import com.example.deliveryapp.client.domain.useCases.GetAllProductByCategory
@@ -60,7 +61,8 @@ object ClientModule {
             addProductCartUseCase = AddProductCartUseCase(repository),
             getCartShopping = GetCartShopping(repository),
             removeProductToCartUseCase = RemoveProductToCartUseCase(repository),
-            updateAllCartUseCase = UpdateAllCartUseCase(repository)
+            updateAllCartUseCase = UpdateAllCartUseCase(repository),
+            addRatingProductUseCase = AddRatingProductUseCase(repository)
         )
     }
 }

@@ -89,7 +89,9 @@ class ProfileFragment : Fragment() {
             tvNameUser.text = getString(R.string.fullName, user.name, user.lastname)
             tvEmailUser.text = user.email
             tvNumberPhoneUser.text = user.phone
-            Glide.with(requireContext()).load(user.image).diskCacheStrategy(DiskCacheStrategy.ALL).into(ivProfilePhoto)
+            if (user.image.isNotEmpty()){
+                Glide.with(requireContext()).load(user.image).diskCacheStrategy(DiskCacheStrategy.ALL).into(ivProfilePhoto)
+            }
         }
     }
 

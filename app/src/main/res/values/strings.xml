@@ -126,4 +126,16 @@
     <string name="description_remove_product">Remover producto</string>
     <string name="text_button_add_cart">Agregar al carrito</string>
     <string name="tv_text_review">Calificar</string>
+    <string name="error_add_rating_product">Hubo un error al agregar tu calificación</string>
+    <string name="success_add_rating_product">Gracias por tu calificación</string>
+    <string name="text_button_review">Calificar</string>
+    <string name="text_button_not_now">Ahora no</string>
+    <string name="description_btn_text_my_cart">Mi carrito</string>
+    <string name="tv_title_categories">Categorias.</string>
+    <string name="breakfast">desayunar</string>
+    <string name="lunch">comer</string>
+    <string name="snack">meriendar</string>
+    <string name="dinner">cenar</string>
+    <string name="tv_title_offers">Ofertas</string>
+    <string name="text_btn_get_offers">Obtener</string>
 </resources>

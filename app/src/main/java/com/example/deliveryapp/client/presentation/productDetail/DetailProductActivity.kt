@@ -132,14 +132,15 @@ class DetailProductActivity : AppCompatActivity() {
     private fun dialogReviewProduct(){
         ReviewProduct.create(
             title = "Cómo calificarías este producto en general",
-            positiveAction = ReviewProduct.Action("Calificar", onClickListener = {
-
+            positiveAction = ReviewProduct.Action(getString(R.string.text_button_review), onClickListener = {
+                viewModel.onAction(DetailProductActions.OnConfirmReviewProductClick)
+                it.dismiss()
             }),
-            negativeAction = ReviewProduct.Action("Ahora no", onClickListener = {
+            negativeAction = ReviewProduct.Action(getString(R.string.text_button_not_now), onClickListener = {
                 it.dismiss()
             }),
             reviewProductAction = ReviewProduct.Action("", setRanting = {
-                Toast.makeText(this@DetailProductActivity, it.toString(), Toast.LENGTH_SHORT).show()
+                viewModel.onAction(DetailProductActions.OnReviewProductChange(it.toDouble()))
             })
         ).show(dialogLauncher, this)
     }
