@@ -77,5 +77,15 @@ class ClientRepositoryImpl(
         }
     }
 
+    override suspend fun getProductsPopular(): Flow<Response<List<Product>>> {
+        return ApiCallHelper.safeApiCall {
+            val apiResponse = api.getProductsPopular(token = sessionStorage.get()?.sessionToken.orEmpty())
+            val productsPopular = apiResponse.map {
+                it.toProduct()
+            }
+            productsPopular
+        }
+    }
+
 
 }

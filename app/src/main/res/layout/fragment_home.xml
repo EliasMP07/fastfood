@@ -1,100 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/md_theme_background"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".client.presentation.home.fragments.home.HomeFragment">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <FrameLayout
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@drawable/background_home"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            >
+            app:layout_constraintTop_toTopOf="parent">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="match_parent">
+
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/ivProfilePhoto"
                     android:layout_width="?attr/actionBarSize"
                     android:layout_height="?attr/actionBarSize"
-                    android:src="@drawable/ic_person"
-                    android:background="@drawable/circular_form"
                     android:layout_margin="10dp"
-                    app:civ_border_width="2dp"
+                    android:background="@drawable/circular_form"
+                    android:src="@drawable/ic_person"
                     app:civ_border_color="@color/md_theme_onPrimary"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:civ_border_width="2dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/tvWelcomeUser"
+                    style="@style/BodyText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/BodyText"
-                    android:textColor="@color/md_theme_background"
                     android:layout_marginStart="20dp"
-                    app:layout_constraintTop_toTopOf="@id/ivProfilePhoto"
-                    app:layout_constraintStart_toEndOf="@id/ivProfilePhoto"
+                    android:textColor="@color/md_theme_background"
                     app:layout_constraintBottom_toBottomOf="@id/ivProfilePhoto"
-                    tools:text="Bienvenido Usuario1"
-                    />
+                    app:layout_constraintStart_toEndOf="@id/ivProfilePhoto"
+                    app:layout_constraintTop_toTopOf="@id/ivProfilePhoto"
+                    tools:text="Bienvenido Usuario1" />
+
                 <TextView
                     android:id="@+id/tvDescription2"
+                    style="@style/TitleToolBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/TitleToolBar"
                     android:layout_marginStart="20dp"
-                    app:layout_constraintTop_toBottomOf="@id/tvWelcomeUser"
-                    app:layout_constraintStart_toEndOf="@id/ivProfilePhoto"
                     app:layout_constraintBottom_toBottomOf="@id/ivProfilePhoto"
-                    tools:text="Que quieres para desayunar"
-                    />
+                    app:layout_constraintStart_toEndOf="@id/ivProfilePhoto"
+                    app:layout_constraintTop_toBottomOf="@id/tvWelcomeUser"
+                    tools:text="Que quieres para desayunar" />
+
                 <ImageButton
                     android:id="@+id/ivMyCart"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/circular_form"
                     android:contentDescription="@string/description_btn_text_my_cart"
                     android:src="@drawable/ic_cart"
-                    android:background="@drawable/circular_form"
-                    android:layout_marginEnd="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </FrameLayout>
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            >
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="match_parent">
+
                 <TextView
                     android:id="@+id/tvOffers"
+                    style="@style/TitleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_title_offers"
-                    style="@style/TitleText"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="10dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/tv_title_offers"
                     app:layout_constraintBottom_toTopOf="@id/viewDiscount"
-                    />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <include
                     android:id="@+id/viewDiscount"
                     layout="@layout/item_discount"
@@ -106,24 +107,23 @@
 
                 <TextView
                     android:id="@+id/tvDescription"
+                    style="@style/TitleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_title_categories"
-                    style="@style/TitleText"
                     android:layout_marginStart="10dp"
-                    app:layout_constraintTop_toBottomOf="@id/viewDiscount"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:text="@string/tv_title_categories"
                     app:layout_constraintBottom_toTopOf="@id/rvCategories"
-                    />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/viewDiscount" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvCategories"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_category"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvDescription"/>
+                    app:layout_constraintTop_toBottomOf="@id/tvDescription"
+                    tools:listitem="@layout/item_category" />
 
                 <com.facebook.shimmer.ShimmerFrameLayout
                     android:id="@+id/shimmerCategories"
@@ -131,21 +131,60 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvDescription"
-                    >
+                    app:layout_constraintTop_toBottomOf="@id/tvDescription">
+
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
-                        <include layout="@layout/item_category"/>
-                        <include layout="@layout/item_category"/>
-                        <include layout="@layout/item_category"/>
+
+                        <include layout="@layout/item_category" />
+
+                        <include layout="@layout/item_category" />
+
+                        <include layout="@layout/item_category" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <TextView
+                    android:id="@+id/tvTitleProductsPopulars"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/tv_title_productsPopular"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/shimmerCategories" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvProductsPopular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitleProductsPopulars"
+                    tools:listitem="@layout/item_product" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmerProductPopular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitleProductsPopulars">
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <include layout="@layout/item_category" />
+                        <include layout="@layout/item_category" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </com.facebook.shimmer.ShimmerFrameLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
-        
+
     </LinearLayout>
+
     <include
         android:id="@+id/viewNoConnection"
         layout="@layout/no_internet_conection_layout"

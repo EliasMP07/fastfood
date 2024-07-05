@@ -24,8 +24,9 @@ class HomeClientViewModel @Inject constructor(
     val state: StateFlow<HomeClientState> get() = _state.asStateFlow()
 
     init {
-        getAllCategories()
+       getAllCategories()
         getUser()
+     getProductsTop()
     }
 
     fun onAction(
@@ -80,6 +81,39 @@ class HomeClientViewModel @Inject constructor(
         }
     }
 
+    private fun getProductsTop(){
+        viewModelScope.launch {
+            clientUseCases.getProductsPopularUseCase().collect{productsResponse ->
+                when(productsResponse){
+                    is Response.Failure -> {
+                        _state.update {currentState ->
+                            currentState.copy(
+                                isError = true,
+                                isLoading = false,
+                            )
+                        }
+                    }
+                    Response.Loading -> {
+                        _state.update {currentState ->
+                            currentState.copy(
+                                isError = false,
+                                isLoading = true
+                            )
+                        }
+                    }
+                    is Response.Success -> {
+                        _state.update {currentState ->
+                            currentState.copy(
+                                isError = false,
+                                isLoading = false,
+                                listProductsPopular = productsResponse.data
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 
 }

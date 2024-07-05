@@ -1,6 +1,7 @@
 package com.example.deliveryapp.client.data.network
 
 import com.example.deliveryapp.client.data.network.dto.category.CategoryDto
+import com.example.deliveryapp.client.data.network.dto.category.ProductDto
 import com.example.deliveryapp.client.data.network.dto.category.ProductResponse
 import com.example.deliveryapp.client.data.network.dto.rating.RatingRequest
 import retrofit2.http.Body
@@ -20,6 +21,11 @@ interface ClientApiServices {
         @Header("Authorization") token: String,
         @Path("id_category") idCategory: String
     ): ProductResponse
+
+    @GET("product/getProductsPopular")
+    suspend fun getProductsPopular(
+        @Header("Authorization") token: String,
+    ): List<ProductDto>
 
     @POST("product/rate")
     suspend fun addRatingProduct(

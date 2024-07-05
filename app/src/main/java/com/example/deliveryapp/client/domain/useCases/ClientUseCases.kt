@@ -7,5 +7,6 @@ data class ClientUseCases(
     val getCartShopping: GetCartShopping,
     val removeProductToCartUseCase: RemoveProductToCartUseCase,
     val updateAllCartUseCase: UpdateAllCartUseCase,
-    val addRatingProductUseCase: AddRatingProductUseCase
+    val addRatingProductUseCase: AddRatingProductUseCase,
+    val getProductsPopularUseCase: GetProductsPopularUseCase
 )

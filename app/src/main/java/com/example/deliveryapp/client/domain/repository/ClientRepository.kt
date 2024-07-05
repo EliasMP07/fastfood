@@ -15,4 +15,5 @@ interface ClientRepository {
     suspend fun getMyCard(): List<Product>
     suspend fun updateAllCart(cartShopping: CartShopping)
     suspend fun addRatingProduct(idProduct: String, rating: Double): Response<Unit>
+    suspend fun getProductsPopular(): Flow<Response<List<Product>>>
 }

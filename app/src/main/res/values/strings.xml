@@ -138,4 +138,5 @@
     <string name="dinner">cenar</string>
     <string name="tv_title_offers">Ofertas</string>
     <string name="text_btn_get_offers">Obtener</string>
+    <string name="tv_title_productsPopular">Productos populares</string>
 </resources>
