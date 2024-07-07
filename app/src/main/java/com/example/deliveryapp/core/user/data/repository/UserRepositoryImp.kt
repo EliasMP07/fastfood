@@ -16,7 +16,7 @@ class UserRepositoryImp(
     private val sessionStorage: SessionStorage
 ): UserRepository {
     override suspend fun update(user: User): Response<User> {
-        return ApiCallHelper.safeApiCallNoFlow {
+        return ApiCallHelper.safeCall {
             val response = api.updateProfile(userRequestDto = user.toUserRequestDto(), token = user.sessionToken)
             if (response.success && response.userDto != null){
                 sessionStorage.set(response.userDto.toUser())

@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
 import androidx.activity.viewModels
@@ -23,6 +24,7 @@ import com.example.deliveryapp.core.presentation.designsystem.dialog.ImageSelect
 import com.example.deliveryapp.core.presentation.designsystem.dialog.SuccessDialog
 import com.example.deliveryapp.core.presentation.designsystem.dialog.ex.show
 import com.example.deliveryapp.core.presentation.ui.ex.clearFocusFromAllFields
+import com.example.deliveryapp.core.presentation.ui.ex.hideKeyboard
 import com.example.deliveryapp.core.presentation.ui.startActivityWithFinish
 import com.example.deliveryapp.core.presentation.ui.utils.PermissionHandler
 import com.example.deliveryapp.core.presentation.ui.utils.XmlFileProvider.Companion.createFileFromUri
@@ -200,6 +202,16 @@ class RegisterActivity : AppCompatActivity() {
         }
         binding.ivProfile.setOnClickListener {
             onAction(RegisterAction.OnTakePhotoSelected)
+        }
+        binding.tiePassword.setOnEditorActionListener { v, actionId, event ->
+            when(actionId){
+                EditorInfo.IME_ACTION_DONE ->{
+                    this@RegisterActivity.hideKeyboard()
+                    clearFocusFromAllFields()
+                    true
+                }
+                else ->  false
+            }
         }
     }
 

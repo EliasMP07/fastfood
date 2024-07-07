@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">DeliveryApp</string>
+    <string name="app_name">FastFood</string>
     <string name="error_login">Error de inicio de sesión</string>
     <string name="retry_login">Reitentar</string>
     <string name="cancelar_button_text">Cancelar</string>
-    <string name="error_network">No hay conexión de internet</string>
+    <string name="error_network">No se pudo alcanzar el servidor, por favor verifique su conexión.</string>
     <string name="success_create_account">Cuenta creada</string>
     <string name="success_create_account_description">Tu cuenta ha sido registrada exitosamente.</string>
     <string name="text_button_init">Iniciar</string>
@@ -25,7 +25,7 @@
     <string name="text_img_sales">Imagen de vendedor</string>
     <string name="welcome">Bienvenido</string>
     <string name="welcomeUser">Bienvenido %s</string>
-    <string name="text_description_login_screen">Por favor inicia sesión para emepezar a ordenar</string>
+    <string name="text_description_login_screen">Por favor inicia sesión para empezar a ordenar</string>
     <string name="login_button_text">Iniciar sesión</string>
     <string name="dont_have_account">¿No tienes cuenta? Registrate aquí</string>
     <string name="text_img_food">Image de comida para llevar</string>
@@ -139,4 +139,8 @@
     <string name="tv_title_offers">Ofertas</string>
     <string name="text_btn_get_offers">Obtener</string>
     <string name="tv_title_productsPopular">Productos populares</string>
+    <string name="error_server">Ups, algo salió mal, por favor inténtalo de nuevo..</string>
+    <string name="request_timeout">La solicitud agotó el tiempo de espera</string>
+    <string name="payload_too_large">El archivo que estás intentando subir es demasiado grande.</string>
+    <string name="error_connect_exception">Ocurrió un error al intentar conectar con el servidor remoto</string>
 </resources>

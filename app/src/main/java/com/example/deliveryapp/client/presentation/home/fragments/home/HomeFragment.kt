@@ -97,6 +97,7 @@ class HomeFragment : Fragment() {
     private fun initShimmers() {
         binding.shimmerCategories.startShimmer()
         binding.shimmerProductPopular.startShimmer()
+        binding.viewDiscountShimmer.root.startShimmer()
     }
 
     private fun stopShimmer(){
@@ -104,6 +105,11 @@ class HomeFragment : Fragment() {
         binding.shimmerCategories.stopShimmer()
         binding.shimmerProductPopular.stopShimmer()
         binding.shimmerProductPopular.visibility = View.INVISIBLE
+        binding.viewDiscountShimmer.root.apply {
+            stopShimmer()
+            visibility = View.GONE
+        }
+        binding.viewDiscount.cvDiscount.isVisible = true
     }
 
     private fun initLists() {

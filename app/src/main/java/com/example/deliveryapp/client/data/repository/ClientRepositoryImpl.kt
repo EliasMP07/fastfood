@@ -4,9 +4,7 @@ import com.example.deliveryapp.client.data.mapppers.toCategory
 import com.example.deliveryapp.client.data.mapppers.toProduct
 import com.example.deliveryapp.client.data.network.ClientApiServices
 import com.example.deliveryapp.client.data.network.dto.rating.RatingRequest
-import com.example.deliveryapp.client.domain.mapper.toCartShopping
 import com.example.deliveryapp.client.domain.model.CartShopping
-import com.example.deliveryapp.client.domain.model.CartShoppingSerializable
 import com.example.deliveryapp.client.domain.model.Product
 import com.example.deliveryapp.client.domain.model.Category
 import com.example.deliveryapp.client.domain.repository.CartRepository
@@ -15,7 +13,6 @@ import com.example.deliveryapp.core.data.remote.ApiCallHelper
 import com.example.deliveryapp.core.domain.model.Response
 import com.example.deliveryapp.core.user.domain.repository.SessionStorage
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 
 class ClientRepositoryImpl(
     private val sessionStorage: SessionStorage,
@@ -23,7 +20,7 @@ class ClientRepositoryImpl(
     private val cartRepository: CartRepository
 ) : ClientRepository {
     override suspend fun getProductByCategory(idCategory: String): Flow<Response<List<Product>>> {
-        return ApiCallHelper.safeApiCall {
+        return ApiCallHelper.safeCallFlow {
             val apiResponse = api.getProductsByCategory(
                 token = sessionStorage.get()?.sessionToken.orEmpty(),
                 idCategory = idCategory
@@ -36,7 +33,7 @@ class ClientRepositoryImpl(
     }
 
     override suspend fun getAllCategories(): Flow<Response<List<Category>>> {
-        return ApiCallHelper.safeApiCall {
+        return ApiCallHelper.safeCallFlow {
             val apiResponse = api.getAllCategories(sessionStorage.get()?.sessionToken.orEmpty())
             val categories = apiResponse.map {
                 it.toCategory()
@@ -46,13 +43,13 @@ class ClientRepositoryImpl(
     }
 
     override suspend fun addCard(product: Product): Response<Unit> {
-        return ApiCallHelper.safeApiCallNoFlow {
+        return ApiCallHelper.safeCall {
             cartRepository.addProductToCart(product)
         }
     }
 
     override suspend fun removeProductToCart(product: Product): Response<Unit> {
-        return ApiCallHelper.safeApiCallNoFlow {
+        return ApiCallHelper.safeCall {
             cartRepository.removeOneProduct(product)
         }
     }
@@ -66,7 +63,7 @@ class ClientRepositoryImpl(
     }
 
     override suspend fun addRatingProduct(idProduct: String, rating: Double): Response<Unit> {
-        return ApiCallHelper.safeApiCallNoFlow {
+        return ApiCallHelper.safeCall {
             api.addRatingProduct(
                 token = sessionStorage.get()?.sessionToken.orEmpty(), ratingRequest = RatingRequest(
                     productId = idProduct,
@@ -78,7 +75,7 @@ class ClientRepositoryImpl(
     }
 
     override suspend fun getProductsPopular(): Flow<Response<List<Product>>> {
-        return ApiCallHelper.safeApiCall {
+        return ApiCallHelper.safeCallFlow {
             val apiResponse = api.getProductsPopular(token = sessionStorage.get()?.sessionToken.orEmpty())
             val productsPopular = apiResponse.map {
                 it.toProduct()

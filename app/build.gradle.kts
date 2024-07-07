@@ -43,6 +43,10 @@ android {
 }
 
 dependencies {
+
+    implementation("androidx.core:core-ktx:1.7.0")
+
+    implementation("androidx.dynamicanimation:dynamicanimation-ktx:1.0.0-alpha03")
     implementation("com.facebook.shimmer:shimmer:0.5.0")
 
     implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5")

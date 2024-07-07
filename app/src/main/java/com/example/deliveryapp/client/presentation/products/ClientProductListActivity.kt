@@ -42,6 +42,13 @@ class ClientProductListActivity : AppCompatActivity() {
     private fun initUi() {
         initUiState()
         initList()
+        initListernes()
+    }
+
+    private fun initListernes() {
+        binding.ivBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
     }
 
     override fun onResume() {

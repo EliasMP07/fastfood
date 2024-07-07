@@ -3,6 +3,7 @@ package com.example.deliveryapp.auth.presentation.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -17,6 +18,7 @@ import com.example.deliveryapp.core.presentation.designsystem.dialog.DialogFragm
 import com.example.deliveryapp.core.presentation.designsystem.dialog.ErrorDialog
 import com.example.deliveryapp.core.presentation.designsystem.dialog.ex.show
 import com.example.deliveryapp.core.presentation.ui.ex.clearFocusFromAllFields
+import com.example.deliveryapp.core.presentation.ui.ex.hideKeyboard
 import com.example.deliveryapp.core.presentation.ui.startActivityWithFinish
 import com.example.deliveryapp.databinding.ActivityLoginBinding
 import com.example.deliveryapp.selectRol.SelectRolActivity
@@ -140,6 +142,17 @@ class LoginActivity : AppCompatActivity() {
 
         binding.tvRegister.setOnClickListener {
             onAction(LoginAction.OnRegisterClick)
+        }
+        binding.tiePassword.setOnEditorActionListener { _, actionId, _ ->
+            when(actionId){
+                EditorInfo.IME_ACTION_DONE ->{
+                    this@LoginActivity.hideKeyboard()
+                    clearFocusFromAllFields()
+                    onAction(LoginAction.OnLoginClick)
+                    true
+                }
+                else ->  false
+            }
         }
 
     }

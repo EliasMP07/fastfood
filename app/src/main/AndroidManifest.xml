@@ -30,64 +30,52 @@
         <activity
             android:name=".auth.presentation.intro.IntroActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.DeliveryApp"/>
         <activity
             android:name=".client.presentation.cartShopping.ClientCartActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.DeliveryApp" />
         <activity
             android:name=".client.presentation.productDetail.DetailProductActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.DeliveryApp" />
         <activity
             android:name=".client.presentation.products.ClientProductListActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.DeliveryApp" />
         <activity
             android:name=".client.presentation.updateProfile.UpdateProfileActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.DeliveryApp" />
         <activity
             android:name=".delivery.presentation.home.DeliveryHomeActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.DeliveryApp" />
         <activity
             android:name=".client.presentation.home.ClientHomeActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.DeliveryApp" />
         <activity
             android:name=".restaurant.presentation.home.RestaurantHomeActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.DeliveryApp" />
         <activity
             android:name=".selectRol.SelectRolActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.DeliveryApp" />
         <activity
             android:name=".auth.presentation.register.RegisterActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.DeliveryApp" />
         <activity
             android:name=".auth.presentation.login.LoginActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.DeliveryApp" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.App.Starting"
-            android:screenOrientation="portrait"
-            >
+            android:theme="@style/Theme.App.Starting" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

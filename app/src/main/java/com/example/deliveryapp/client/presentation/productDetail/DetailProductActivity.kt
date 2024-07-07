@@ -53,6 +53,7 @@ class DetailProductActivity : AppCompatActivity() {
             onAction = { action ->
                 when(action){
                     DetailProductActions.OnReviewProductClick -> dialogReviewProduct()
+                    DetailProductActions.OnBackClick -> onBackPressedDispatcher.onBackPressed()
                     else -> Unit
                 }
                 viewModel.onAction(action)
@@ -126,6 +127,9 @@ class DetailProductActivity : AppCompatActivity() {
         }
         binding.tvReviewProduct.setOnClickListener {
             onAction(DetailProductActions.OnReviewProductClick)
+        }
+        binding.ivBack.setOnClickListener {
+            onAction(DetailProductActions.OnBackClick)
         }
     }
 

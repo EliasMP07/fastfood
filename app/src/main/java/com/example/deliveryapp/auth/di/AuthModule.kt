@@ -32,10 +32,9 @@ object AuthModule {
     @Singleton
     fun provideAuthRepository(
         api: AuthApiService,
-        @ApplicationContext context: Context,
         sessionStorage: SessionStorage
     ): AuthRepository{
-        return AuthRepositoryImp(api = api, context = context, sessionStorage = sessionStorage)
+        return AuthRepositoryImp(api = api,  sessionStorage = sessionStorage)
     }
 
     @Provides

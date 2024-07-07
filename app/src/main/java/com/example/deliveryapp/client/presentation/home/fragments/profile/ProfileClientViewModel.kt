@@ -2,6 +2,7 @@ package com.example.deliveryapp.client.presentation.home.fragments.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.deliveryapp.client.domain.repository.CartRepository
 import com.example.deliveryapp.core.user.domain.model.User
 import com.example.deliveryapp.core.user.domain.repository.SessionStorage
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,11 +15,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileClientViewModel @Inject constructor(
-    private val sessionStorage: SessionStorage
+    private val sessionStorage: SessionStorage,
+    private val cart: CartRepository
 ): ViewModel(){
     fun logout() {
         viewModelScope.launch {
             sessionStorage.set(null)
+            cart.clearCart()
         }
     }
 

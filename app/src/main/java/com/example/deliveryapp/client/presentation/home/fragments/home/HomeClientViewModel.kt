@@ -24,16 +24,19 @@ class HomeClientViewModel @Inject constructor(
     val state: StateFlow<HomeClientState> get() = _state.asStateFlow()
 
     init {
-       getAllCategories()
+      getAllCategories()
         getUser()
-     getProductsTop()
+    getProductsTop()
     }
 
     fun onAction(
         action: HomeAction
     ){
         when(action){
-            HomeAction.OnRetryAgainClick -> getAllCategories()
+            HomeAction.OnRetryAgainClick -> {
+                getAllCategories()
+                getProductsTop()
+            }
             else -> Unit
         }
     }
