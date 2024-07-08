@@ -81,7 +81,7 @@ class HomeFragment : Fragment() {
                         Glide.with(requireContext()).load(it.user.image)
                             .into(binding.ivProfilePhoto)
                     }
-                    if (it.listCategories.isNotEmpty() && it.listProductsPopular.isNotEmpty()) {
+                    if (it.listCategories.isNotEmpty() && it.listProductsPopular.isNotEmpty() && !it.isLoading) {
                         stopShimmer()
                     }
                     binding.viewNoConnection.root.isVisible = it.isError
