@@ -3,7 +3,6 @@ package com.example.deliveryapp.client.presentation.productDetail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
@@ -12,10 +11,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.deliveryapp.R
-import com.example.deliveryapp.client.domain.model.Product
-import com.example.deliveryapp.client.presentation.home.fragments.profile.convertStringToObject
-import com.example.deliveryapp.client.domain.model.ProductSerializable
 import com.example.deliveryapp.client.domain.mapper.toProduct
+import com.example.deliveryapp.client.domain.model.Product
+import com.example.deliveryapp.client.domain.model.ProductSerializable
+import com.example.deliveryapp.client.presentation.home.fragments.profile.convertStringToObject
 import com.example.deliveryapp.client.presentation.productDetail.dialog.ReviewProduct
 import com.example.deliveryapp.core.presentation.designsystem.dialog.DialogFragmentLauncher
 import com.example.deliveryapp.core.presentation.designsystem.dialog.ex.show

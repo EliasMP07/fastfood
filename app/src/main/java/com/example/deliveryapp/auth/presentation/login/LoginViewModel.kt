@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.deliveryapp.auth.domain.usecases.AuthUseCases
 import com.example.deliveryapp.auth.domain.validation.UserDataValidator
 import com.example.deliveryapp.core.domain.model.Response
-import com.example.deliveryapp.core.presentation.ui.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow

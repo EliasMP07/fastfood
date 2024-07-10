@@ -1,20 +1,19 @@
 package com.example.deliveryapp.core.presentation.ui.utils
 
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
+import com.example.deliveryapp.R
 import com.example.deliveryapp.core.presentation.designsystem.dialog.DeniedPermissionDialog
 import com.example.deliveryapp.core.presentation.designsystem.dialog.DialogFragmentLauncher
 import com.example.deliveryapp.core.presentation.designsystem.dialog.RequirePermissionDialog
 import com.example.deliveryapp.core.presentation.designsystem.dialog.ex.show
 import com.example.deliveryapp.core.presentation.ui.ex.openAppSettings
-import android.content.Context
-import android.content.SharedPreferences
-import androidx.fragment.app.FragmentActivity
-import com.example.deliveryapp.R
 
 class PermissionHandler(
     private val activity: FragmentActivity,

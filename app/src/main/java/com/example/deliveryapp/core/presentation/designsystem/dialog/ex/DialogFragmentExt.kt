@@ -2,7 +2,6 @@ package com.example.deliveryapp.core.presentation.designsystem.dialog.ex
 
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
 import com.example.deliveryapp.core.presentation.designsystem.dialog.DialogFragmentLauncher
 
 fun DialogFragment.show(launcher: DialogFragmentLauncher, activity: FragmentActivity) {

@@ -1,7 +1,6 @@
 package com.example.deliveryapp.client.data.network.dto.rating
 
 import com.google.gson.annotations.SerializedName
-import kotlinx.serialization.Serializable
 
 data class RatingRequest(
     @SerializedName("product_id") val productId: String,

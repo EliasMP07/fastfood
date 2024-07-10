@@ -68,7 +68,7 @@ object ApiCallHelper {
      * @param e HttpException thrown by Retrofit.
      */
     suspend fun <T> handleHttpException(collector: FlowCollector<Response<T>>, e: HttpException) {
-        val errorResponse: DeliveryApiResponse = parseErrorResponse(e)
+        val errorResponse: DeliveryApiResponse<Void> = parseErrorResponse(e)
         val errorMessage = when(e.code()){
             408 ->  UiText.StringResource(R.string.request_timeout)
             413 ->  UiText.StringResource(R.string.payload_too_large)
@@ -83,7 +83,7 @@ object ApiCallHelper {
      * @param e HttpException thrown by Retrofit.
      */
     fun <T> handleHttpException(e: HttpException): Response<T> {
-        val errorResponse: DeliveryApiResponse = parseErrorResponse(e)
+        val errorResponse: DeliveryApiResponse<Void> = parseErrorResponse(e)
 
         return when(e.code()){
             408 ->  Response.Failure(UiText.StringResource(R.string.request_timeout))

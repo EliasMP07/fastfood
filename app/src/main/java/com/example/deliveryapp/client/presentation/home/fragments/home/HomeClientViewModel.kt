@@ -18,60 +18,64 @@ import javax.inject.Inject
 class HomeClientViewModel @Inject constructor(
     private val clientUseCases: ClientUseCases,
     private val sessionStorage: SessionStorage
-): ViewModel(){
+) : ViewModel() {
 
     private val _state = MutableStateFlow(HomeClientState())
     val state: StateFlow<HomeClientState> get() = _state.asStateFlow()
 
     init {
-      getAllCategories()
+        getAllCategories()
         getUser()
-    getProductsTop()
+        getProductsTop()
     }
 
     fun onAction(
         action: HomeAction
-    ){
-        when(action){
+    ) {
+        when (action) {
             HomeAction.OnRetryAgainClick -> {
                 getAllCategories()
                 getProductsTop()
             }
+
             else -> Unit
         }
     }
 
-    private fun getUser(){
+    private fun getUser() {
         viewModelScope.launch {
-            _state.update {currentState ->
+            _state.update { currentState ->
                 currentState.copy(
-                    user = sessionStorage.get()?: User()
+                    user = sessionStorage.get() ?: User()
                 )
             }
         }
     }
-    private fun getAllCategories(){
+
+    private fun getAllCategories() {
         viewModelScope.launch {
-            clientUseCases.getAllCategoriesUseCase().collect{categoriesResponse->
-                when(categoriesResponse){
+            clientUseCases.getAllCategoriesUseCase().collect { categoriesResponse ->
+                when (categoriesResponse) {
                     is Response.Failure -> {
-                        _state.update {currentState ->
+                        _state.update { currentState ->
                             currentState.copy(
                                 isError = true,
                                 isLoading = false,
                             )
                         }
                     }
+
                     Response.Loading -> {
-                        _state.update {currentState ->
+                        _state.update { currentState ->
                             currentState.copy(
                                 isError = false,
                                 isLoading = true
                             )
                         }
                     }
+
                     is Response.Success -> {
-                        _state.update {currentState ->
+                        _state.update { currentState ->
                             currentState.copy(
                                 isError = false,
                                 isLoading = false,
@@ -84,28 +88,30 @@ class HomeClientViewModel @Inject constructor(
         }
     }
 
-    private fun getProductsTop(){
+    private fun getProductsTop() {
         viewModelScope.launch {
-            clientUseCases.getProductsPopularUseCase().collect{productsResponse ->
-                when(productsResponse){
+            clientUseCases.getProductsPopularUseCase().collect { productsResponse ->
+                when (productsResponse) {
                     is Response.Failure -> {
-                        _state.update {currentState ->
+                        _state.update { currentState ->
                             currentState.copy(
                                 isError = true,
                                 isLoading = false,
                             )
                         }
                     }
+
                     Response.Loading -> {
-                        _state.update {currentState ->
+                        _state.update { currentState ->
                             currentState.copy(
                                 isError = false,
                                 isLoading = true
                             )
                         }
                     }
+
                     is Response.Success -> {
-                        _state.update {currentState ->
+                        _state.update { currentState ->
                             currentState.copy(
                                 isError = false,
                                 isLoading = false,

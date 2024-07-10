@@ -5,9 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.deliveryapp.R
 import com.example.deliveryapp.core.domain.model.Response
 import com.example.deliveryapp.core.presentation.ui.UiText
-import com.example.deliveryapp.core.user.domain.model.User
 import com.example.deliveryapp.core.presentation.ui.utils.imageCamara
 import com.example.deliveryapp.core.presentation.ui.utils.reduceImageSize
+import com.example.deliveryapp.core.user.domain.model.User
 import com.example.deliveryapp.core.user.domain.useCases.UserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel

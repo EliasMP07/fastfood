@@ -2,7 +2,6 @@ package com.example.deliveryapp.delivery.presentation.home.fragments.profileDeli
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.deliveryapp.client.presentation.home.fragments.profile.ProfileClientState
 import com.example.deliveryapp.core.user.domain.model.User
 import com.example.deliveryapp.core.user.domain.repository.SessionStorage
 import dagger.hilt.android.lifecycle.HiltViewModel

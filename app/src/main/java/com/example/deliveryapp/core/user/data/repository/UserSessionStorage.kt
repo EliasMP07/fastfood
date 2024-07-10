@@ -22,6 +22,7 @@ class UserSessionStorage(
     companion object {
         private val USER_DATA = stringPreferencesKey("user_data")
     }
+
     override suspend fun get(): User? {
         return withContext(Dispatchers.IO) {
             try {

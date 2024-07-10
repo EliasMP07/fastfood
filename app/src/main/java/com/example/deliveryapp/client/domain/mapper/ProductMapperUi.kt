@@ -1,8 +1,8 @@
 package com.example.deliveryapp.client.domain.mapper
 
 import com.example.deliveryapp.client.domain.model.Coupon
-import com.example.deliveryapp.client.domain.model.Product
 import com.example.deliveryapp.client.domain.model.CouponSerializable
+import com.example.deliveryapp.client.domain.model.Product
 import com.example.deliveryapp.client.domain.model.ProductSerializable
 
 fun ProductSerializable.toProduct(): Product{

@@ -13,6 +13,8 @@ import com.example.deliveryapp.core.user.data.repository.UserRepositoryImp
 import com.example.deliveryapp.core.user.data.repository.UserSessionStorage
 import com.example.deliveryapp.core.user.domain.repository.SessionStorage
 import com.example.deliveryapp.core.user.domain.repository.UserRepository
+import com.example.deliveryapp.core.user.domain.useCases.AddFavoriteAddressUseCase
+import com.example.deliveryapp.core.user.domain.useCases.GetAddressFavoriteUseCase
 import com.example.deliveryapp.core.user.domain.useCases.UpdateProfileUseCase
 import com.example.deliveryapp.core.user.domain.useCases.UserUseCase
 import dagger.Module
@@ -37,7 +39,9 @@ object CoreModule {
         repository: UserRepository
     ): UserUseCase{
         return UserUseCase(
-            updateProfileUseCase = UpdateProfileUseCase(repository = repository)
+            updateProfileUseCase = UpdateProfileUseCase(repository = repository),
+            getAddressFavoriteUseCase = GetAddressFavoriteUseCase(repository),
+            addFavoriteAddressUseCase = AddFavoriteAddressUseCase(repository)
         )
     }
 
@@ -63,11 +67,11 @@ object CoreModule {
     @Provides
     @Singleton
     fun provideUserRepository(
-        @ApplicationContext context: Context,
         sessionStorage: SessionStorage,
-        api: UserApiService
+        api: UserApiService,
+        userPreferences: DataStore<Preferences>
     ): UserRepository {
-        return UserRepositoryImp(context = context,api = api, sessionStorage = sessionStorage)
+        return UserRepositoryImp(api = api, sessionStorage = sessionStorage, userPreferences= userPreferences)
     }
 
 }

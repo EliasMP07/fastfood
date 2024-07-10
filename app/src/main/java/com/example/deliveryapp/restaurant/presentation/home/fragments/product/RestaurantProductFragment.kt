@@ -2,11 +2,8 @@ package com.example.deliveryapp.restaurant.presentation.home.fragments.product
 
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,12 +12,12 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
-import com.example.deliveryapp.R
 import com.example.deliveryapp.client.domain.model.Category
 import com.example.deliveryapp.core.presentation.ui.CustomTextWatcher
 import com.example.deliveryapp.core.presentation.ui.utils.XmlFileProvider

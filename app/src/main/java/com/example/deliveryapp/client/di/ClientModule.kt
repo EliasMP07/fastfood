@@ -1,22 +1,26 @@
 package com.example.deliveryapp.client.di
 
 import android.content.Context
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import com.example.deliveryapp.client.data.network.ClientApiServices
 import com.example.deliveryapp.client.data.repository.CartRepositoryImpl
 import com.example.deliveryapp.client.data.repository.ClientRepositoryImpl
 import com.example.deliveryapp.client.domain.repository.CartRepository
 import com.example.deliveryapp.client.domain.repository.ClientRepository
+import com.example.deliveryapp.client.domain.repository.LocationConverter
+import com.example.deliveryapp.client.domain.repository.LocationObserver
 import com.example.deliveryapp.client.domain.useCases.AddProductCartUseCase
 import com.example.deliveryapp.client.domain.useCases.AddRatingProductUseCase
 import com.example.deliveryapp.client.domain.useCases.ClientUseCases
+import com.example.deliveryapp.client.domain.useCases.CreateAddressUseCase
+import com.example.deliveryapp.client.domain.useCases.GetAddressByUserId
 import com.example.deliveryapp.client.domain.useCases.GetAllCategoriesUseCase
 import com.example.deliveryapp.client.domain.useCases.GetAllProductByCategory
 import com.example.deliveryapp.client.domain.useCases.GetCartShopping
 import com.example.deliveryapp.client.domain.useCases.GetProductsPopularUseCase
 import com.example.deliveryapp.client.domain.useCases.RemoveProductToCartUseCase
 import com.example.deliveryapp.client.domain.useCases.UpdateAllCartUseCase
+import com.example.deliveryapp.client.location.AndroidLocationConverter
+import com.example.deliveryapp.client.location.AndroidLocationObserver
 import com.example.deliveryapp.core.user.domain.repository.SessionStorage
 import dagger.Module
 import dagger.Provides
@@ -45,6 +49,22 @@ object ClientModule {
 
     @Provides
     @Singleton
+    fun provideLocationConverter(
+        @ApplicationContext context: Context
+    ): LocationConverter{
+        return AndroidLocationConverter(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLocationObserver(
+        @ApplicationContext context: Context
+    ): LocationObserver {
+        return AndroidLocationObserver(context)
+    }
+
+    @Provides
+    @Singleton
     fun provideCartRepository(
         @ApplicationContext context: Context
     ): CartRepository{
@@ -64,7 +84,9 @@ object ClientModule {
             removeProductToCartUseCase = RemoveProductToCartUseCase(repository),
             updateAllCartUseCase = UpdateAllCartUseCase(repository),
             addRatingProductUseCase = AddRatingProductUseCase(repository),
-            getProductsPopularUseCase = GetProductsPopularUseCase(repository)
+            getProductsPopularUseCase = GetProductsPopularUseCase(repository),
+            createAddressUseCase = CreateAddressUseCase(repository),
+            getAddressByUserId = GetAddressByUserId(repository)
         )
     }
 }

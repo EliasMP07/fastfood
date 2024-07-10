@@ -22,7 +22,7 @@ class RestaurantRepositoryImpl(
 
     override suspend fun createCategory(categoryRequest: CategoryRequest): Response<Unit> {
         return ApiCallHelper.safeCall {
-            val response = api.createCategory(
+            api.createCategory(
                 token = sessionStorage.get()?.sessionToken ?: "",
                 categoryRequest = categoryRequest
             )

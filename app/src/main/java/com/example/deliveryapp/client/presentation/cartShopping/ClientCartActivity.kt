@@ -12,6 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.deliveryapp.R
 import com.example.deliveryapp.client.domain.model.Product
+import com.example.deliveryapp.client.presentation.address.list.ClientMyAddressActivity
 import com.example.deliveryapp.client.presentation.cartShopping.adapter.CartAdapter
 import com.example.deliveryapp.core.presentation.ui.UtilsMessage
 import com.example.deliveryapp.databinding.ActivityClientCartBinding
@@ -42,6 +43,7 @@ class ClientCartActivity : AppCompatActivity() {
         initListernes( onAction = {action->
             when(action){
                 ClientCartAction.OnBackClick -> onBackPressedDispatcher.onBackPressed()
+                ClientCartAction.OnContinueShopClick -> goToMyAddress()
                 else -> Unit
             }
 
@@ -49,13 +51,18 @@ class ClientCartActivity : AppCompatActivity() {
         updateUi()
     }
 
+    private fun goToMyAddress(){
+        startActivity(ClientMyAddressActivity.create(this))
+    }
     private fun initListernes(
         onAction:(ClientCartAction) -> Unit
     ) {
         binding.ivBack.setOnClickListener {
             onAction(ClientCartAction.OnBackClick)
         }
-        binding
+        binding.btnContinue.setOnClickListener {
+            onAction(ClientCartAction.OnContinueShopClick)
+        }
     }
 
     private fun updateUi() {

@@ -1,7 +1,5 @@
 package com.example.deliveryapp.client.domain.model
 
-import com.google.gson.annotations.SerializedName
-
 data class Product(
     val id: String = "",
     val name: String = "",

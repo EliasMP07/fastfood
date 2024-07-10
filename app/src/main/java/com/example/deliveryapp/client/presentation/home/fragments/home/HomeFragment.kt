@@ -1,13 +1,13 @@
 package com.example.deliveryapp.client.presentation.home.fragments.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
@@ -15,12 +15,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.deliveryapp.R
-import com.example.deliveryapp.client.presentation.home.fragments.home.adapter.CategoryAdapter
-import com.example.deliveryapp.client.presentation.home.fragments.profile.passObjectToString
-import com.example.deliveryapp.client.domain.mapper.toCategorySerializable
+import com.example.deliveryapp.client.data.mapppers.toCategorySerializable
 import com.example.deliveryapp.client.domain.mapper.toProductSerializable
 import com.example.deliveryapp.client.domain.model.Product
 import com.example.deliveryapp.client.presentation.cartShopping.ClientCartActivity
+import com.example.deliveryapp.client.presentation.home.fragments.home.adapter.CategoryAdapter
+import com.example.deliveryapp.client.presentation.home.fragments.profile.passObjectToString
 import com.example.deliveryapp.client.presentation.productDetail.DetailProductActivity
 import com.example.deliveryapp.client.presentation.products.adapters.ProductAdapter
 import com.example.deliveryapp.core.presentation.ui.getMealTime
@@ -35,10 +35,11 @@ class HomeFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val viewModel by viewModels<HomeClientViewModel>()
+    private lateinit var viewModel: HomeClientViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this)[HomeClientViewModel::class.java]
         initUi()
     }
 

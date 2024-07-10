@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">FastFood</string>
+    <string name="google_maps_key">AIzaSyBtTASc03P6hbW3nkZHsi7mjxc4OmwZP3s</string>
     <string name="error_login">Error de inicio de sesión</string>
     <string name="retry_login">Reitentar</string>
     <string name="cancelar_button_text">Cancelar</string>
@@ -143,4 +144,8 @@
     <string name="request_timeout">La solicitud agotó el tiempo de espera</string>
     <string name="payload_too_large">El archivo que estás intentando subir es demasiado grande.</string>
     <string name="error_connect_exception">Ocurrió un error al intentar conectar con el servidor remoto</string>
+    <string name="description_img_point_location">Punto de ubicacion</string>
+    <string name="text_btn_confirm">Aceptar</string>
+    <string name="text_point_references">%s %s</string>
+    <string name="on_success_create_address">La dirección a sido creado correctamente.</string>
 </resources>

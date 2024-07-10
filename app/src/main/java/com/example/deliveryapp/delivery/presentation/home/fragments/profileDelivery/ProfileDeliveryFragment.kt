@@ -2,10 +2,10 @@ package com.example.deliveryapp.delivery.presentation.home.fragments.profileDeli
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -15,8 +15,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.deliveryapp.R
 import com.example.deliveryapp.auth.presentation.login.LoginActivity
-import com.example.deliveryapp.client.presentation.home.fragments.profile.ProfileClientAction
-import com.example.deliveryapp.client.presentation.home.fragments.profile.ProfileFragmentDirections
 import com.example.deliveryapp.core.user.data.mapper.toUserSerializable
 import com.example.deliveryapp.core.user.domain.model.User
 import com.example.deliveryapp.databinding.FragmentProfileDeliveryBinding

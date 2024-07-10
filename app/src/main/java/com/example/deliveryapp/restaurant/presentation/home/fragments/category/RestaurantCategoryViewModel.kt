@@ -3,7 +3,6 @@ package com.example.deliveryapp.restaurant.presentation.home.fragments.category
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.deliveryapp.core.domain.model.Response
-import com.example.deliveryapp.core.presentation.ui.UiText
 import com.example.deliveryapp.core.presentation.ui.utils.imageCamara
 import com.example.deliveryapp.core.presentation.ui.utils.reduceImageSize
 import com.example.deliveryapp.restaurant.domain.model.CategoryRequest

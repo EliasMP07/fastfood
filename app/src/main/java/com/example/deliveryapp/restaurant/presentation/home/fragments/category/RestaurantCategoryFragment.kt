@@ -1,21 +1,19 @@
 package com.example.deliveryapp.restaurant.presentation.home.fragments.category
 
-import android.Manifest
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
 import com.example.deliveryapp.R
-import com.example.deliveryapp.auth.presentation.register.RegisterAction
 import com.example.deliveryapp.core.presentation.designsystem.dialog.DialogFragmentLauncher
 import com.example.deliveryapp.core.presentation.designsystem.dialog.ErrorDialog
 import com.example.deliveryapp.core.presentation.designsystem.dialog.ImageSelectorDialog
@@ -23,12 +21,9 @@ import com.example.deliveryapp.core.presentation.designsystem.dialog.SuccessDial
 import com.example.deliveryapp.core.presentation.designsystem.dialog.ex.show
 import com.example.deliveryapp.core.presentation.ui.CustomTextWatcher
 import com.example.deliveryapp.core.presentation.ui.ex.clearFocusFromAllFields
-import com.example.deliveryapp.core.presentation.ui.utils.PermissionHandler
 import com.example.deliveryapp.core.presentation.ui.utils.XmlFileProvider
 import com.example.deliveryapp.databinding.FragmentRestaurantCategoryBinding
-import com.example.deliveryapp.databinding.FragmentRestaurantProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

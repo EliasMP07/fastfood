@@ -1,12 +1,15 @@
 package com.example.deliveryapp.client.data.repository
 
+import com.example.deliveryapp.client.data.mapppers.toAddress
 import com.example.deliveryapp.client.data.mapppers.toCategory
 import com.example.deliveryapp.client.data.mapppers.toProduct
 import com.example.deliveryapp.client.data.network.ClientApiServices
+import com.example.deliveryapp.client.data.network.dto.address.AddressRequest
 import com.example.deliveryapp.client.data.network.dto.rating.RatingRequest
+import com.example.deliveryapp.client.domain.model.Address
 import com.example.deliveryapp.client.domain.model.CartShopping
-import com.example.deliveryapp.client.domain.model.Product
 import com.example.deliveryapp.client.domain.model.Category
+import com.example.deliveryapp.client.domain.model.Product
 import com.example.deliveryapp.client.domain.repository.CartRepository
 import com.example.deliveryapp.client.domain.repository.ClientRepository
 import com.example.deliveryapp.core.data.remote.ApiCallHelper
@@ -25,10 +28,10 @@ class ClientRepositoryImpl(
                 token = sessionStorage.get()?.sessionToken.orEmpty(),
                 idCategory = idCategory
             )
-            val products = apiResponse.products.map {
+            val products = apiResponse.data?.map {
                 it.toProduct()
             }
-            products
+            products?: listOf()
         }
     }
 
@@ -81,6 +84,35 @@ class ClientRepositoryImpl(
                 it.toProduct()
             }
             productsPopular
+        }
+    }
+
+    override suspend fun createAddress(
+        address: String,
+        neighborhood: String,
+        latitud: Double,
+        longitud: Double
+    ): Response<Unit> {
+        return ApiCallHelper.safeCall {
+            api.createAddress(token = sessionStorage.get()?.sessionToken.orEmpty(), addressRequest = AddressRequest(
+                idUser = sessionStorage.get()?.id?:"",
+                address = address,
+                neighborhood = neighborhood,
+                latitud = latitud,
+                longitud = longitud
+            ))
+        }
+    }
+
+    override suspend fun getAddressByIdUser(): Response<List<Address>> {
+        return ApiCallHelper.safeCall {
+            val address =  api.getAddressByUser(
+                token = sessionStorage.get()?.sessionToken.orEmpty(),
+                idUser =  sessionStorage.get()?.id?:"",
+            )
+            address.map {
+                it.toAddress()
+            }
         }
     }
 
