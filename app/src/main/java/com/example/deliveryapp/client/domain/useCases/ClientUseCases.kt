@@ -10,5 +10,6 @@ data class ClientUseCases(
     val addRatingProductUseCase: AddRatingProductUseCase,
     val getProductsPopularUseCase: GetProductsPopularUseCase,
     val createAddressUseCase: CreateAddressUseCase,
-    val getAddressByUserId: GetAddressByUserId
+    val getAddressByUserId: GetAddressByUserId,
+    val getStatusOrdersUseCase: GetStatusOrdersUseCase
 )

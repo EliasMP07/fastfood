@@ -17,6 +17,7 @@ import com.example.deliveryapp.client.domain.useCases.GetAllCategoriesUseCase
 import com.example.deliveryapp.client.domain.useCases.GetAllProductByCategory
 import com.example.deliveryapp.client.domain.useCases.GetCartShopping
 import com.example.deliveryapp.client.domain.useCases.GetProductsPopularUseCase
+import com.example.deliveryapp.client.domain.useCases.GetStatusOrdersUseCase
 import com.example.deliveryapp.client.domain.useCases.RemoveProductToCartUseCase
 import com.example.deliveryapp.client.domain.useCases.UpdateAllCartUseCase
 import com.example.deliveryapp.client.location.AndroidLocationConverter
@@ -86,7 +87,8 @@ object ClientModule {
             addRatingProductUseCase = AddRatingProductUseCase(repository),
             getProductsPopularUseCase = GetProductsPopularUseCase(repository),
             createAddressUseCase = CreateAddressUseCase(repository),
-            getAddressByUserId = GetAddressByUserId(repository)
+            getAddressByUserId = GetAddressByUserId(repository),
+            getStatusOrdersUseCase = GetStatusOrdersUseCase(repository)
         )
     }
 }

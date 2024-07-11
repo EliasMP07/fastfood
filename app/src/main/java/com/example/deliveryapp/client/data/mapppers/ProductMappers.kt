@@ -16,3 +16,17 @@ fun ProductDto.toProduct(): Product {
         ranting = ranting
     )
 }
+fun Product.toProductDto(): ProductDto{
+    return ProductDto(
+        id = id,
+        name = name,
+        description = description,
+        image1 = image,
+        image2 = image2,
+        image3 = image3,
+        idCategory = idCategory,
+        price = price,
+        ranting = ranting,
+        quantity = quantity
+    )
+}

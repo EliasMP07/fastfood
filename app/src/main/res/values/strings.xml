@@ -148,4 +148,8 @@
     <string name="text_btn_confirm">Aceptar</string>
     <string name="text_point_references">%s %s</string>
     <string name="on_success_create_address">La dirección a sido creado correctamente.</string>
+    <string name="number_order_client">Orden No. %s</string>
+    <string name="total_products">Total de productos: %s</string>
+    <string name="tv_title_empty_orders">Ninguna orden</string>
+    <string name="tv_description_empty_order">No tienes ninguna orden por el momento.</string>
 </resources>

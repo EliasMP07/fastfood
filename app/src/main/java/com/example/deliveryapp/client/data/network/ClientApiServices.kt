@@ -4,6 +4,8 @@ import com.example.deliveryapp.client.data.network.dto.AddressDto
 import com.example.deliveryapp.client.data.network.dto.address.AddressRequest
 import com.example.deliveryapp.client.data.network.dto.category.CategoryDto
 import com.example.deliveryapp.client.data.network.dto.category.ProductDto
+import com.example.deliveryapp.client.data.network.dto.orders.OrderClientDto
+import com.example.deliveryapp.client.data.network.dto.orders.OrderRequest
 import com.example.deliveryapp.client.data.network.dto.rating.RatingRequest
 import com.example.deliveryapp.core.data.remote.dto.DeliveryApiResponse
 import retrofit2.http.Body
@@ -46,4 +48,17 @@ interface ClientApiServices {
         @Header("Authorization") token: String,
         @Path("id_user") idUser: String
     ): List<AddressDto>
+
+    @POST("orders/create")
+    suspend fun createOrder(
+        @Header("Authorization") token: String,
+        @Body orderRequest: OrderRequest
+    ): DeliveryApiResponse<Unit>
+
+    @GET("orders/findByClientAndStatus/{id_client}/{status}")
+    suspend fun getStatusMyOrder(
+        @Header("Authorization") token: String,
+        @Path("status") status: String,
+        @Path("id_client") idClient: String
+    ): DeliveryApiResponse<List<OrderClientDto>>
 }

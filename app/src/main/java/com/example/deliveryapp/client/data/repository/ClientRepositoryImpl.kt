@@ -1,14 +1,19 @@
 package com.example.deliveryapp.client.data.repository
 
+import android.util.Log
 import com.example.deliveryapp.client.data.mapppers.toAddress
 import com.example.deliveryapp.client.data.mapppers.toCategory
+import com.example.deliveryapp.client.data.mapppers.toOrderClient
 import com.example.deliveryapp.client.data.mapppers.toProduct
+import com.example.deliveryapp.client.data.mapppers.toProductDto
 import com.example.deliveryapp.client.data.network.ClientApiServices
 import com.example.deliveryapp.client.data.network.dto.address.AddressRequest
+import com.example.deliveryapp.client.data.network.dto.orders.OrderRequest
 import com.example.deliveryapp.client.data.network.dto.rating.RatingRequest
 import com.example.deliveryapp.client.domain.model.Address
 import com.example.deliveryapp.client.domain.model.CartShopping
 import com.example.deliveryapp.client.domain.model.Category
+import com.example.deliveryapp.client.domain.model.OrderClient
 import com.example.deliveryapp.client.domain.model.Product
 import com.example.deliveryapp.client.domain.repository.CartRepository
 import com.example.deliveryapp.client.domain.repository.ClientRepository
@@ -113,6 +118,37 @@ class ClientRepositoryImpl(
             address.map {
                 it.toAddress()
             }
+        }
+    }
+
+    override suspend fun createOrder(idAddress: String, status: String): Response<Unit> {
+        return ApiCallHelper.safeCall {
+            api.createOrder(
+                token = sessionStorage.get()?.sessionToken.orEmpty(),
+                orderRequest = OrderRequest(
+                    idClient =  sessionStorage.get()?.id?:"",
+                    idAddress = idAddress,
+                    products = cartRepository.getCartProduct().map {
+                        it.toProductDto()
+                    },
+                    status = status
+                )
+            )
+        }
+    }
+
+    override suspend fun getStatusOrders(status: String): Flow<Response<List<OrderClient>>> {
+        return ApiCallHelper.safeCallFlow {
+            val apiResponse = api.getStatusMyOrder(
+                token = sessionStorage.get()?.sessionToken.orEmpty(),
+                status = status.uppercase(),
+                idClient = sessionStorage.get()?.id?:"",
+            )
+
+            val orders = apiResponse.data?.map {
+                it.toOrderClient()
+            }
+            orders?: listOf()
         }
     }
 

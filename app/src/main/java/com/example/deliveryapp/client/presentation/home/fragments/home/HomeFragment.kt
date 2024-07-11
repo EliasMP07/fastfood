@@ -115,8 +115,7 @@ class HomeFragment : Fragment() {
 
     private fun initLists() {
         binding.rvCategories.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = CategoryAdapter(onCategorySelected = {
                 findNavController().navigate(
                     HomeFragmentDirections.actionHomeFragmentToClientProductListActivity(
