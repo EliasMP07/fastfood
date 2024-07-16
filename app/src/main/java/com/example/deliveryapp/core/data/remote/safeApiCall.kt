@@ -22,7 +22,7 @@ object ApiCallHelper {
      * @param apiCall Suspended function representing the call.
      * @return Flow<Response<T>> emitting Loading, Success or Failure states.
      */
-    inline fun <T> safeCallFlow(crossinline apiCall: suspend () -> T): Flow<Response<T>> {
+    suspend inline fun <T> safeCallFlow(crossinline apiCall: suspend () -> T): Flow<Response<T>> {
         return flow {
             emit(Response.Loading)
             try {

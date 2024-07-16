@@ -7,13 +7,13 @@ import com.example.deliveryapp.core.data.remote.ApiCallHelper
 import com.example.deliveryapp.core.domain.model.Response
 import com.example.deliveryapp.core.user.domain.repository.SessionStorage
 import com.example.deliveryapp.restaurant.data.mapper.toDeliveryAvailable
-import com.example.deliveryapp.restaurant.data.mapper.toOrderRestaurant
+import com.example.deliveryapp.core.data.mapper.toOrderRestaurant
 import com.example.deliveryapp.restaurant.data.remote.RestaurantApiService
-import com.example.deliveryapp.restaurant.data.remote.requests.DispatchedOrderRequest
+import com.example.deliveryapp.core.data.remote.dto.DispatchedOrderRequest
 import com.example.deliveryapp.restaurant.data.remote.requests.ProductRequest
 import com.example.deliveryapp.restaurant.domain.model.CategoryRequest
 import com.example.deliveryapp.restaurant.domain.model.DeliveryAvailable
-import com.example.deliveryapp.restaurant.domain.model.OrderRestaurant
+import com.example.deliveryapp.core.domain.model.order.Order
 import com.example.deliveryapp.restaurant.domain.repository.RestaurantRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -74,7 +74,7 @@ class RestaurantRepositoryImpl(
         }
     }
 
-    override suspend fun getAllOrders(status: String): Flow<Response<List<OrderRestaurant>>> {
+    override suspend fun getAllOrders(status: String): Flow<Response<List<Order>>> {
         return ApiCallHelper.safeCallFlow {
             val response = api.getStatusOrdersClient(
                 token = sessionStorage.get()?.sessionToken.orEmpty(),

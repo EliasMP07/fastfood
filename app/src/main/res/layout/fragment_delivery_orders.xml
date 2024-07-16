@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/md_theme_background"
     tools:context=".delivery.presentation.home.fragments.orders.DeliveryOrdersFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        layout="@layout/toolbar_orderd_delivery"/>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabOrders"
+        app:tabSelectedTextAppearance="@style/TitleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/top_bottom_rounded"
+        app:tabMaxWidth="0dp"
+        app:tabTextAppearance="?attr/textAppearanceBodyMedium"
+        app:textAllCaps="false"/>
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+
+</LinearLayout>

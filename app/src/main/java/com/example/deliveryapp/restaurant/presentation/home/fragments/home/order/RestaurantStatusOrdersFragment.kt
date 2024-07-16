@@ -12,20 +12,14 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.deliveryapp.client.presentation.address.create.ClientCreateAddressAction
-import com.example.deliveryapp.client.presentation.address.models.AddressInfoSerializable
-import com.example.deliveryapp.client.presentation.address.models.toAddressInfo
-import com.example.deliveryapp.client.presentation.home.fragments.profile.convertStringToObject
 import com.example.deliveryapp.core.presentation.ui.JsonUtil
-import com.example.deliveryapp.databinding.FragmentClientOrderStatusBinding
 import com.example.deliveryapp.databinding.FragmentRestaurantStatusOrderBinding
-import com.example.deliveryapp.restaurant.domain.model.OrderRestaurant
-import com.example.deliveryapp.restaurant.domain.model.ProductClient
+import com.example.deliveryapp.core.domain.model.order.Order
 import com.example.deliveryapp.restaurant.presentation.home.fragments.home.adapter.OrdersClientsAdapter
-import com.example.deliveryapp.restaurant.presentation.home.fragments.home.orderDetail.DetailOrderClientActivity
+import com.example.deliveryapp.restaurant.presentation.home.restaurantOrderDetail.DetailOrderClientActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -57,26 +51,35 @@ class RestaurantStatusOrdersFragment : Fragment() {
     private fun initUi() {
         initUiState()
         initList()
+        configSwipe()
+    }
+
+    private fun configSwipe() {
+        binding.srLoading.setOnRefreshListener {
+            viewModel.getOrders(status)
+        }
     }
 
     private fun initUiState() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collectLatest {
-                    (binding.rvOrdersClient.adapter  as OrdersClientsAdapter).submitList(it.orders)
+                    (binding.rvOrdersClient.adapter as OrdersClientsAdapter).submitList(it.orders)
                     binding.viewEmptyOrders.root.isVisible = it.orders.isEmpty()
+                    binding.srLoading.isRefreshing = it.isLoading
                 }
             }
         }
     }
 
+
     private fun initList() {
         binding.rvOrdersClient.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = OrdersClientsAdapter(
                 onOrderSelected = {
                     goToDetailOrder.launch(DetailOrderClientActivity.create(requireContext()).apply {
-                        putExtra("order", JsonUtil.serialize(it, OrderRestaurant::class.java))
+                        putExtra("order", JsonUtil.serialize(it, Order::class.java))
                     })
                 }
             )
@@ -90,5 +93,4 @@ class RestaurantStatusOrdersFragment : Fragment() {
         _binding = FragmentRestaurantStatusOrderBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
-
 }

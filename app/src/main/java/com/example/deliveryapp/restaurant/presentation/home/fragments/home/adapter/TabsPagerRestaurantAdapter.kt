@@ -21,7 +21,7 @@ class TabsPagerRestaurantAdapter(
             putString("status", when (position) {
                 0 -> "PAGADO"
                 1 -> "DESPACHADO"
-                2 -> "ENCAMINO"
+                2 -> "EN CAMINO"
                 3 -> "ENTREGADO"
                 else -> null
             })

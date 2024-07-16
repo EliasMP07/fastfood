@@ -1,6 +1,8 @@
 package com.example.deliveryapp.restaurant.presentation.home.fragments.home.order
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.viewModelScope
 import com.example.deliveryapp.client.presentation.address.create.MVVMContract
 import com.example.deliveryapp.client.presentation.address.create.MVVMDelegate
@@ -21,23 +23,24 @@ class RestaurantStatusOrdersViewModel @Inject constructor(
 
     }
 
-    fun getOrders(status: String){
+    fun getOrders(status: String) {
         viewModelScope.launch {
             restaurantUseCases.getAllOrdersUseCase(status = status).collectLatest {
                 updateUi {
-                    when(it){
+                    when(it) {
                         is Response.Failure -> {
                             copy(
-                                orders = emptyList()
+                                isLoading = false
                             )
                         }
                         Response.Loading -> {
                             copy(
-                                orders = emptyList()
+                                isLoading = true
                             )
                         }
                         is Response.Success -> {
                             copy(
+                                isLoading = false,
                                 orders = it.data
                             )
                         }

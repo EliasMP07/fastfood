@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/md_theme_primary"
     android:fitsSystemWindows="true"
-    tools:context=".restaurant.presentation.home.fragments.home.orderDetail.DetailOrderClientActivity">
+    tools:context=".restaurant.presentation.home.restaurantOrderDetail.DetailOrderClientActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"

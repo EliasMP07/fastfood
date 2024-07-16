@@ -43,15 +43,17 @@ android {
 }
 
 dependencies {
+    //Implementation
+    implementation(libs.androidx.swiperefreshlayout)
     //ViewPager
-    implementation("androidx.viewpager2:viewpager2:1.0.0")
+    implementation(libs.androidx.viewpager2)
 
-    implementation("androidx.core:core-ktx:1.7.0")
+    implementation(libs.androidx.core.ktx.v170)
 
-    implementation("androidx.dynamicanimation:dynamicanimation-ktx:1.0.0-alpha03")
-    implementation("com.facebook.shimmer:shimmer:0.5.0")
+    implementation(libs.androidx.dynamicanimation.ktx)
+    implementation(libs.shimmer)
 
-    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5")
+    implementation(libs.kotlinx.collections.immutable)
 
     //GoogleMaps
     implementation(libs.maps.ktx)

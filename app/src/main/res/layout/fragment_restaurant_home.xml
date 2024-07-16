@@ -8,10 +8,10 @@
     android:layout_height="match_parent"
     tools:context=".restaurant.presentation.home.fragments.home.RestaurantHomeFragment">
 
-    <View
+    <include
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@color/md_theme_primary"/>
+        layout="@layout/toolbar_order_restaurant"/>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabOrders"
