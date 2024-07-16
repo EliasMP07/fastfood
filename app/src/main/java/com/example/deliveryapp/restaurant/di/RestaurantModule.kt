@@ -5,9 +5,12 @@ import com.example.deliveryapp.core.user.domain.repository.SessionStorage
 import com.example.deliveryapp.restaurant.data.remote.RestaurantApiService
 import com.example.deliveryapp.restaurant.data.repository.RestaurantRepositoryImpl
 import com.example.deliveryapp.restaurant.domain.repository.RestaurantRepository
+import com.example.deliveryapp.restaurant.domain.usecases.category.AssignDeliveryUseCase
 import com.example.deliveryapp.restaurant.domain.usecases.category.CreateCategoryUseCase
 import com.example.deliveryapp.restaurant.domain.usecases.category.CreateProductUseCase
 import com.example.deliveryapp.restaurant.domain.usecases.category.GetAllCategoriesUseCase
+import com.example.deliveryapp.restaurant.domain.usecases.category.GetAllOrdersUseCase
+import com.example.deliveryapp.restaurant.domain.usecases.category.GetDeliveriesAvailableUseCase
 import com.example.deliveryapp.restaurant.domain.usecases.category.RestaurantUseCases
 import dagger.Module
 import dagger.Provides
@@ -43,7 +46,10 @@ object RestaurantModule {
         return RestaurantUseCases(
             createCategoryUseCase = CreateCategoryUseCase(repository),
             getAllCategoriesUseCase = GetAllCategoriesUseCase(repository),
-            createProductUseCase = CreateProductUseCase(repository)
+            createProductUseCase = CreateProductUseCase(repository),
+            getAllOrdersUseCase = GetAllOrdersUseCase(repository),
+            getDeliveriesAvailableUseCase = GetDeliveriesAvailableUseCase(repository),
+            assignDeliveryUseCase = AssignDeliveryUseCase(repository)
         )
     }
 }

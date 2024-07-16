@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.deliveryapp.R
-import com.example.deliveryapp.client.presentation.home.fragments.orders.adapter.OrdersClientAdapter
+import com.example.deliveryapp.client.presentation.home.fragments.orders.adapter.OrderClientAdapter
 import com.example.deliveryapp.databinding.FragmentClientOrderStatusBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -45,7 +45,7 @@ class ClientOrderStatusFragment : Fragment() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel.uiState.collectLatest {
-                    (binding.rvOrders.adapter  as OrdersClientAdapter).submitList(it.listOrders)
+                    (binding.rvOrders.adapter  as OrderClientAdapter).submitList(it.listOrders)
                     binding.viewEmptyOrders.root.isVisible = it.listOrders.isEmpty()
                 }
             }
@@ -55,7 +55,7 @@ class ClientOrderStatusFragment : Fragment() {
     private fun initList() {
         binding.rvOrders.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
-            adapter  = OrdersClientAdapter()
+            adapter  = OrderClientAdapter()
         }
     }
 

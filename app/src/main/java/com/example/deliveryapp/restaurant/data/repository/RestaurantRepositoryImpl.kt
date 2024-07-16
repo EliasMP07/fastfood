@@ -6,9 +6,14 @@ import com.example.deliveryapp.client.domain.model.Category
 import com.example.deliveryapp.core.data.remote.ApiCallHelper
 import com.example.deliveryapp.core.domain.model.Response
 import com.example.deliveryapp.core.user.domain.repository.SessionStorage
+import com.example.deliveryapp.restaurant.data.mapper.toDeliveryAvailable
+import com.example.deliveryapp.restaurant.data.mapper.toOrderRestaurant
 import com.example.deliveryapp.restaurant.data.remote.RestaurantApiService
-import com.example.deliveryapp.restaurant.data.remote.dto.ProductRequest
+import com.example.deliveryapp.restaurant.data.remote.requests.DispatchedOrderRequest
+import com.example.deliveryapp.restaurant.data.remote.requests.ProductRequest
 import com.example.deliveryapp.restaurant.domain.model.CategoryRequest
+import com.example.deliveryapp.restaurant.domain.model.DeliveryAvailable
+import com.example.deliveryapp.restaurant.domain.model.OrderRestaurant
 import com.example.deliveryapp.restaurant.domain.repository.RestaurantRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -66,6 +71,52 @@ class RestaurantRepositoryImpl(
                 )
             )
             response.message
+        }
+    }
+
+    override suspend fun getAllOrders(status: String): Flow<Response<List<OrderRestaurant>>> {
+        return ApiCallHelper.safeCallFlow {
+            val response = api.getStatusOrdersClient(
+                token = sessionStorage.get()?.sessionToken.orEmpty(),
+                status = status
+            )
+            val orders = response.data?.map {
+                it.toOrderRestaurant()
+            }
+            orders ?: emptyList()
+        }
+    }
+
+    override suspend fun getAvailableDelivery(): Flow<Response<List<DeliveryAvailable>>> {
+        return ApiCallHelper.safeCallFlow {
+            val response = api.getDeliveryAvailable(
+                token = sessionStorage.get()?.sessionToken.orEmpty()
+            )
+            val deliveries = response.data?.map {
+                it.toDeliveryAvailable()
+            }
+            deliveries ?: emptyList()
+        }
+    }
+
+    override suspend fun assignDelivery(
+        idOrder: String,
+        idClient: String,
+        idAddress: String,
+        idDelivery: String,
+        status: String
+    ): Response<Unit> {
+        return ApiCallHelper.safeCall {
+            api.assignDelivery(
+                token = sessionStorage.get()?.sessionToken.orEmpty(),
+                dispatchedOrderRequest = DispatchedOrderRequest(
+                    idOrder = idOrder,
+                    idDelivery = idDelivery,
+                    idAddress = idAddress,
+                    idClient = idClient,
+                    status = status
+                )
+            )
         }
     }
 }

@@ -9,9 +9,9 @@ import com.example.deliveryapp.R
 import com.example.deliveryapp.client.domain.model.OrderClient
 import com.example.deliveryapp.databinding.ItemOrderBinding
 
-class OrdersClientAdapter(
+class OrderClientAdapter(
 
-): ListAdapter<OrderClient, OrdersClientAdapter.OrdersViewHolder>(DiffCallBack){
+): ListAdapter<OrderClient, OrderClientAdapter.OrdersViewHolder>(DiffCallBack){
 
     companion object DiffCallBack: DiffUtil.ItemCallback<OrderClient>(){
         override fun areItemsTheSame(oldItem: OrderClient, newItem: OrderClient): Boolean {

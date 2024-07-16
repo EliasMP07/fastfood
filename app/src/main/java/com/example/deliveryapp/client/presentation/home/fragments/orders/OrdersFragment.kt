@@ -1,6 +1,5 @@
 package com.example.deliveryapp.client.presentation.home.fragments.orders
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +7,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.deliveryapp.R
-import com.example.deliveryapp.client.presentation.home.fragments.orders.adapter.TabsPagerAdapter
+import com.example.deliveryapp.client.presentation.home.fragments.orders.adapter.TabsPagerClientAdapter
 import com.example.deliveryapp.databinding.FragmentOrdersBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -51,7 +50,7 @@ class OrdersFragment : Fragment() {
             tabMode = TabLayout.MODE_SCROLLABLE
         }
         binding.viewPager.apply {
-            adapter = TabsPagerAdapter(requireActivity().supportFragmentManager, lifecycle, 4)
+            adapter = TabsPagerClientAdapter(requireActivity().supportFragmentManager, lifecycle, 4)
             isUserInputEnabled = true
         }
         TabLayoutMediator(binding.tabOrders, binding.viewPager) { tab, position ->

@@ -2,12 +2,17 @@ package com.example.deliveryapp.restaurant.data.remote
 
 import com.example.deliveryapp.client.data.network.dto.category.CategoryDto
 import com.example.deliveryapp.core.data.remote.dto.DeliveryApiResponse
-import com.example.deliveryapp.restaurant.data.remote.dto.ProductRequest
+import com.example.deliveryapp.restaurant.data.remote.dto.DeliveryAvailableDto
+import com.example.deliveryapp.restaurant.data.remote.requests.DispatchedOrderRequest
+import com.example.deliveryapp.restaurant.data.remote.dto.OrderRestaurantDto
+import com.example.deliveryapp.restaurant.data.remote.requests.ProductRequest
 import com.example.deliveryapp.restaurant.domain.model.CategoryRequest
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface RestaurantApiService {
 
@@ -27,4 +32,22 @@ interface RestaurantApiService {
         @Header("Authorization") token: String,
         @Body productRequest: ProductRequest
     ): DeliveryApiResponse<Void>
+
+    @GET("orders/findByStatus/{status}")
+    suspend fun getStatusOrdersClient(
+        @Header("Authorization") token: String,
+        @Path("status") status: String
+    ): DeliveryApiResponse<List<OrderRestaurantDto>>
+
+    @GET("users/findDeliveryMen")
+    suspend fun getDeliveryAvailable(
+        @Header("Authorization") token: String,
+    ): DeliveryApiResponse<List<DeliveryAvailableDto>>
+
+    @PUT("orders/updateToDispatched")
+    suspend fun assignDelivery(
+        @Header("Authorization") token: String,
+        @Body dispatchedOrderRequest: DispatchedOrderRequest
+    ): DeliveryApiResponse<Unit>
+
 }

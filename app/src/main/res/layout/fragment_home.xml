@@ -7,7 +7,7 @@
     android:background="@color/md_theme_background"
     tools:context=".client.presentation.home.fragments.home.HomeFragment">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -16,6 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            app:layout_scrollFlags="scroll|enterAlways"
             android:background="@drawable/background_home"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -114,75 +115,75 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="@string/tv_title_categories"
-                    app:layout_constraintBottom_toTopOf="@id/rvCategories"
+                    app:layout_constraintBottom_toTopOf="@id/viewCategories"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/viewDiscount" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvCategories"
-                    android:layout_width="match_parent"
+                <FrameLayout
+                    android:id="@+id/viewCategories"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvDescription"
-                    tools:listitem="@layout/item_category" />
-
-                <com.facebook.shimmer.ShimmerFrameLayout
-                    android:id="@+id/shimmerCategories"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvDescription">
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
+                    >
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvCategories"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/item_category" />
 
-                        <include layout="@layout/item_category" />
-
-                        <include layout="@layout/item_category" />
-
-                        <include layout="@layout/item_category" />
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-                </com.facebook.shimmer.ShimmerFrameLayout>
-
-                <TextView
-                    android:id="@+id/tvTitleProductsPopulars"
-                    style="@style/TitleText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/tv_title_productsPopular"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/shimmerCategories" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvProductsPopular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvTitleProductsPopulars"
-                    tools:listitem="@layout/item_product" />
-
-                <com.facebook.shimmer.ShimmerFrameLayout
-                    android:id="@+id/shimmerProductPopular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvTitleProductsPopulars">
-                    <androidx.appcompat.widget.LinearLayoutCompat
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmerCategories"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-                        <include layout="@layout/item_category" />
-                        <include layout="@layout/item_category" />
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-                </com.facebook.shimmer.ShimmerFrameLayout>
+                        android:layout_height="wrap_content">
 
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <include layout="@layout/item_category" />
+
+                            <include layout="@layout/item_category" />
+
+                            <include layout="@layout/item_category" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/viewCategories"
+                    >
+                    <TextView
+                        android:id="@+id/tvTitleProductsPopulars"
+                        style="@style/TitleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/tv_title_productsPopular" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvProductsPopular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/item_product" />
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmerProductPopular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                            <include layout="@layout/item_category" />
+                            <include layout="@layout/item_category" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+                </FrameLayout>
                 <include
                     android:id="@+id/viewDiscountShimmer"
                     layout="@layout/item_promotion_shimmer"
@@ -191,12 +192,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvOffers" />
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <include
         android:id="@+id/viewNoConnection"

@@ -7,7 +7,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.deliveryapp.client.presentation.home.fragments.orders.ClientOrderStatusFragment
 
-class TabsPagerAdapter(
+class TabsPagerClientAdapter(
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle,
     private val numberOfTabs: Int

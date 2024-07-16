@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission
@@ -30,9 +30,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".client.presentation.address.map.MapGoogleActivity"
+            android:name=".restaurant.presentation.home.fragments.home.orderDetail.DetailOrderClientActivity"
             android:theme="@style/Base.Theme.DeliveryApp"
             android:exported="false" />
+        <activity
+            android:name=".client.presentation.address.map.MapGoogleActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.DeliveryApp" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

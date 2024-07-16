@@ -152,4 +152,7 @@
     <string name="total_products">Total de productos: %s</string>
     <string name="tv_title_empty_orders">Ninguna orden</string>
     <string name="tv_description_empty_order">No tienes ninguna orden por el momento.</string>
+    <string name="delivery_assing">Repartidor asignado: %s</string>
+    <string name="success_assing_delivery">Se repartidor ha sido asignado correctamente.</string>
+    <string name="error_assing_delivery">Hubo un error al asignar el repartidor.</string>
 </resources>
