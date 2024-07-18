@@ -8,15 +8,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.deliveryapp.client.data.mapppers.toCategory
-import com.example.deliveryapp.client.domain.mapper.toProductSerializable
 import com.example.deliveryapp.client.domain.model.Category
-import com.example.deliveryapp.client.domain.model.CategorySerializable
 import com.example.deliveryapp.client.domain.model.Product
-import com.example.deliveryapp.client.presentation.home.fragments.profile.convertStringToObject
-import com.example.deliveryapp.client.presentation.home.fragments.profile.passObjectToString
 import com.example.deliveryapp.client.presentation.productDetail.DetailProductActivity
 import com.example.deliveryapp.client.presentation.products.adapters.ProductAdapter
+import com.example.deliveryapp.core.presentation.ui.JsonUtil
 import com.example.deliveryapp.databinding.ActivityClientProductListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -34,7 +30,7 @@ class ClientProductListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityClientProductListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        category = convertStringToObject<CategorySerializable>(args.category).toCategory()
+        category = JsonUtil.deserialize(args.category, Category::class.java)
         viewModel.getProducts(category)
         initUi()
     }
@@ -69,7 +65,7 @@ class ClientProductListActivity : AppCompatActivity() {
 
     private fun goToDetailProduct(product: Product){
         startActivity(DetailProductActivity.create(this).apply {
-            putExtra("product", passObjectToString(product.toProductSerializable()))
+            putExtra("product", JsonUtil.serialize(product, Product::class.java))
         })
     }
 

@@ -2,12 +2,12 @@ package com.example.deliveryapp.delivery.presentation.home.fragments.orders
 
 import android.app.Activity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -58,9 +58,10 @@ class DeliveryPageOrderFragment : Fragment() {
     private fun initUiState() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.uiState.collectLatest {
+                viewModel.state.collectLatest {
                     (binding.rvOrdersDelivery.adapter as OrdersDeliveryAdapter).submitList(it.orders)
                     binding.viewEmptyOrders.root.isVisible = it.orders.isEmpty()
+                    binding.pgLoading.isVisible = it.isLoading
                 }
             }
         }

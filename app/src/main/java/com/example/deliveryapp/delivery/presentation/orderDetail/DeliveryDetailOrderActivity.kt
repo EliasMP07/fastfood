@@ -5,12 +5,9 @@ import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.addListener
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -23,7 +20,7 @@ import com.example.deliveryapp.core.presentation.designsystem.adapter.ProductsCl
 import com.example.deliveryapp.core.presentation.ui.JsonUtil
 import com.example.deliveryapp.core.presentation.ui.UtilsMessage
 import com.example.deliveryapp.databinding.ActivityDeliveryDetailOrderBinding
-import com.example.deliveryapp.restaurant.presentation.home.restaurantOrderDetail.DetailOrderClientEvent
+import com.example.deliveryapp.delivery.presentation.mapDelivery.DeliveryMapActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -66,7 +63,7 @@ class DeliveryDetailOrderActivity : AppCompatActivity() {
     private fun initUiState() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.uiState.collectLatest {
+                viewModel.state.collectLatest {
                     renderOrder(it.order?:order)
                     renderButton(it.order?:order)
                 }
@@ -84,6 +81,7 @@ class DeliveryDetailOrderActivity : AppCompatActivity() {
                         }
                         is DeliveryDetailOrderEvent.Success -> {
                             UtilsMessage.showToast(event.message.asString(this@DeliveryDetailOrderActivity))
+                            startActivity(DeliveryMapActivity.create(this@DeliveryDetailOrderActivity))
                         }
                     }
                 }
@@ -106,7 +104,9 @@ class DeliveryDetailOrderActivity : AppCompatActivity() {
     }
 
     private fun goToMapDelivery(){
-        UtilsMessage.showToast("Regresar al mapa")
+        startActivity(DeliveryMapActivity.create(this).apply {
+            putExtra("order", JsonUtil.serialize(order, Order::class.java))
+        })
     }
 
     private fun initList() {

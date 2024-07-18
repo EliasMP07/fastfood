@@ -2,9 +2,9 @@ package com.example.deliveryapp.client.presentation.address.map
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.deliveryapp.client.domain.model.Location
-import com.example.deliveryapp.client.domain.repository.LocationConverter
-import com.example.deliveryapp.client.domain.repository.LocationObserver
+import com.example.deliveryapp.core.domain.model.Location
+import com.example.deliveryapp.core.domain.repository.LocationConverter
+import com.example.deliveryapp.core.domain.repository.LocationObserver
 import com.google.android.gms.maps.model.LatLng
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,18 +25,15 @@ class MapGoogleViewModel @Inject constructor(
     val state: StateFlow<MapGoogleState> get() = _state.asStateFlow()
 
     init {
-        observeLocation()
+        getPosition()
     }
 
-    private fun observeLocation() {
+    private fun getPosition() {
         viewModelScope.launch {
-            locationObserver.observeLocation(1000L).collectLatest { location ->
-                _state.update {
-                    it.copy(
-                        currentLocation = location.location,
-                        shouldFollowLocation = it.shouldFollowLocation
-                    )
-                }
+            _state.update {
+                it.copy(
+                    currentLocation = locationObserver.getLocation(1000L),
+                )
             }
         }
     }
@@ -53,8 +50,8 @@ class MapGoogleViewModel @Inject constructor(
     private fun updateCameraPosition(cameraPosition: Location) {
         _state.update {
             it.copy(
+                currentLocation = cameraPosition,
                 cameraPosition = cameraPosition,
-                shouldFollowLocation = false
             )
         }
     }
@@ -76,10 +73,12 @@ class MapGoogleViewModel @Inject constructor(
 
     fun insertPosition(latLng: LatLng) {
         if (_state.value.shouldFollowLocation) {
-            getLocationDirection(Location(
+            getLocationDirection(
+                Location(
                 long = latLng.longitude,
                 lat = latLng.latitude
-            ))
+            )
+            )
         }
     }
 }

@@ -11,13 +11,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.deliveryapp.R
-import com.example.deliveryapp.client.domain.mapper.toProduct
 import com.example.deliveryapp.client.domain.model.Product
-import com.example.deliveryapp.client.domain.model.ProductSerializable
-import com.example.deliveryapp.client.presentation.home.fragments.profile.convertStringToObject
 import com.example.deliveryapp.client.presentation.productDetail.dialog.ReviewProduct
 import com.example.deliveryapp.core.presentation.designsystem.dialog.DialogFragmentLauncher
 import com.example.deliveryapp.core.presentation.designsystem.dialog.ex.show
+import com.example.deliveryapp.core.presentation.ui.JsonUtil
 import com.example.deliveryapp.core.presentation.ui.UtilsMessage
 import com.example.deliveryapp.databinding.ActivityDetailProductBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,8 +38,8 @@ class DetailProductActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val bundle = intent.extras?.getString("product")
-        val product = convertStringToObject<ProductSerializable>(bundle.orEmpty()).toProduct()
+        val bundle = intent.extras?.getString("product")?:""
+        val product = JsonUtil.deserialize(bundle, Product::class.java)
         viewModel.insertProduct(product)
         renderProduct(product)
         initUi()

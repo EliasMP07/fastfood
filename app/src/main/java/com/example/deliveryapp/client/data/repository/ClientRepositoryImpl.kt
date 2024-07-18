@@ -1,6 +1,5 @@
 package com.example.deliveryapp.client.data.repository
 
-import android.util.Log
 import com.example.deliveryapp.client.data.mapppers.toAddress
 import com.example.deliveryapp.client.data.mapppers.toCategory
 import com.example.deliveryapp.client.data.mapppers.toOrderClient

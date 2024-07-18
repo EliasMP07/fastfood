@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.deliveryapp.R
-import com.example.deliveryapp.databinding.ItemClientOrderBinding
 import com.example.deliveryapp.core.domain.model.order.Order
+import com.example.deliveryapp.databinding.ItemClientOrderBinding
 
 class OrdersClientsAdapter(
     private val onOrderSelected : (Order) -> Unit

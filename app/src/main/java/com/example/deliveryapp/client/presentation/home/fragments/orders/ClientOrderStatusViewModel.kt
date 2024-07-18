@@ -3,38 +3,41 @@ package com.example.deliveryapp.client.presentation.home.fragments.orders
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.deliveryapp.client.domain.useCases.ClientUseCases
-import com.example.deliveryapp.client.presentation.address.create.MVVMContract
-import com.example.deliveryapp.client.presentation.address.create.MVVMDelegate
 import com.example.deliveryapp.core.domain.model.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ClientOrderStatusViewModel @Inject constructor(
     private val clientUseCases: ClientUseCases
-): ViewModel(), MVVMContract<ClientOrderStatusState, ClientOrderStatusAction> by MVVMDelegate(
-    ClientOrderStatusState()
-){
+) : ViewModel() {
 
-    fun getMyOrders(status: String){
+    //Variable que contiene los estados de la Ui
+    private val _state = MutableStateFlow(ClientOrderStatusState())
+    val state: StateFlow<ClientOrderStatusState> get() = _state.asStateFlow()
+
+    fun getMyOrders(status: String) {
         viewModelScope.launch {
-            clientUseCases.getStatusOrdersUseCase(status = status).collect {result ->
-                updateUi {
-                    when(result){
+            clientUseCases.getStatusOrdersUseCase(status = status).collect { result ->
+                _state.update {
+                    when (result) {
                         is Response.Failure -> {
-                            copy(
+                            it.copy(
                                 isLoading = false
                             )
                         }
                         Response.Loading -> {
-                            copy(
+                            it.copy(
                                 isLoading = false
                             )
                         }
                         is Response.Success -> {
-                            copy(
+                            it.copy(
                                 listOrders = result.data
                             )
                         }

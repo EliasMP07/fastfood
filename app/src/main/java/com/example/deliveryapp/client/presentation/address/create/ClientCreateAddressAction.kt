@@ -1,6 +1,6 @@
 package com.example.deliveryapp.client.presentation.address.create
 
-import com.example.deliveryapp.client.presentation.address.models.AddressInfo
+import com.example.deliveryapp.client.domain.model.AddressInfo
 
 sealed interface ClientCreateAddressAction {
     data object OnMapSelectPointReferenceClick: ClientCreateAddressAction

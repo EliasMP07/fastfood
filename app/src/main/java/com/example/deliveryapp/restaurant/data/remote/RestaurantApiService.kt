@@ -2,9 +2,9 @@ package com.example.deliveryapp.restaurant.data.remote
 
 import com.example.deliveryapp.client.data.network.dto.category.CategoryDto
 import com.example.deliveryapp.core.data.remote.dto.DeliveryApiResponse
-import com.example.deliveryapp.restaurant.data.remote.dto.DeliveryAvailableDto
 import com.example.deliveryapp.core.data.remote.dto.DispatchedOrderRequest
 import com.example.deliveryapp.core.data.remote.dto.orders.OrderDto
+import com.example.deliveryapp.restaurant.data.remote.dto.DeliveryAvailableDto
 import com.example.deliveryapp.restaurant.data.remote.requests.ProductRequest
 import com.example.deliveryapp.restaurant.domain.model.CategoryRequest
 import retrofit2.http.Body

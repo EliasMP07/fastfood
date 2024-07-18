@@ -8,6 +8,10 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
+import com.example.deliveryapp.core.domain.repository.LocationConverter
+import com.example.deliveryapp.core.domain.repository.LocationObserver
+import com.example.deliveryapp.core.location.AndroidLocationConverter
+import com.example.deliveryapp.core.location.AndroidLocationObserver
 import com.example.deliveryapp.core.user.data.network.UserApiService
 import com.example.deliveryapp.core.user.data.repository.UserRepositoryImp
 import com.example.deliveryapp.core.user.data.repository.UserSessionStorage
@@ -43,6 +47,22 @@ object CoreModule {
             getAddressFavoriteUseCase = GetAddressFavoriteUseCase(repository),
             addFavoriteAddressUseCase = AddFavoriteAddressUseCase(repository)
         )
+    }
+
+    @Provides
+    @Singleton
+    fun provideLocationConverter(
+        @ApplicationContext context: Context
+    ): LocationConverter {
+        return AndroidLocationConverter(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLocationObserver(
+        @ApplicationContext context: Context,
+    ): LocationObserver {
+        return AndroidLocationObserver(context)
     }
 
     @Singleton

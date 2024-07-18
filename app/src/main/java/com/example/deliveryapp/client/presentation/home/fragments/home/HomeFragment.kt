@@ -15,14 +15,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.deliveryapp.R
-import com.example.deliveryapp.client.data.mapppers.toCategorySerializable
-import com.example.deliveryapp.client.domain.mapper.toProductSerializable
+import com.example.deliveryapp.client.domain.model.Category
 import com.example.deliveryapp.client.domain.model.Product
 import com.example.deliveryapp.client.presentation.cartShopping.ClientCartActivity
 import com.example.deliveryapp.client.presentation.home.fragments.home.adapter.CategoryAdapter
-import com.example.deliveryapp.client.presentation.home.fragments.profile.passObjectToString
 import com.example.deliveryapp.client.presentation.productDetail.DetailProductActivity
 import com.example.deliveryapp.client.presentation.products.adapters.ProductAdapter
+import com.example.deliveryapp.core.presentation.ui.JsonUtil
 import com.example.deliveryapp.core.presentation.ui.getMealTime
 import com.example.deliveryapp.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -119,7 +118,7 @@ class HomeFragment : Fragment() {
             adapter = CategoryAdapter(onCategorySelected = {
                 findNavController().navigate(
                     HomeFragmentDirections.actionHomeFragmentToClientProductListActivity(
-                        passObjectToString(it.toCategorySerializable())
+                        JsonUtil.serialize(it, Category::class.java)
                     )
                 )
             })
@@ -137,7 +136,7 @@ class HomeFragment : Fragment() {
 
     private fun goToDetailProduct(product: Product){
         startActivity(DetailProductActivity.create(requireContext()).apply {
-            putExtra("product", passObjectToString(product.toProductSerializable()))
+            putExtra("product", JsonUtil.serialize(product, Product::class.java))
         })
     }
 

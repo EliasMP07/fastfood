@@ -1,8 +1,8 @@
 package com.example.deliveryapp.delivery.data.network
 
 import com.example.deliveryapp.core.data.remote.dto.DeliveryApiResponse
-import com.example.deliveryapp.core.data.remote.dto.orders.OrderDto
 import com.example.deliveryapp.core.data.remote.dto.DispatchedOrderRequest
+import com.example.deliveryapp.core.data.remote.dto.orders.OrderDto
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header

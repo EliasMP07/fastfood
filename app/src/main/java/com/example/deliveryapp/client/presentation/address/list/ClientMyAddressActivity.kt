@@ -52,7 +52,7 @@ class ClientMyAddressActivity : AppCompatActivity() {
     private fun initUiState() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collectLatest { state ->
+                viewModel.state.collectLatest { state ->
                     val adapter = binding.rvMysDirections.adapter as AddressAdapter
                     adapter.submitList(state.myAddress)
                     adapter.updateSelectedAddress(state.selectedAddressId)

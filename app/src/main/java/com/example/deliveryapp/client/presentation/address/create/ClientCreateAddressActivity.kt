@@ -12,10 +12,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.deliveryapp.R
 import com.example.deliveryapp.client.presentation.address.map.MapGoogleActivity
-import com.example.deliveryapp.client.presentation.address.models.AddressInfoSerializable
-import com.example.deliveryapp.client.presentation.address.models.toAddressInfo
-import com.example.deliveryapp.client.presentation.home.fragments.profile.convertStringToObject
+import com.example.deliveryapp.client.domain.model.AddressInfo
 import com.example.deliveryapp.core.presentation.ui.CustomTextWatcher
+import com.example.deliveryapp.core.presentation.ui.JsonUtil
 import com.example.deliveryapp.core.presentation.ui.UtilsMessage
 import com.example.deliveryapp.databinding.ActivityClientCreateAddressBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,7 +32,7 @@ class ClientCreateAddressActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val getInfo = result.data?.getStringExtra("pointReference") ?: ""
-                val addressInfo = convertStringToObject<AddressInfoSerializable>(getInfo).toAddressInfo()
+                val addressInfo = JsonUtil.deserialize(getInfo, AddressInfo::class.java)
                 viewModel.onAction(ClientCreateAddressAction.OnReferenceMapChange(addressInfo))
             }
         }
@@ -90,7 +89,7 @@ class ClientCreateAddressActivity : AppCompatActivity() {
     private fun initUiState() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collectLatest {
+                viewModel.state.collectLatest {
                     binding.tiePointReference.setText(
                         getString(
                             R.string.text_point_references,

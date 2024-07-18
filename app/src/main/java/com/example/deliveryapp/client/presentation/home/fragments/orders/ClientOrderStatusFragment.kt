@@ -1,17 +1,16 @@
 package com.example.deliveryapp.client.presentation.home.fragments.orders
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.deliveryapp.R
 import com.example.deliveryapp.client.presentation.home.fragments.orders.adapter.OrderClientAdapter
 import com.example.deliveryapp.databinding.FragmentClientOrderStatusBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,7 +43,7 @@ class ClientOrderStatusFragment : Fragment() {
     private fun initUiState() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.uiState.collectLatest {
+                viewModel.state.collectLatest {
                     (binding.rvOrders.adapter  as OrderClientAdapter).submitList(it.listOrders)
                     binding.viewEmptyOrders.root.isVisible = it.listOrders.isEmpty()
                 }

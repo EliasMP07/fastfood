@@ -1,4 +1,4 @@
-package com.example.deliveryapp.client.location
+package com.example.deliveryapp.core.location
 
 import android.location.Address
 import android.location.Geocoder

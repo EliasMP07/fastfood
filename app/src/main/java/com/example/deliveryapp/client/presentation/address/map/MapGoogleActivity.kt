@@ -9,11 +9,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.deliveryapp.R
-import com.example.deliveryapp.client.domain.model.Location
 import com.example.deliveryapp.client.presentation.address.create.ClientCreateAddressActivity
-import com.example.deliveryapp.client.presentation.address.models.toAddressSerializable
-import com.example.deliveryapp.client.presentation.home.fragments.profile.passObjectToString
+import com.example.deliveryapp.client.domain.model.AddressInfo
+import com.example.deliveryapp.core.domain.model.Location
 import com.example.deliveryapp.core.presentation.designsystem.dialog.DialogFragmentLauncher
+import com.example.deliveryapp.core.presentation.ui.JsonUtil
 import com.example.deliveryapp.core.presentation.ui.utils.PermissionHandler
 import com.example.deliveryapp.databinding.ActivityMapGoogleBinding
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -57,7 +57,7 @@ class MapGoogleActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun onPointChange(){
         setResult(RESULT_OK, ClientCreateAddressActivity.create(this).apply {
-            putExtra("pointReference", passObjectToString(viewModel.state.value.addressInfo?.toAddressSerializable()))
+            putExtra("pointReference", JsonUtil.serialize(viewModel.state.value.addressInfo!!, AddressInfo::class.java))
         })
         finish()
     }
@@ -72,7 +72,6 @@ class MapGoogleActivity : AppCompatActivity(), OnMapReadyCallback {
             description = "",
             automatic = true,
             onAllGranted = {
-                initMap()
                 initUi()
             }
         )
@@ -80,6 +79,7 @@ class MapGoogleActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun initUi() {
         initListernes()
+        observeViewModel()
     }
 
     private fun initListernes() {
@@ -95,7 +95,6 @@ class MapGoogleActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
-        observeViewModel()
         setupMapListeners()
     }
 
@@ -104,13 +103,13 @@ class MapGoogleActivity : AppCompatActivity(), OnMapReadyCallback {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect { state ->
                     binding.tvLocationPosition.text = state.addressInfo?.address ?: ""
-                    if (this@MapGoogleActivity::map.isInitialized && state.shouldFollowLocation) {
+                    if (this@MapGoogleActivity::map.isInitialized) {
                         state.currentLocation?.let { location ->
                             val latLng = LatLng(location.lat, location.long)
                             viewModel.insertPosition(latLng)
                             map.moveCamera(
                                 CameraUpdateFactory.newCameraPosition(
-                                    CameraPosition.builder().target(latLng).zoom(15f).build()
+                                    CameraPosition.builder().target(latLng).zoom(17f).build()
                                 )
                             )
                         }

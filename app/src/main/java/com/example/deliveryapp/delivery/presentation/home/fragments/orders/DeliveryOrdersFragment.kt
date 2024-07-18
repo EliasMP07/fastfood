@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentDeliveryOrdersBinding
 import com.example.deliveryapp.delivery.presentation.home.fragments.orders.adapter.TabsPagerDeliveryOrdersAdapter
-import com.example.deliveryapp.restaurant.presentation.home.fragments.home.adapter.TabsPagerRestaurantAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 

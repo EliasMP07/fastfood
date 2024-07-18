@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.deliveryapp.R
-import com.example.deliveryapp.client.presentation.home.fragments.orders.adapter.TabsPagerClientAdapter
 import com.example.deliveryapp.databinding.FragmentRestaurantHomeBinding
 import com.example.deliveryapp.restaurant.presentation.home.fragments.home.adapter.TabsPagerRestaurantAdapter
 import com.google.android.material.tabs.TabLayout

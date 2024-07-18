@@ -50,6 +50,19 @@ class PermissionHandler(
         sharedPreferences.edit().putBoolean(permission, true).apply()
     }
 
+    private fun getPermissionDeniedCount(permission: String): Int {
+        return sharedPreferences.getInt("${permission}_denied_count", 0)
+    }
+
+    private fun incrementPermissionDeniedCount(permission: String) {
+        val count = getPermissionDeniedCount(permission) + 1
+        sharedPreferences.edit().putInt("${permission}_denied_count", count).apply()
+    }
+
+    private fun resetPermissionDeniedCount(permission: String) {
+        sharedPreferences.edit().putInt("${permission}_denied_count", 0).apply()
+    }
+
     private fun showPermissionRationale(
         permission: String,
         description: String,
@@ -105,6 +118,7 @@ class PermissionHandler(
     ) {
         when {
             ContextCompat.checkSelfPermission(activity, permission) == PackageManager.PERMISSION_GRANTED -> {
+                resetPermissionDeniedCount(permission)
                 onGranted()
             }
             activity.shouldShowRequestPermissionRationale(permission) -> {
@@ -118,10 +132,7 @@ class PermissionHandler(
                 setPermissionRequested(permission)
                 if (automatic) {
                     requestPermission(permission, onGranted) {
-                        // Verificar si el usuario seleccionó "No volver a preguntar"
-                        if (!activity.shouldShowRequestPermissionRationale(permission)) {
-                            showPermissionDeniedMessage()
-                        }
+                        handlePermissionDenied(permission, onGranted, description, automatic)
                     }
                 } else {
                     showPermissionRationale(
@@ -132,15 +143,34 @@ class PermissionHandler(
                 }
             }
             else -> {
-                if (!activity.shouldShowRequestPermissionRationale(permission)) {
-                    showPermissionDeniedMessage()
-                } else {
-                    showPermissionRationale(
-                        permission = permission,
-                        description = description,
-                        onGranted = onGranted,
-                    )
+                handlePermissionDenied(permission, onGranted, description, automatic)
+            }
+        }
+    }
+
+    private fun handlePermissionDenied(
+        permission: String,
+        onGranted: () -> Unit,
+        description: String,
+        automatic: Boolean
+    ) {
+        incrementPermissionDeniedCount(permission)
+        val deniedCount = getPermissionDeniedCount(permission)
+        if (deniedCount >= 3) {
+            showPermissionDeniedMessage()
+        } else {
+            if (automatic) {
+                requestPermission(permission, onGranted) {
+                    if (!activity.shouldShowRequestPermissionRationale(permission)) {
+                        showPermissionDeniedMessage()
+                    }
                 }
+            } else {
+                showPermissionRationale(
+                    permission = permission,
+                    description = description,
+                    onGranted = onGranted,
+                )
             }
         }
     }
@@ -155,6 +185,7 @@ class PermissionHandler(
             ContextCompat.checkSelfPermission(activity, it) == PackageManager.PERMISSION_GRANTED
         }
         if (allPermissionsGranted) {
+            permissions.forEach { resetPermissionDeniedCount(it) }
             onAllGranted()
         } else {
             val showRationale = permissions.any {
@@ -172,14 +203,7 @@ class PermissionHandler(
                     permissions.forEach { setPermissionRequested(it) }
                     if (automatic) {
                         requestMultiPermissions(permissions, onAllGranted) {
-                            // Verificar si el usuario seleccionó "No volver a preguntar" para alguno de los permisos
-                            val permanentlyDenied = permissions.any { permission ->
-                                !activity.shouldShowRequestPermissionRationale(permission) &&
-                                        ContextCompat.checkSelfPermission(activity, permission) != PackageManager.PERMISSION_GRANTED
-                            }
-                            if (permanentlyDenied) {
-                                showPermissionDeniedMessage()
-                            }
+                            handleMultiPermissionDenied(permissions, onAllGranted, description, automatic)
                         }
                     } else {
                         showMultiPermissionRationale(
@@ -189,19 +213,37 @@ class PermissionHandler(
                         )
                     }
                 } else {
-                    val permanentlyDenied = permissions.any { permission ->
-                        !activity.shouldShowRequestPermissionRationale(permission)
-                    }
-                    if (permanentlyDenied) {
-                        showPermissionDeniedMessage()
-                    } else {
-                        showMultiPermissionRationale(
-                            permissions = permissions,
-                            description = description,
-                            onGranted = onAllGranted,
-                        )
-                    }
+                    handleMultiPermissionDenied(permissions, onAllGranted, description, automatic)
                 }
+            }
+        }
+    }
+
+    private fun handleMultiPermissionDenied(
+        permissions: Array<String>,
+        onAllGranted: () -> Unit,
+        description: String,
+        automatic: Boolean
+    ) {
+        permissions.forEach { incrementPermissionDeniedCount(it) }
+        val permanentlyDenied = permissions.any { permission ->
+            getPermissionDeniedCount(permission) >= 3 ||
+                    (!activity.shouldShowRequestPermissionRationale(permission) &&
+                            ContextCompat.checkSelfPermission(activity, permission) != PackageManager.PERMISSION_GRANTED)
+        }
+        if (permanentlyDenied) {
+            showPermissionDeniedMessage()
+        } else {
+            if (automatic) {
+                requestMultiPermissions(permissions, onAllGranted) {
+                    handleMultiPermissionDenied(permissions, onAllGranted, description, automatic)
+                }
+            } else {
+                showMultiPermissionRationale(
+                    permissions = permissions,
+                    description = description,
+                    onGranted = onAllGranted,
+                )
             }
         }
     }

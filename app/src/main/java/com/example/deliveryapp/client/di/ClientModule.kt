@@ -6,8 +6,6 @@ import com.example.deliveryapp.client.data.repository.CartRepositoryImpl
 import com.example.deliveryapp.client.data.repository.ClientRepositoryImpl
 import com.example.deliveryapp.client.domain.repository.CartRepository
 import com.example.deliveryapp.client.domain.repository.ClientRepository
-import com.example.deliveryapp.client.domain.repository.LocationConverter
-import com.example.deliveryapp.client.domain.repository.LocationObserver
 import com.example.deliveryapp.client.domain.useCases.AddProductCartUseCase
 import com.example.deliveryapp.client.domain.useCases.AddRatingProductUseCase
 import com.example.deliveryapp.client.domain.useCases.ClientUseCases
@@ -20,8 +18,6 @@ import com.example.deliveryapp.client.domain.useCases.GetProductsPopularUseCase
 import com.example.deliveryapp.client.domain.useCases.GetStatusOrdersUseCase
 import com.example.deliveryapp.client.domain.useCases.RemoveProductToCartUseCase
 import com.example.deliveryapp.client.domain.useCases.UpdateAllCartUseCase
-import com.example.deliveryapp.client.location.AndroidLocationConverter
-import com.example.deliveryapp.client.location.AndroidLocationObserver
 import com.example.deliveryapp.core.user.domain.repository.SessionStorage
 import dagger.Module
 import dagger.Provides
@@ -46,22 +42,6 @@ object ClientModule {
             api = api,
             cartRepository = cartRepository
         )
-    }
-
-    @Provides
-    @Singleton
-    fun provideLocationConverter(
-        @ApplicationContext context: Context
-    ): LocationConverter{
-        return AndroidLocationConverter(context)
-    }
-
-    @Provides
-    @Singleton
-    fun provideLocationObserver(
-        @ApplicationContext context: Context
-    ): LocationObserver {
-        return AndroidLocationObserver(context)
     }
 
     @Provides

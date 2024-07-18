@@ -1,10 +1,10 @@
-package com.example.deliveryapp.client.location
+package com.example.deliveryapp.core.location
 
 import android.content.Context
 import android.location.Geocoder
-import com.example.deliveryapp.client.domain.model.Location
-import com.example.deliveryapp.client.domain.repository.LocationConverter
-import com.example.deliveryapp.client.presentation.address.models.AddressInfo
+import com.example.deliveryapp.client.domain.model.AddressInfo
+import com.example.deliveryapp.core.domain.model.Location
+import com.example.deliveryapp.core.domain.repository.LocationConverter
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

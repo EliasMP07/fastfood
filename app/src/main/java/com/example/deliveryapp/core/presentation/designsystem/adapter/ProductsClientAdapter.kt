@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.deliveryapp.R
-import com.example.deliveryapp.databinding.ItemProductOrderClientBinding
 import com.example.deliveryapp.core.domain.model.order.ProductClient
+import com.example.deliveryapp.databinding.ItemProductOrderClientBinding
 
 class ProductsClientAdapter(
 

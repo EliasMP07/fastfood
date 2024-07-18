@@ -1,4 +1,4 @@
-package com.example.deliveryapp.client.domain.model
+package com.example.deliveryapp.core.domain.model
 
 data class LocationWithAltitude(
     val location: Location,

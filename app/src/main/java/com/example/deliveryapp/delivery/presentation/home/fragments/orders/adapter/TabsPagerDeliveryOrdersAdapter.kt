@@ -6,7 +6,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.deliveryapp.delivery.presentation.home.fragments.orders.DeliveryPageOrderFragment
-import com.example.deliveryapp.restaurant.presentation.home.fragments.home.order.RestaurantStatusOrdersFragment
 
 class TabsPagerDeliveryOrdersAdapter(
     fragmentManager: FragmentManager,

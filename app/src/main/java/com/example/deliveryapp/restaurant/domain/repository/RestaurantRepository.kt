@@ -2,9 +2,9 @@ package com.example.deliveryapp.restaurant.domain.repository
 
 import com.example.deliveryapp.client.domain.model.Category
 import com.example.deliveryapp.core.domain.model.Response
+import com.example.deliveryapp.core.domain.model.order.Order
 import com.example.deliveryapp.restaurant.domain.model.CategoryRequest
 import com.example.deliveryapp.restaurant.domain.model.DeliveryAvailable
-import com.example.deliveryapp.core.domain.model.order.Order
 import kotlinx.coroutines.flow.Flow
 
 interface RestaurantRepository {

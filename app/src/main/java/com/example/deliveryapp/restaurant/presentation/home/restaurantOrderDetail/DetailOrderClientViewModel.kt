@@ -3,25 +3,28 @@ package com.example.deliveryapp.restaurant.presentation.home.restaurantOrderDeta
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.deliveryapp.R
-import com.example.deliveryapp.client.presentation.address.create.MVVMContract
-import com.example.deliveryapp.client.presentation.address.create.MVVMDelegate
 import com.example.deliveryapp.core.domain.model.Response
-import com.example.deliveryapp.core.presentation.ui.UiText
 import com.example.deliveryapp.core.domain.model.order.Order
+import com.example.deliveryapp.core.presentation.ui.UiText
 import com.example.deliveryapp.restaurant.domain.usecases.category.RestaurantUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailOrderClientViewModel @Inject constructor(
     private val restaurantUseCases: RestaurantUseCases
-) : ViewModel(), MVVMContract<DetailOrderClientState, DetailOrderClientActions> by MVVMDelegate(
-    DetailOrderClientState()
-) {
+) : ViewModel() {
+
+    private val _state = MutableStateFlow(DetailOrderClientState())
+    val state: StateFlow< DetailOrderClientState> get() = _state.asStateFlow()
 
     //Variable que contiene los eventos del registro
     private val eventChannel = Channel<DetailOrderClientEvent>()
@@ -35,20 +38,20 @@ class DetailOrderClientViewModel @Inject constructor(
     fun getDeliveriesAvailable() {
         viewModelScope.launch {
             restaurantUseCases.getDeliveriesAvailableUseCase().collectLatest { result ->
-                updateUi {
+                _state.update {currentState ->
                     when (result) {
                         is Response.Failure -> {
-                            copy(
+                            currentState.copy(
                                 deliveriesAvailable = emptyList()
                             )
                         }
                         Response.Loading -> {
-                            copy(
+                            currentState.copy(
                                 deliveriesAvailable = emptyList()
                             )
                         }
                         is Response.Success -> {
-                            copy(
+                            currentState.copy(
                                 deliveriesAvailable = result.data
                             )
                         }
@@ -63,7 +66,7 @@ class DetailOrderClientViewModel @Inject constructor(
             val result = restaurantUseCases.assignDeliveryUseCase(
                 idOrder = order.id,
                 idClient = order.idClient,
-                idDelivery = uiState.value.idDelivery,
+                idDelivery = _state.value.idDelivery,
                 idAddress = order.idAddress,
                 status = order.status
             )
@@ -87,13 +90,15 @@ class DetailOrderClientViewModel @Inject constructor(
         }
     }
 
-    override fun onAction(action: DetailOrderClientActions) {
+    fun onAction(action: DetailOrderClientActions) {
         when(action){
             is DetailOrderClientActions.AssignDeliveryAction -> assignDelivery(order = action.order)
-            is DetailOrderClientActions.OnDeliveryChange -> updateUi {
-                copy(
-                    idDelivery = action.deliveryId
-                )
+            is DetailOrderClientActions.OnDeliveryChange ->{
+                _state.update {currentState ->
+                    currentState.copy(
+                        idDelivery = action.deliveryId
+                    )
+                }
             }
         }
     }

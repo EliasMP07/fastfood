@@ -14,12 +14,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.deliveryapp.R
+import com.example.deliveryapp.core.domain.model.order.Order
+import com.example.deliveryapp.core.presentation.designsystem.adapter.ProductsClientAdapter
 import com.example.deliveryapp.core.presentation.ui.JsonUtil
 import com.example.deliveryapp.core.presentation.ui.UtilsMessage
 import com.example.deliveryapp.databinding.ActivityDetailOrderClientBinding
 import com.example.deliveryapp.restaurant.domain.model.DeliveryAvailable
-import com.example.deliveryapp.core.domain.model.order.Order
-import com.example.deliveryapp.core.presentation.designsystem.adapter.ProductsClientAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -99,7 +99,7 @@ class DetailOrderClientActivity : AppCompatActivity() {
     private fun initUiState() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collectLatest { uiState ->
+                viewModel.state.collectLatest { uiState ->
                     updateCategorySpinner(
                         deliveries = uiState.deliveriesAvailable,
                         uiState.idDelivery

@@ -43,6 +43,7 @@ android {
 }
 
 dependencies {
+
     //Implementation
     implementation(libs.androidx.swiperefreshlayout)
     //ViewPager
